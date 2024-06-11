@@ -10,12 +10,14 @@ Molecular descriptors are an **abstract representations of certain structural fe
 2. **1D Molecular Descriptors**:
    * This is a substructure list representation and consists of a list of **structural fragments** of a molecule
    * The list of fragments can be **functional groups** or **substituents of interest**. Therefore, complete knowledge of the molecules structure is not required **<sup>2</sup>**
-   * A common approach is to **encode** this list of molecular fragments into a **bit string**, which encodes the **presence or absence of a certain structural fragment**. **<sup>3</sup>** 
+   * A common approach is to **encode** this list of molecular fragments into a **bit string**, which encodes the **presence or absence of a certain structural fragment**. This is called a **1D molecular fingerprint** **<sup>3</sup>** 
 
         <br>
         <div align="center">
-          <img src="", alt=""/>
+          <img src="https://github.com/c-vandenberg/chemistry-machine-learning/assets/60201356/f043aca7-a03b-42b3-803e-fac864c02d5e", alt="fragment-based-1d-fingerprint" width=500/>
         </div>
+        
+        **Fig 1** Fragment-based 1D molecular fingerprint
 
 3. **2D Molecular Descriptors** - 
 4. **3D Molecular Descriptors** - 
