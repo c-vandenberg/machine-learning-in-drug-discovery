@@ -1,6 +1,6 @@
-# Molecular Descriptors/Representations in Machine Learning Models
+# 1 Molecular Descriptors/Representations in Machine Learning Models
 
-## Introduction to Molecular Descriptors
+## 1.1 Introduction to Molecular Descriptors
 
 Molecular descriptors are an **abstract representations of certain structural features of a molecule**. The majority of molecular descriptors can be classified according to their **"dimensionality"**, which refers to the representation of molecules from which descriptor values are computed **<sup>1</sup>**. This includes:
 
@@ -15,9 +15,11 @@ Molecular descriptors are an **abstract representations of certain structural fe
         <br>
         <div align="center">
           <img src="https://github.com/c-vandenberg/chemistry-machine-learning/assets/60201356/f043aca7-a03b-42b3-803e-fac864c02d5e", alt="fragment-based-1d-fingerprint" width=500/>
+          <p>
+            <b>Fig 1</b> Fragment-based 1D molecular fingerprint
+          </p>
         </div>
-        
-        **Fig 1** Fragment-based 1D molecular fingerprint
+        <br>
    
    * The most popular 1D molecular fingerprint methods is the **Morgan Fingerprint** **<sup>4</sup>**, also known as the **extended-connectivity fingerprint (ECFP4)**
 
@@ -28,26 +30,30 @@ Molecular descriptors are an **abstract representations of certain structural fe
 
         <br>
         <div align="center">
-          <img src="", alt="" width=500/>
+          <img src="https://github.com/c-vandenberg/chemistry-machine-learning/assets/60201356/4928886a-0bf4-4a5f-9bc2-b1ea72b8617f", alt="smiles-string" width=500/>
+          <p>
+            <b>Fig 2</b> SMILES string for the antibiotic ciprofloxacin
+          </p>
         </div>
+        <br>
 
 4. **3D Molecular Descriptors**:
    * 3D molecular descriptors define the molecular representation not only as the connectivity of the atoms, but also as the spatial configuration of the molecule **<sup>2</sup>**
    * A popular 3D descriptor approach is 3D pharmacophore-type representations where features (e.g. hydrophobic regions or hydrogen bond donors) known or thought to be responsible for biological activity are mapped to positions on the molecule **<sup>1</sup>**
    * Examples of 3D molecular descriptors include **WHIM** descriptors **<sup>6</sup>**, **EVA** **<sup>7</sup>** & **the EEVA** **<sup>8</sup>** descriptors, **3D-MoRSE** descriptors **<sup>9</sup>** and the **GETAWAY** **<sup>10</sup>** descriptors
 
-## Molecular Fingerprints
+## 1.2 Molecular Fingerprints
 
 Fingerprint representations of molecular structure & properties are a particularly complex form of molecular descriptor. Fingerprints are typically **encoded as binary bit strings** that represent a **bit 'pattern'** characteristic of a given molecule. **<sup>1</sup>** 
 
 Depending on what molecular descriptor (or molecular descriptors) the fingerprint is designed to account for, what this bit 'pattern' represents will be different. For example, molecular fingerprints can be designed to account for fragment-based (1D) molecular descriptors, connectivity-based (2D) molecular descriptors, or spatial configuration-based (3D) molecular descriptors.
 
-An example of a **binary molecular fingerprint** is shown below. **<sup>2</sup>** In a binary molecular fingerprint, each bit accounts for the **presence** (i.e. "1") or **absence** (i.e. "0") of given structural or chemical properties. In this case, it is number of hydrogen-bonds, number of aromatic bonds & fraction of single non-ring bonds. These are then combined with a **32 bit MACCS key** structural key fragment, which defines the absence or presence of specific chemical substructures or patterns:
+An example of a **binary molecular fingerprint** model is shown below (taken from *Xue et al*). **<sup>2</sup>** In a binary molecular fingerprint, each bit accounts for the **presence** (i.e. "1") or **absence** (i.e. "0") of given structural or chemical properties. In this case, it is number of hydrogen-bonds, number of aromatic bonds & fraction of single non-ring bonds. These are then combined with a **32 bit MACCS key** structural key fragment, which defines the absence or presence of specific chemical substructures or patterns:
 
-        <br>
-        <div align="center">
-          <img src="", alt="" width=500/>
-        </div>
+  <br>
+  <div align="center">
+    <img src="https://github.com/c-vandenberg/chemistry-machine-learning/assets/60201356/32e93ca7-55eb-4e8d-9fcb-e3804621faf3", alt="binary-molecular-fingerprint" width=500/>
+  </div>
 
 ## References
 
