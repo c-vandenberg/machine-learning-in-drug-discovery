@@ -59,17 +59,61 @@ An example of a **binary molecular fingerprint** model is shown below (taken fro
   </div>
   <br>
 
-As mentioned in **Fig 3**, in **"keyed" molecular fingerprints**, each bit is associated with a **specific descriptor and value**. In this case, it is number of hydrogen bonds, number range of aromatic bonds, fraction of single non-ring bonds, and the absence or presence of specific fragments.
+As mentioned in **Fig 3**, in **keyed-based molecular fingerprints**, each bit is associated with a **specific descriptor and value**. In this case, it is number of hydrogen bonds, number range of aromatic bonds, fraction of single non-ring bonds, and the absence or presence of specific fragments.
 
-However, widely used molecular fingerprints often consist of many more bit positions than the one shown in **Fig 3**. For example, in the **Daylight fingerprint** **<sup>11</sup>**, which was a milestone in the field in 1995, consists of 2,048 bits. Such complex molecular fingerprints are often "hashed", meaning that properties or structural patterns are **mapped to overlapping bit segments**, which usually produces very specific bit patterns. As a result, single bit positions can **no longer be associated with one specific feature** as they are in binary/keyed molecular fingerprints. **<sup>2</sup>**
+However, widely used molecular fingerprints often consist of many more bit positions than the one shown in **Fig 3**. For example, in the **Daylight fingerprint** **<sup>11</sup>**, which was a milestone in the field in 1995, consists of 2,048 bits. Such complex molecular fingerprints are often **hashed**, meaning that properties or structural patterns are **mapped to overlapping bit segments**, which usually produces very specific bit patterns. As a result, single bit positions can **no longer be associated with one specific feature** as they are in binary/keyed molecular fingerprints. **<sup>2</sup>**
 
 Hashing is a convenient approach when many structural paths or conformational states are being monitored.
+
+### 1.2.1 The Importance of Molecular Fingerprints
+
+Molecular fingerprints are a fundamental and versatile approach for representing chemical compounds in cheminformatics & computational chemistry. The reasons for this and the uses of molecular fingerprints are several-fold:
+
+1. **Dimensionality Reduction**:
+  * Chemical compounds can be highly complex. Molecular fingerprints condense this complexity into a binary or numerical format, **reducing the dimensionality of the data**
+  * This makes is more feasible to compare, analyze, and model large chemical datasets
+
+2. **Chemical Similarity**:
+  * Molecular fingerprints are widely used for assessing the similarity between chemical compounds
+  * By comparing the fingerprints of different molecules, structurallly similar compounds can be identified, which is crucial in lead compound identification & virtual screening
+
+3. **Substructure Analysis**:
+  * There is often a need for to identify specific substructures within molecules
+  * Because molecular fingerprints can be designed to encode the presence of absence of predefined substructures or molecular fragments, this allows for efficient substructure searching
+
+4. **Quantitative Structure-Activity Relationship (QSAR) Modelling**:
+  * QSAR models aim to predict the biological or chemical activity of compounds based on their structural features
+  * Molecular fingerprints, which capture & encode molecular structure, are key input variables for QSAR modelling
+
+5. **Database Searching**:
+  * Molecular fingerprints facilitate the **rapid searching of chemical databases**
+  * By representing molecules as fingerprints, rapid querying of chemical databases is possible, allowing for quick identification of compounds with desired structural or functional characteristics
+
+6. **Clustering & Diversity Analysis**:
+  * Molecular fingerprints can be used to **group chemical compounds into clusters** based on structural similarities
+  * This allows for efficient exploration of chemical space for identifying diverse compound sets and designing compound libraries
+
+### 1.2.2 Molecular Fingerprints in Machine Learning
+
+As stated in section 1.2.1, molecular fingerprints serve as a compact and informative representation of molecules, and are used extensively in applications ranging from similarity searching & clustering, to QSAR modeling and virtual screening in drug discovery.
+
+Many of these applications use advanced machine learning (ML) algorithms **<sup>12</sup>** such as:
+* **Random forest** (RF)
+* **Gradient boosting decision tree** (GBDT)
+* **Single-task deepneural networks** (ST-DNNs)
+* **Multi-task deep neural networks** (MT-DNNs)
+* **Convolutional neural network** (CNN)
+* **Recurrent neural network** (RNN)
+
+With the advancement of deep learning (DL) technology, the growth of drug-related data, and the proliferation of user-friendly DL frameworks in popular programming langauages, **<sup>13</sup>** **<sup>14</sup>** methodologies based on these ML algorithms are becoming more ubiquitous in all steps of the drug discovery & drug development process. 
+
+Due to the 
 
 ## References
 
 **[1]** Xue, L. and Bajorath, J. (2000) ‘Molecular descriptors in Chemoinformatics, computational combinatorial chemistry, and virtual screening’, *Combinatorial Chemistry & High Throughput Screening*, 3(5), pp. 363–372. <br><br>
 **[2]** Todeschini, R., Consonni, V. and Gramatica, P. (2009) ‘Chemometrics in Qsar’, *Comprehensive Chemometrics*, pp. 129–172. <br><br>
-**[3]** Kim, J. et al. (2021) ‘Comprehensive survey of recent drug discovery using Deep Learning’, *International Journal of Molecular Sciences*, 22(18), p. 9983. <br><br>
+**[3]** Kim, J. *et al.* (2021) ‘Comprehensive survey of recent drug discovery using Deep Learning’, *International Journal of Molecular Sciences*, 22(18), p. 9983. <br><br>
 **[4]** Morgan, H.L. (1965) ‘The generation of a unique machine description for chemical structures-a technique developed at Chemical Abstracts Service.’, *Journal of Chemical Documentation*, 5(2), pp. 107–113. <br><br>
 **[5]** Weininger, D. (1988) ‘Smiles, a chemical language and information system. 1. introduction to methodology and encoding rules’, *Journal of Chemical Information and Computer Sciences*, 28(1), pp. 31–36. <br><br>
 **[6]** Todeschini, R., Lasagni, M. and Marengo, E. (1994) ‘New molecular descriptors for 2D and 3D structures. theory’, *Journal of Chemometrics*, 8(4), pp. 263–272. <br><br>
@@ -78,3 +122,6 @@ Hashing is a convenient approach when many structural paths or conformational st
 **[9]** Schuur, J.H., Selzer, P. and Gasteiger, J. (1996) ‘The coding of the three-dimensional structure of molecules by molecular transforms and its application to structure-spectra correlations and studies of biological activity’, *Journal of Chemical Information and Computer Sciences*, 36(2), pp. 334–344. <br><br>
 **[10]** Consonni, V., Todeschini, R. and Pavan, M. (2002) ‘Structure/response correlations and similarity/diversity analysis by getaway descriptors. 1. theory of the novel 3D Molecular Descriptors’, *Journal of Chemical Information and Computer Sciences*, 42(3), pp. 682–692. <br><br>
 **[11]** James, C.A., Weininger, D. ‘Daylight theory manual’, *Daylight Chemical Information Systems, Inc.*, Irvine, CA, 1995. <br><br>
+**[12]** Gao, K. *et al.* (2020) ‘Are 2D fingerprints still valuable for drug discovery?’, *Physical Chemistry Chemical Physics*, 22(16), pp. 8373–8390.<br><br>
+**[13]** Abadi, M. *et al.* (2015) ‘TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems’, https://www.tensorflow.org/, Software available from tensorflow.org. <br><br>
+**[14]** Paszke, A. *et al.* (2017) ‘NIPS Autodiff Workshop’.
