@@ -97,7 +97,7 @@ Molecular fingerprints are a fundamental and versatile approach for representing
 
 As stated in section 1.2.1, molecular fingerprints serve as a compact and informative representation of molecules, and are used extensively in applications ranging from similarity searching & clustering, to QSAR modeling and virtual screening in drug discovery.
 
-Many of these applications use advanced machine learning (ML) algorithms **<sup>12</sup>** such as:
+In recent years, many of these applications have started to use sophisticated 3D structure-based fingerprints built from algebraic topology, differential geometry, geometric graph theory and algebraic graph theory. These molecular fingerprints are then paired with advanced machine learning (ML) algorithms **<sup>12</sup>** such as:
 * **Random forest** (RF)
 * **Gradient boosting decision tree** (GBDT)
 * **Single-task deepneural networks** (ST-DNNs)
@@ -105,9 +105,10 @@ Many of these applications use advanced machine learning (ML) algorithms **<sup>
 * **Convolutional neural network** (CNN)
 * **Recurrent neural network** (RNN)
 
-With the advancement of deep learning (DL) technology, the growth of drug-related data, and the proliferation of user-friendly DL frameworks in popular programming langauages, **<sup>13</sup>** **<sup>14</sup>** methodologies based on these ML algorithms are becoming more ubiquitous in all steps of the drug discovery & drug development process. 
+With the advancement of deep learning (DL) technology, the growth of drug-related data, and the proliferation of user-friendly DL frameworks in popular programming langauages, **<sup>13</sup>** **<sup>14</sup>** methodologies based on these ML algorithms are becoming more ubiquitous in all steps of the drug discovery & drug development process.
 
-Due to the 
+Data quality and data representation have a significant impact on the performance of ML-based predictive models as both heavily contribute to the quality of pre-training. Therefore, there has been a surge of interest in research on molecular representation  
+
 
 ## References
 
