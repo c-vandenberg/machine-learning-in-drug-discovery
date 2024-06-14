@@ -1,4 +1,4 @@
-# 1 Molecular Descriptors/Representations in Machine Learning Models
+# 1 Molecular Descriptors in Machine Learning Models
 
 ## 1.1 Introduction to Molecular Descriptors
 
