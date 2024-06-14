@@ -42,7 +42,7 @@ Molecular descriptors are an **abstract representations of certain structural fe
    * A popular 3D descriptor approach is 3D pharmacophore-type representations where features (e.g. hydrophobic regions or hydrogen bond donors) known or thought to be responsible for biological activity are mapped to positions on the molecule **<sup>1</sup>**
    * Examples of 3D molecular descriptors include **WHIM** descriptors **<sup>6</sup>**, **EVA** **<sup>7</sup>** & **the EEVA** **<sup>8</sup>** descriptors, **3D-MoRSE** descriptors **<sup>9</sup>** and the **GETAWAY** **<sup>10</sup>** descriptors
 
-## 1.2 Molecular Fingerprints
+## 1.2.2 Molecular Fingerprints
 
 Fingerprint representations of molecular structure & properties are a particularly complex form of molecular descriptor. Fingerprints are typically **encoded as binary bit strings** that represent a **bit 'pattern'** characteristic of a given molecule. **<sup>1</sup>** 
 
@@ -59,13 +59,22 @@ An example of a **binary molecular fingerprint** (also known as a **keyed-based 
   </div>
   <br>
 
-## 1.3 Key-Based Molecular Fingerprints - MACCS Keys
+## 1.2.3 Key-Based Molecular Fingerprints - MACCS Keys
 
 As mentioned in **Fig 3**, in keyed-based molecular fingerprints, each bit is associated with a **specific descriptor and value**, with each bit encoding for the absence or presence of a property. In this case, it is number of hydrogen bonds, number range of aromatic bonds, fraction of single non-ring bonds, and the absence or presence of specific fragments.
 
 A widely used key-based molecular fingerprint is **Molecular ACCess System (MACCS) keys**. **<sup>11</sup>** The MACCS keys are a **set of structural keys** encoding for a set predefined substructures/fragments, with each bit indicating the absence or presence of a particular substructure/fragment. Many MACCS keys exist, **<sup>12</sup>** but the most commonly used are **166 and 960-bits long**, encoding 166 and 960 substructures/fragments respectively.
 
-## 1.4 Hash-Based Molecular Fingerprints - Daylight Fingerprint & ECFPs
+<br>
+  <div align="center">
+    <img src="https://github.com/c-vandenberg/chemistry-machine-learning/assets/60201356/6834d808-b1a8-487d-ab4f-a3b9a5c252b1", alt="maccs-keys" width=300/>
+    <p>
+      <b>Fig 4</b> MACCS keys example illustration
+    </p>
+  </div>
+  <br>
+
+## 1.2.4 Hash-Based Molecular Fingerprints - Daylight Fingerprint & ECFPs
 
 However, widely used molecular fingerprints often consist of many more bit positions than the one shown in **Fig 3**. For example, in the **Daylight fingerprint** **<sup>13</sup>**, which was a milestone in the field in 1995, consists of 2,048 bits. 
 
@@ -73,13 +82,13 @@ Such complex molecular fingerprints are referred to as **hash-based molecular fi
 
 As a result, single bit positions can **no longer be associated with one specific feature** as they are in binary/keyed molecular fingerprints. **<sup>2</sup>**
 
-The Daylight fingerprint **encodes for every connectivity pathway** within a molecule up to a given length **<sup>14</sup>**. There are also **circular hashed-based fingerprints**, whereby neighbouring atoms (usually heavy/non-hydrogen atoms) are encoded into **multiple circular layers up to a given diameter** (**Fig 4**).
+The Daylight fingerprint **encodes for every connectivity pathway** within a molecule up to a given length **<sup>14</sup>**. There are also **circular hashed-based fingerprints**, whereby neighbouring atoms (usually heavy/non-hydrogen atoms) are encoded into **multiple circular layers up to a given diameter** (**Fig 5**).
 
   <br>
   <div align="center">
     <img src="https://github.com/c-vandenberg/chemistry-machine-learning/assets/60201356/a34d9bee-87a0-49de-b394-6e9926c4b73c", alt="ecfp_iterations" width=300/>
     <p>
-      <b>Fig 4</b> Illustration of iterative circular identification and encoding of neighbouring atoms in ECFP circular fingerprints <b><sup>15</sup></p></b>
+      <b>Fig 5</b> Illustration of iterative circular identification and encoding of neighbouring atoms in ECFP circular fingerprints <b><sup>15</sup></p></b>
     </p>
   </div>
 
