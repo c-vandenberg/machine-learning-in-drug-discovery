@@ -1,6 +1,6 @@
-# 1 Molecular Descriptors in Machine Learning Models
+# 1.2 Molecular Descriptors in Machine Learning Models
 
-## 1.1 Introduction to Molecular Descriptors
+## 1.2.1 Introduction to Molecular Descriptors
 
 Molecular descriptors are an **abstract representations of certain structural features of a molecule**. The majority of molecular descriptors can be classified according to their **"dimensionality"**, which refers to the representation of molecules from which descriptor values are computed **<sup>1</sup>**. This includes:
 
@@ -65,7 +65,7 @@ However, widely used molecular fingerprints often consist of many more bit posit
 
 Hashing is a convenient approach when many structural paths or conformational states are being monitored.
 
-### 1.2.1 The Importance of Molecular Fingerprints
+### 1.2.2 The Importance of Molecular Fingerprints
 
 Molecular fingerprints are a fundamental and versatile approach for representing chemical compounds in cheminformatics & computational chemistry. The reasons for this and the uses of molecular fingerprints are several-fold:
 
@@ -93,7 +93,7 @@ Molecular fingerprints are a fundamental and versatile approach for representing
   * Molecular fingerprints can be used to **group chemical compounds into clusters** based on structural similarities
   * This allows for efficient exploration of chemical space for identifying diverse compound sets and designing compound libraries
 
-### 1.2.2 Molecular Fingerprints in Machine Learning
+### 1.2.3 Molecular Fingerprints in Machine Learning
 
 As stated in section 1.2.1, molecular fingerprints serve as a compact and informative representation of molecules, and are used extensively in applications ranging from similarity searching & clustering, to QSAR modeling and virtual screening in drug discovery.
 
@@ -110,7 +110,7 @@ With the advancement of deep learning (DL) technology, the growth of drug-relate
 Data quality and data representation have a significant impact on the performance of ML-based predictive models as both heavily contribute to the quality of pre-training. Therefore, there has been a surge of interest in research on molecular representation  
 
 
-## References
+## 1.2.4 References
 
 **[1]** Xue, L. and Bajorath, J. (2000) ‘Molecular descriptors in Chemoinformatics, computational combinatorial chemistry, and virtual screening’, *Combinatorial Chemistry & High Throughput Screening*, 3(5), pp. 363–372. <br><br>
 **[2]** Todeschini, R., Consonni, V. and Gramatica, P. (2009) ‘Chemometrics in Qsar’, *Comprehensive Chemometrics*, pp. 129–172. <br><br>
