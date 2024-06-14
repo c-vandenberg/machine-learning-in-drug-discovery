@@ -125,7 +125,7 @@ Molecular fingerprints are a fundamental and versatile approach for representing
   * Molecular fingerprints can be used to **group chemical compounds into clusters** based on structural similarities
   * This allows for efficient exploration of chemical space for identifying diverse compound sets and designing compound libraries
 
-### 1.2.6 Molecular Fingerprints in Machine Learning
+## 1.2.6 Molecular Fingerprints in Machine Learning
 
 As stated in section 1.2.1, molecular fingerprints serve as a compact and informative representation of molecules, and are used extensively in applications ranging from similarity searching & clustering, to QSAR modeling and virtual screening in drug discovery.
 
