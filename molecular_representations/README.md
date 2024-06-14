@@ -8,13 +8,16 @@ Data quality and data representation have a significant impact on the performanc
 
 This literature review serves as an introduction to the different molecular representation approaches in ML-based drug development. The review covers the following topics:
 
-1. **Molecular Graph Theory**
-2. **Molecular Descriptors** - Classified according to their **dimensionality**:
-  *  0D molecular descriptors
-  *  1D molecular descriptors (including **1D molecular fingerprints**)
-  *  2D molecular descriptors (including **SMILES** and **2D molecular fingerprints**)
-  *  3D molecular descriptors
+1.1 **Molecular Graph Theory**<br><br>
+2.1 **Molecular Descriptors**:
+   * 2.1.1 Introduction to Molecular Descriptors:
+     *  0D molecular descriptors
+     *  1D molecular descriptors (including **1D molecular fingerprints**)
+     *  2D molecular descriptors (including **SMILES** and **2D molecular fingerprints**)
+     *  3D molecular descriptors
+   * 2.2.2 Molecular Fingerprints 
 
+Additionally, each section of the literature review will have accompanying Python exercises related to the topic in question.
 
 ## References
 
