@@ -21,7 +21,7 @@ Molecular descriptors are an **abstract representations of certain structural fe
         </div>
         <br>
    
-   * The most popular 1D molecular fingerprint methods is the **Morgan Fingerprint** **<sup>4</sup>**, also known as the **extended-connectivity fingerprint (ECFP4)**
+   * The most popular 1D molecular fingerprint methods is the **Morgan Fingerprint** **<sup>4</sup>**, upon which the **extended-connectivity fingerprint (ECFP)**
 
 3. **2D Molecular Descriptors**:
    * 2D molecular descriptors consider how the atoms are connected/define the molecular representation based on the connectivity of atoms
@@ -48,7 +48,7 @@ Fingerprint representations of molecular structure & properties are a particular
 
 Depending on what molecular descriptor (or molecular descriptors) the fingerprint is based on, what this bit 'pattern' represents will be different. For example, molecular fingerprints can be designed to account for fragment-based (1D) molecular descriptors, connectivity-based (2D) molecular descriptors, or spatial configuration-based (3D) molecular descriptors.
 
-An example of a **binary molecular fingerprint** (also known as a **keyed-based molecular fingerprint**) model is shown below (taken from *Xue et al*). **<sup>2</sup>** In a binary/key-based molecular fingerprint, each bit accounts for the **presence** (i.e. "1") or **absence** (i.e. "0") of given structural or chemical properties. In this case, it is number of hydrogen-bonds, number of aromatic bonds & fraction of single non-ring bonds. These are then combined with a **32 bit MACCS key** structural key fragment, which defines the absence or presence of specific chemical substructures or patterns:
+An example of a **binary molecular fingerprint** (also known as a **keyed-based molecular fingerprint**) model is shown below (taken from *Xue et al*). **<sup>2</sup>** In a binary/key-based molecular fingerprint, each bit accounts for the **absence** (i.e. "0") or **presence** (i.e. "1") of given structural or chemical properties. In this case, it is number of hydrogen-bonds, number of aromatic bonds & fraction of single non-ring bonds. These are then combined with a **32 bit MACCS key** structural key fragment, which defines the absence or presence of specific chemical substructures or patterns:
 
   <br>
   <div align="center">
@@ -59,11 +59,31 @@ An example of a **binary molecular fingerprint** (also known as a **keyed-based 
   </div>
   <br>
 
-As mentioned in **Fig 3**, in keyed-based molecular fingerprints, each bit is associated with a **specific descriptor and value**. In this case, it is number of hydrogen bonds, number range of aromatic bonds, fraction of single non-ring bonds, and the absence or presence of specific fragments.
+## 1.3 Key-Based Molecular Fingerprints - MACCS Keys
 
-However, widely used molecular fingerprints often consist of many more bit positions than the one shown in **Fig 3**. For example, in the **Daylight fingerprint** **<sup>11</sup>**, which was a milestone in the field in 1995, consists of 2,048 bits. Such complex molecular fingerprints are often **hashed**, meaning that properties or structural patterns are **mapped to overlapping bit segments**, which usually produces very specific bit patterns. As a result, single bit positions can **no longer be associated with one specific feature** as they are in binary/keyed molecular fingerprints. **<sup>2</sup>**
+As mentioned in **Fig 3**, in keyed-based molecular fingerprints, each bit is associated with a **specific descriptor and value**, with each bit encoding for the absence or presence of a property. In this case, it is number of hydrogen bonds, number range of aromatic bonds, fraction of single non-ring bonds, and the absence or presence of specific fragments.
 
-Hashing is a convenient approach when many structural paths or conformational states are being monitored.
+A widely used key-based molecular fingerprint is **Molecular ACCess System (MACCS) keys**. **<sup>11</sup>** The MACCS keys are a **set of structural keys** encoding for a set predefined substructures/fragments, with each bit indicating the absence or presence of a particular substructure/fragment. Many MACCS keys exist, **<sup>12</sup>** but the most commonly used are **166 and 960-bits long**, encoding 166 and 960 substructures/fragments respectively.
+
+## 1.4 Hash-Based Molecular Fingerprints - Daylight Fingerprint & ECFPs
+
+However, widely used molecular fingerprints often consist of many more bit positions than the one shown in **Fig 3**. For example, in the **Daylight fingerprint** **<sup>13</sup>**, which was a milestone in the field in 1995, consists of 2,048 bits. 
+
+Such complex molecular fingerprints are referred to as **hash-based molecular fingerprints**. These differ from key-based fingerprints in that each feature is generated from the molecule itself, whereas with key-based fingerprints the **patterns are pre-defined**. The length of the hashed-fingerprints can set prior to their generation, and a **hash function** maps molecular patterns (e.g. properties or structural patterns) to **non-unique/overlapping bit segments**, which usually produces very specific bit patterns. **<sup>14</sup>**
+
+As a result, single bit positions can **no longer be associated with one specific feature** as they are in binary/keyed molecular fingerprints. **<sup>2</sup>**
+
+The Daylight fingerprint **encodes for every connectivity pathway** within a molecule up to a given length **<sup>14</sup>**. There are also **circular hashed-based fingerprints**, whereby neighbouring atoms (usually heavy/non-hydrogen atoms) are encoded into **multiple circular layers up to a given diameter** (**Fig 4**).
+
+  <br>
+  <div align="center">
+    <img src="https://github.com/c-vandenberg/chemistry-machine-learning/assets/60201356/a34d9bee-87a0-49de-b394-6e9926c4b73c", alt="ecfp_iterations" width=300/>
+    <p>
+      <b>Fig 4</b> Illustration of iterative circular identification and encoding of neighbouring atoms in ECFP circular fingerprints <b><sup>15</sup></p></b>
+    </p>
+  </div>
+
+A widely used class of circular fingerprints are the **Extended Connectivity Fingerprints (ECFPs)** which are based on the aforementioned **Morgan algorithm**. **<sup>14</sup>**
 
 ### 1.2.2 The Importance of Molecular Fingerprints
 
@@ -97,7 +117,7 @@ Molecular fingerprints are a fundamental and versatile approach for representing
 
 As stated in section 1.2.1, molecular fingerprints serve as a compact and informative representation of molecules, and are used extensively in applications ranging from similarity searching & clustering, to QSAR modeling and virtual screening in drug discovery.
 
-In recent years, many of these applications have started to use sophisticated 3D structure-based fingerprints built from algebraic topology, differential geometry, geometric graph theory and algebraic graph theory. These molecular fingerprints are then paired with advanced machine learning (ML) algorithms **<sup>12</sup>** such as:
+In recent years, many of these applications have started to use sophisticated 3D structure-based fingerprints built from algebraic topology, differential geometry, geometric graph theory and algebraic graph theory. These molecular fingerprints are then paired with advanced machine learning (ML) algorithms **<sup>16</sup>** such as:
 * **Random forest** (RF)
 * **Gradient boosting decision tree** (GBDT)
 * **Single-task deepneural networks** (ST-DNNs)
@@ -105,7 +125,7 @@ In recent years, many of these applications have started to use sophisticated 3D
 * **Convolutional neural network** (CNN)
 * **Recurrent neural network** (RNN)
 
-With the advancement of deep learning (DL) technology, the growth of drug-related data, and the proliferation of user-friendly DL frameworks in popular programming langauages, **<sup>13</sup>** **<sup>14</sup>** methodologies based on these ML algorithms are becoming more ubiquitous in all steps of the drug discovery & drug development process.
+With the advancement of deep learning (DL) technology, the growth of drug-related data, and the proliferation of user-friendly DL frameworks in popular programming langauages, **<sup>17</sup>** **<sup>18</sup>** methodologies based on these ML algorithms are becoming more ubiquitous in all steps of the drug discovery & drug development process.
 
 Data quality and data representation have a significant impact on the performance of ML-based predictive models as both heavily contribute to the quality of pre-training. Therefore, there has been a surge of interest in research on molecular representation  
 
@@ -122,7 +142,12 @@ Data quality and data representation have a significant impact on the performanc
 **[8]** Tuppurainen, K. (1999) ‘Eeva (Electronic Eigenvalue): A new QSAR/QSPR descriptor for electronic substituent effects based on molecular orbital energies’, *SAR and QSAR in Environmental Research*, 10(1), pp. 39–46. <br><br>
 **[9]** Schuur, J.H., Selzer, P. and Gasteiger, J. (1996) ‘The coding of the three-dimensional structure of molecules by molecular transforms and its application to structure-spectra correlations and studies of biological activity’, *Journal of Chemical Information and Computer Sciences*, 36(2), pp. 334–344. <br><br>
 **[10]** Consonni, V., Todeschini, R. and Pavan, M. (2002) ‘Structure/response correlations and similarity/diversity analysis by getaway descriptors. 1. theory of the novel 3D Molecular Descriptors’, *Journal of Chemical Information and Computer Sciences*, 42(3), pp. 682–692. <br><br>
-**[11]** James, C.A., Weininger, D. ‘Daylight theory manual’, *Daylight Chemical Information Systems, Inc.*, Irvine, CA, 1995. <br><br>
-**[12]** Gao, K. *et al.* (2020) ‘Are 2D fingerprints still valuable for drug discovery?’, *Physical Chemistry Chemical Physics*, 22(16), pp. 8373–8390.<br><br>
-**[13]** Abadi, M. *et al.* (2015) ‘TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems’, https://www.tensorflow.org/, Software available from tensorflow.org. <br><br>
-**[14]** Paszke, A. *et al.* (2017) ‘NIPS Autodiff Workshop’.
+**[11]** Dalke, A., *MACCS key 44*. Available at: http://www.dalkescientific.com/writings/diary/archive/2014/10/17/maccs_key_44.html (Accessed: 14 June 2024).<br><br>
+**[12]** Durant, J.L. et al. (2002) ‘Reoptimization of MDL keys for use in Drug Discovery’, Journal of Chemical Information and Computer Sciences, 42(6), pp. 1273–1280.<br><br>
+**[13]** James, C.A., Weininger, D. ‘Daylight theory manual’, *Daylight Chemical Information Systems, Inc.*, Irvine, CA, 1995. <br><br>
+**[14}** David, L. et al. (2020) ‘Molecular representations in AI-Driven Drug Discovery: A review and practical guide’, *Journal of Cheminformatics*, 12(1).<br><br>
+**[15}** Extended connectivity fingerprint ECFP - Extended Connectivity Fingerprint ECFP | Chemaxon Docs. Available at: https://docs.chemaxon.com/display/docs/fingerprints_extended-connectivity-fingerprint-ecfp.md (Accessed: 14 June 2024).<br><br>
+**[16]** Gao, K. *et al.* (2020) ‘Are 2D fingerprints still valuable for drug discovery?’, *Physical Chemistry Chemical Physics*, 22(16), pp. 8373–8390.<br><br>
+**[17]** Abadi, M. *et al.* (2015) ‘TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems’, https://www.tensorflow.org/, Software available from tensorflow.org. <br><br>
+**[18]** Paszke, A. *et al.* (2017) ‘NIPS Autodiff Workshop’.
+
