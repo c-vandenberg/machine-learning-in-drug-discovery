@@ -1,21 +1,24 @@
 # 1 Molecular Representations/Descriptors in Machine Learning-Based Drug Development
 
-## 1.1 Introduction 
+## Abstract
 
 With the advancement of deep learning (DL) technology, the growth of drug-related data, and the proliferation of user-friendly DL frameworks in popular programming langauages, **<sup>1</sup>** **<sup>2</sup>** methodologies based on machine learning (ML) algorithms are becoming more ubiquitous in all steps of the drug discovery & drug development process. **<sup>3</sup>**
 
 Data quality and data representation have a significant impact on the performance of ML-based predictive models, as both heavily contribute to the quality of pre-training. Therefore, there has been a surge of interest in research on molecular representation. This includes pre-computed/fixed molecular representations such as **molecular graph representions**, **linear notations** (e.g. SMILES & molecular fingerprints), **<sup>4</sup>** **<sup>5</sup>** as well as **learned molecular representations**. **<sup>6</sup>**.
 
-This literature review serves as an introduction to the different molecular representation approaches in ML-based drug development. The review covers the following topics:
+This literature review serves as an introduction to the different molecular representation approaches in ML-based drug development.
+
+## Contents
 
 1.1 **Molecular Graph Theory**<br><br>
-2.1 **Molecular Descriptors**:
-   * 2.1.1 Introduction to Molecular Descriptors:
-     *  0D molecular descriptors
-     *  1D molecular descriptors (including **1D molecular fingerprints**)
-     *  2D molecular descriptors (including **SMILES** and **2D molecular fingerprints**)
-     *  3D molecular descriptors
-   * 2.2.2 Molecular Fingerprints 
+1.2 **Molecular Descriptors**:
+   * 1.2.1 **Introduction to Molecular Descriptors**:
+   * 1.2.2 **Molecular Fingerprints**
+   * 1.2.3 **Key-Based Molecular Fingerprints - MACCS Keys**
+   * 1.2.4 **Hash-Based Molecular Fingerprints - Daylight Fingerprint & ECFPs**
+   * 1.2.5 **Advantages & Applications of Molecular Fingerprints**
+   * 1.2.6 **Molecular Fingerprints in Machine Learning**
+   * 1.2.7 **References**
 
 Additionally, each section of the literature review will have accompanying Python exercises related to the topic in question.
 
