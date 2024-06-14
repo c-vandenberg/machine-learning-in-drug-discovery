@@ -95,7 +95,7 @@ The Daylight fingerprint **encodes for every connectivity pathway** within a mol
 
 A widely used class of circular fingerprints are the **Extended Connectivity Fingerprints (ECFPs)** which are based on the aforementioned **Morgan algorithm**. **<sup>14</sup>**
 
-## 1.2.5 Applications & Advantages of Molecular Fingerprints
+## 1.2.5 Advantages & Applications of Molecular Fingerprints
 
 Molecular fingerprints are a fundamental and versatile approach for representing chemical compounds in cheminformatics & computational chemistry. The reasons for this and the uses of molecular fingerprints are several-fold:
 
