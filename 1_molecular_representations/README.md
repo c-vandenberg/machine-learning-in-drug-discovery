@@ -24,6 +24,6 @@ Additionally, each section of the literature review will have accompanying Pytho
 **[1]** Abadi, M. *et al.* (2015) ‘TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems’, https://www.tensorflow.org/, Software available from tensorflow.org. <br><br>
 **[2]** Paszke, A. *et al.* (2017) ‘NIPS Autodiff Workshop’. <br><br>
 **[3]** Kim, J. *et al.* (2021) ‘Comprehensive survey of recent drug discovery using Deep Learning’, *International Journal of Molecular Sciences*, 22(18), p. 9983. <br><br>
-**[4]** Rifaioglu, A.S. et al. (2020) ‘DEEPScreen: High performance drug–target interaction prediction with convolutional neural networks using 2-D structural compound representations’, *Chemical Science*, 11(9), pp. 2531–2557.
-**[5]** David, L. et al. (2020) ‘Molecular representations in AI-Driven Drug Discovery: A review and practical guide’, *Journal of Cheminformatics*, 12(1).
-**[6]** Yang, K. et al. (2019) ‘Analyzing learned molecular representations for property prediction’, *Journal of Chemical Information and Modeling*, 59(8), pp. 3370–3388.
+**[4]** Rifaioglu, A.S. et al. (2020) ‘DEEPScreen: High performance drug–target interaction prediction with convolutional neural networks using 2-D structural compound representations’, *Chemical Science*, 11(9), pp. 2531–2557.<br><br>
+**[5]** David, L. et al. (2020) ‘Molecular representations in AI-Driven Drug Discovery: A review and practical guide’, *Journal of Cheminformatics*, 12(1).<br><br>
+**[6]** Yang, K. et al. (2019) ‘Analyzing learned molecular representations for property prediction’, *Journal of Chemical Information and Modeling*, 59(8), pp. 3370–3388.<br><br>
