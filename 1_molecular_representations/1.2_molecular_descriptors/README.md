@@ -48,7 +48,7 @@ Fingerprint representations of molecular structure & properties are a particular
 
 Depending on what molecular descriptor (or molecular descriptors) the fingerprint is based on, what this bit 'pattern' represents will be different. For example, molecular fingerprints can be designed to account for fragment-based (1D) molecular descriptors, connectivity-based (2D) molecular descriptors, or spatial configuration-based (3D) molecular descriptors.
 
-An example of a **binary molecular fingerprint** model is shown below (taken from *Xue et al*). **<sup>2</sup>** In a binary molecular fingerprint, each bit accounts for the **presence** (i.e. "1") or **absence** (i.e. "0") of given structural or chemical properties. In this case, it is number of hydrogen-bonds, number of aromatic bonds & fraction of single non-ring bonds. These are then combined with a **32 bit MACCS key** structural key fragment, which defines the absence or presence of specific chemical substructures or patterns:
+An example of a **binary molecular fingerprint** (also known as a **keyed-based molecular fingerprint**) model is shown below (taken from *Xue et al*). **<sup>2</sup>** In a binary/key-based molecular fingerprint, each bit accounts for the **presence** (i.e. "1") or **absence** (i.e. "0") of given structural or chemical properties. In this case, it is number of hydrogen-bonds, number of aromatic bonds & fraction of single non-ring bonds. These are then combined with a **32 bit MACCS key** structural key fragment, which defines the absence or presence of specific chemical substructures or patterns:
 
   <br>
   <div align="center">
@@ -59,7 +59,7 @@ An example of a **binary molecular fingerprint** model is shown below (taken fro
   </div>
   <br>
 
-As mentioned in **Fig 3**, in **keyed-based molecular fingerprints**, each bit is associated with a **specific descriptor and value**. In this case, it is number of hydrogen bonds, number range of aromatic bonds, fraction of single non-ring bonds, and the absence or presence of specific fragments.
+As mentioned in **Fig 3**, in keyed-based molecular fingerprints, each bit is associated with a **specific descriptor and value**. In this case, it is number of hydrogen bonds, number range of aromatic bonds, fraction of single non-ring bonds, and the absence or presence of specific fragments.
 
 However, widely used molecular fingerprints often consist of many more bit positions than the one shown in **Fig 3**. For example, in the **Daylight fingerprint** **<sup>11</sup>**, which was a milestone in the field in 1995, consists of 2,048 bits. Such complex molecular fingerprints are often **hashed**, meaning that properties or structural patterns are **mapped to overlapping bit segments**, which usually produces very specific bit patterns. As a result, single bit positions can **no longer be associated with one specific feature** as they are in binary/keyed molecular fingerprints. **<sup>2</sup>**
 
