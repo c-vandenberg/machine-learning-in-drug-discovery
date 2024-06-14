@@ -91,6 +91,7 @@ The Daylight fingerprint **encodes for every connectivity pathway** within a mol
       <b>Fig 5</b> Illustration of iterative circular identification and encoding of neighbouring atoms in ECFP circular fingerprints <b><sup>15</sup></p></b>
     </p>
   </div>
+  <br>
 
 A widely used class of circular fingerprints are the **Extended Connectivity Fingerprints (ECFPs)** which are based on the aforementioned **Morgan algorithm**. **<sup>14</sup>**
 
