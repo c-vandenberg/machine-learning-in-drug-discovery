@@ -22,7 +22,7 @@ This literature review serves as an introduction to the different molecular repr
 
 Additionally, each section of the literature review will have accompanying Python exercises related to the topic in question.
 
-## 1.2 References
+## References
 
 **[1]** Abadi, M. *et al.* (2015) ‘TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems’, https://www.tensorflow.org/, Software available from tensorflow.org. <br><br>
 **[2]** Paszke, A. *et al.* (2017) ‘NIPS Autodiff Workshop’. <br><br>
