@@ -50,7 +50,7 @@ The most common representation for **the idendity of atoms** in a molecule is a 
 1. For node features matrix **X**, each **row** of **X** corresponds to a node *v<sub>i</sub>* (i.e. an **atom in the molecule**) in molecular graph *G*
 2. This row is also referred to as the **node feature vector** *x<sub>i</sub>* for that atom
 3. The **length** of *x<sub>i</sub>* corresponds to the **number of atom features** you have chosen to encode
-4. For example, in **Fig 2c**, a **one-hot encoding** of atom type and formal charge has been chosen (i.e. the atom types and formal charges are represented as a **binary value** so that they can be **fed into machine-learning algorithms**)
+4. For example, in **Fig 2c**, a **one-hot encoding** of atom type and formal charge has been chosen (i.e. the atom types and formal charges are represented as a **binary value** so that they can be **fed into machine-learning (ML) algorithms**)
 
 ### The Identity of Bonds
 
@@ -72,9 +72,39 @@ triple bonds. “Implicit Hs” stands for the number of implicit hydrogens on a
 </div>
 <br>
 
+### One-Hot Encoding
+
+One-hot encoding is a technique in data science whereby **categorical information data is converted into a binary vector**. It is common in ML algorithms as it helps to **preserve information & improves prediction**, and **makes the dataset compatible with various types of ML algorithms**. This is because many ML algorithms **cannot work with categorical data directly**, and require all input & output variables to be **numeric**.
+
+Therefore, with one-hot encoding, **each unique category value is assigned a binary vector** that has **all zero values**, except for the **index of the category**, which is given a value of **1**.
+
+The main drawback of one-hot encoding is that it can lead to a **large increase in data dimensionality**, especially a the categorical variable has many categories. This is often referred to as the **curse of dimensionality** **<sup>6</sup>**
+
+## 1.1.3 Graph Traversal Algorithms
+
+As discussed before, although graphs themselves are **non-linear data structures** made up of sets of nodes & edges, in practice, **matrix representations of graphs are node order dependend**. **<sup>1</sup>**
+
+The node order used in a matrix representation is determined by a **graph traversal algorithm** (**Fig 3**). It is often important to **reliably/consistently generate the same matrix representation of the same molecule**, and this is dependent on **generating the same node order** each time. Therefore, the way in which the graph traversal algorithm **breaks ties** when a node branches off must be consistent so that the algorithm **consistently selects the same branch traversal order**.
+
+To achieve this consistency, a **depth-first** or **breadth-first** search algorithm can be used. If however, consistency is not important, a **random serarch** algorithm can be used.
+
+<br>
+<div align="center">
+  <img src="https://github.com/c-vandenberg/chemistry-machine-learning/assets/60201356/1f38cbbe-5afa-4201-a79b-61991a67a167", alt="graph-traversal-algorithms"/>
+    <p>
+      <b>Fig 3</b> Graph traversal algorithms. Three widespread graph traversal algorithms are illustrated above for an example branched graph. The numbers
+correspond to the order in which the nodes are explored, starting at node 1. <b>a</b> A depth-first search first explores each “branch” of a graph to the
+fullest extent, then goes back and explores branches at the last branched node, until all branches have been explored. <b>b</b> A breadth-first search first
+explores all nearest neighbours of a node, and then the nearest neighbours of the nearest neighbours, and so on, until the whole graph has been
+explored. <b>c</b> A random search explores nodes in the graph in an arbitrary order, regardless of how they are connected <b><sup>1</sup></b>
+    </p>
+</div>
+<br>
+
 ## References
 **[1]** David, L. *et al*. (2020) ‘Molecular representations in AI-Driven Drug Discovery: A review and practical guide’, *Journal of Cheminformatics*, 12(1).<br><br>
 **[2]** ChemDraw. PerkinElmer Informatics.<br><br>
 **[3]** Marcus, D.H. (2012) Avogadro: an advanced semantic chemical editor, visualization, and analysis platform. *J Cheminform*. 4:17.<br><br>
 **[4]** Humphrey, W., Dalke, A and Schulten K (1996) VMD: visual molecular dynam-ics. *J Mol Graph* 14(1):33–38.<br><br>
-**[5]** What is graph data structure? (2023) *GeeksforGeeks*. Available at: https://www.geeksforgeeks.org/what-is-graph-data-structure/ (Accessed: 18 June 2024). 
+**[5]** What is graph data structure? (2023) *GeeksforGeeks*. Available at: https://www.geeksforgeeks.org/what-is-graph-data-structure/ (Accessed: 18 June 2024).
+**[6]** Gupta, H. and Asha, V. (2020) ‘Impact of encoding of high cardinality categorical data to solve prediction problems’, *Journal of Computational and Theoretical Nanoscience*, 17(9), pp. 4197–4201.<br><br>
