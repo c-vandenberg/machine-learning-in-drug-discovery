@@ -107,7 +107,29 @@ The matrix representations discussed in **1.1.2** are **not the only way to repr
 
 Indeed, when constructing molecular graphs, there is not one correct way to represent any molecule and the representation chosen must be appropriate for the task. **<sup>1</sup>**
 
-## References
+## 1.1.5 Advantages of Molecular Graph Representations
+
+**3D Information**:
+  * Despite being 2D data structures with no spatial relationships between elements, we can **encode 3D information into a graph representation**
+  * For example, **node (atomic) information** such as **stereochemistry** can be encoded into the **node features matrix, X**, and **edge (bond) information** such as **bond length** can be encoded into the **edge features matrix, E**
+  * The fact that 3D information can be naturally encoded in a graph representation gives graphs **many advantages over various types of linear notations** such as SMILES strings (however, some linear notations such as **SYBYL Line Notation** can also encode atomic 3D information) **<sup>1</sup>**
+
+## 1.1.6 Disadvantages of Molecular Graph Representations
+
+**Delocalised, Polycentric, Ionic & Metal-Metal Bonds**
+  * There are many types of molecules which **cannot be described by the graph model**
+  * This includes a structure containing any form of **delocalised bonds** (e.g. coordination compounds), a molecule containing **polycentric bonds** (e.g. **3c-2e bonds**), **ionic bonds** or **metal-metal bonds**
+  * For example, organometallic compounds such as **metallocenes** or **metal carbonyl compounds** are not well described by molecular graphs because the **haptic** and **synergic bonds** respectively **cannot be explained by the simple, atomic pairwise relationship in valence bond theory** **<sup>1</sup>**
+
+**Dynamic Bonds**
+  * For molecules where bonds are broken & formed frequently or if their structure is constantly rearranging (e.g. **tautomers**), a single molecular graph representation would not be appropriate
+
+**Memory Efficiency**
+  * Molecular graphs are **extremely memory inefficient** and their memory requirement increases with the **square of the number of nodes** at least
+  * They are also **not compact** as data structures and become **more difficult to traverse/search as they get bigger**
+  * This is one of the **main advantages of linear notations** such as **SMILES strings** and **molecular fingerprints** over molecular graphs; they are **much more compact and memory-efficient** representations for molecules and are widely used for **basic cheminformatic analysis**
+
+## 1.1.7 References
 **[1]** David, L. *et al*. (2020) ‘Molecular representations in AI-Driven Drug Discovery: A review and practical guide’, *Journal of Cheminformatics*, 12(1).<br><br>
 **[2]** ChemDraw. PerkinElmer Informatics.<br><br>
 **[3]** Marcus, D.H. (2012) Avogadro: an advanced semantic chemical editor, visualization, and analysis platform. *J Cheminform*. 4:17.<br><br>
