@@ -101,6 +101,12 @@ explored. <b>c</b> A random search explores nodes in the graph in an arbitrary o
 </div>
 <br>
 
+## 1.1.4 Molecular Graph Reprentations
+
+The matrix representations discussed in **1.1.2** are **not the only way to represent graphs**. As discussed in **1.1.3**, depending on **what graph traversal algorithm is used**, the **order of the rows in atom/bond block will be different**.
+
+Indeed, when constructing molecular graphs, there is not one correct way to represent any molecule and the representation chosen must be appropriate for the task. **<sup>1</sup>**
+
 ## References
 **[1]** David, L. *et al*. (2020) ‘Molecular representations in AI-Driven Drug Discovery: A review and practical guide’, *Journal of Cheminformatics*, 12(1).<br><br>
 **[2]** ChemDraw. PerkinElmer Informatics.<br><br>
