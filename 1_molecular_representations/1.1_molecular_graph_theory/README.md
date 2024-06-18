@@ -129,10 +129,29 @@ Indeed, when constructing molecular graphs, there is not one correct way to repr
   * They are also **not compact** as data structures and become **more difficult to traverse/search as they get bigger**
   * This is one of the **main advantages of linear notations** such as **SMILES strings** and **molecular fingerprints** over molecular graphs; they are **much more compact and memory-efficient** representations for molecules and are widely used for **basic cheminformatic analysis**
 
-## 1.1.7 References
+## 1.1.7 Molecular Graphs in AI-Driven Small Molecule Drug Discovery
+
+### Representation Learning
+
+Many molecular representations, such as molecular graphs, are used in **representation learning** applications in deep learning.
+
+Representation learning is the idea of **learning an internal representation** (e.g. a **vector**) for a **given object** (e.g. a **molecule**) and then using that internal representation for a **predictive task**. These internal representations are **learned**, meaning models can be **trained to create them** using **backpropagation** in neural networks.
+
+With representation learning tasks, it is key is to first **identify a suitable input representation of a molecular** that contains **as much of the desirec/necessary information to solve the problem as possible** **<sup>1</sup>**
+
+### Graph Neural Networks
+
+The development of graph neural networks has resulted in a a proliferation of work whereby the molecular graph representation is used directly for **molecular property prediction**, **<sup>7</sup>**  **molcular graph generation**, **<sup>8</sup>** and **synthesis prediction**. **<sup>9</sup>** 
+
+MOst of these applications use **graph representation learning**, by which a **learned molecular graph embedding** is obtained from inputting molecular grapoh representations into a graph neural network. These learned molecular graph embeddings can then be used as input into a **property prediction model** such as **random forest** or **deep neural network (DNN)** in the same way as a **classical molecular fingerprint** (*cf.* **1.2.6**)
+
+## 1.1.8 References
 **[1]** David, L. *et al*. (2020) ‘Molecular representations in AI-Driven Drug Discovery: A review and practical guide’, *Journal of Cheminformatics*, 12(1).<br><br>
 **[2]** ChemDraw. PerkinElmer Informatics.<br><br>
 **[3]** Marcus, D.H. (2012) Avogadro: an advanced semantic chemical editor, visualization, and analysis platform. *J Cheminform*. 4:17.<br><br>
 **[4]** Humphrey, W., Dalke, A and Schulten K (1996) VMD: visual molecular dynam-ics. *J Mol Graph* 14(1):33–38.<br><br>
 **[5]** What is graph data structure? (2023) *GeeksforGeeks*. Available at: https://www.geeksforgeeks.org/what-is-graph-data-structure/ (Accessed: 18 June 2024).
 **[6]** Gupta, H. and Asha, V. (2020) ‘Impact of encoding of high cardinality categorical data to solve prediction problems’, *Journal of Computational and Theoretical Nanoscience*, 17(9), pp. 4197–4201.<br><br>
+**[7]** Mater, A.C. and Coote, M.L. (2019) ‘Deep learning in Chemistry’, *Journal of Chemical Information and Modeling*, 59(6), pp. 2545–2559.<br><br>
+**[8]** Popova, M. *et al*. (2019) MolecularRNN: Generating realistic molecular graphs with optimized properties. arXiv Prepr
+**[9]** Coley, CW., Jin, W., Rogers, L., Jamison, TF., Jaakkola, TS., Green, WH,, *et al*, (2018) A graph-convolutional neural network model for the prediction of chemical reactivity
