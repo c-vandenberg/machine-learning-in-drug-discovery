@@ -129,18 +129,13 @@ Molecular fingerprints are a fundamental and versatile approach for representing
 
 As stated in section 1.2.1, molecular fingerprints serve as a compact and informative representation of molecules, and are used extensively in applications ranging from similarity searching & clustering, to QSAR modeling and virtual screening in drug discovery.
 
-In recent years, many of these applications have started to use sophisticated 3D structure-based fingerprints built from algebraic topology, **<sup>16</sup>** differential geometry, **<sup>17</sup>** geometric graph theory, **<sup>18</sup>** and algebraic graph theory. **<sup>19</sup>** These molecular fingerprints are then paired with advanced machine learning (ML) algorithms **<sup>21</sup>** such as:
+In recent years, many of these applications have started to use sophisticated 3D structure-based fingerprints built from algebraic topology, **<sup>16</sup>** differential geometry, **<sup>17</sup>** geometric graph theory, **<sup>18</sup>** and algebraic graph theory. **<sup>19</sup>** These molecular fingerprints are then paired with advanced machine learning (ML) algorithms **<sup>21</sup>** **<sup>22</sup>** such as:
 * **Random forest** (RF)
 * **Gradient boosting decision tree** (GBDT)
 * **Single-task deepneural networks** (ST-DNNs)
 * **Multi-task deep neural networks** (MT-DNNs)
 * **Convolutional neural network** (CNN)
 * **Recurrent neural network** (RNN)
-
-With the advancement of deep learning (DL) technology, the growth of drug-related data, and the proliferation of user-friendly DL frameworks in popular programming langauages, **<sup>17</sup>** **<sup>18</sup>** methodologies based on these ML algorithms are becoming more ubiquitous in all steps of the drug discovery & drug development process.
-
-Data quality and data representation have a significant impact on the performance of ML-based predictive models as both heavily contribute to the quality of pre-training. Therefore, there has been a surge of interest in research on molecular representation  
-
 
 ## 1.2.7 References
 
@@ -159,11 +154,11 @@ Data quality and data representation have a significant impact on the performanc
 **[13]** James, C.A., Weininger, D. ‘Daylight theory manual’, *Daylight Chemical Information Systems, Inc.*, Irvine, CA, 1995. <br><br>
 **[14}** David, L. et al. (2020) ‘Molecular representations in AI-Driven Drug Discovery: A review and practical guide’, *Journal of Cheminformatics*, 12(1).<br><br>
 **[15}** Extended connectivity fingerprint ECFP - Extended Connectivity Fingerprint ECFP | Chemaxon Docs. Available at: https://docs.chemaxon.com/display/docs/fingerprints_extended-connectivity-fingerprint-ecfp.md (Accessed: 14 June 2024).<br><br>
-**[16}** Yang, K. et al. (2019a) ‘Analyzing learned molecular representations for property prediction’, *Journal of Chemical Information and Modeling*, 59(8), pp. 3370–3388.
-**[17}** Nguyen, D.D. and Wei, G. (2019) ‘DG‐GL: Differential geometry‐based geometric learning of molecular datasets’, *International Journal for Numerical Methods in Biomedical Engineering*, 35(3).
-**[18}** Bramer, D. and Wei, G.-W. (2018) ‘Multiscale weighted colored graphs for protein flexibility and rigidity analysis’, *The Journal of Chemical Physics*, 148(5).
-**[19}** Nguyen, D.D. et al. (2019) ‘MathDL: Mathematical deep learning for D3R grand challenge 4’, *Journal of Computer-Aided Molecular Design*, 34(2), pp. 131–147.
+**[16}** Yang, K. et al. (2019a) ‘Analyzing learned molecular representations for property prediction’, *Journal of Chemical Information and Modeling*, 59(8), pp. 3370–3388.<br><br>
+**[17}** Nguyen, D.D. and Wei, G. (2019) ‘DG‐GL: Differential geometry‐based geometric learning of molecular datasets’, *International Journal for Numerical Methods in Biomedical Engineering*, 35(3).<br><br>
+**[18}** Bramer, D. and Wei, G.-W. (2018) ‘Multiscale weighted colored graphs for protein flexibility and rigidity analysis’, *The Journal of Chemical Physics*, 148(5).<br><br>
+**[19}** Nguyen, D.D. et al. (2019) ‘MathDL: Mathematical deep learning for D3R grand challenge 4’, *Journal of Computer-Aided Molecular Design*, 34(2), pp. 131–147.<br><br>
 **[20]** Gao, K. *et al.* (2020) ‘Are 2D fingerprints still valuable for drug discovery?’, *Physical Chemistry Chemical Physics*, 22(16), pp. 8373–8390.<br><br>
-**[21]** Abadi, M. *et al.* (2015) ‘TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems’, https://www.tensorflow.org/, Software available from tensorflow.org. <br><br>
+**[21]** Abadi, M. *et al.* (2015) ‘TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems’, https://www.tensorflow.org/, Software available from tensorflow.org.<br><br>
 **[22]** Paszke, A. *et al.* (2017) ‘NIPS Autodiff Workshop’.
 
