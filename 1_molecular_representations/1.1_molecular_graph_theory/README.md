@@ -27,7 +27,7 @@ A graph is formally/mathematically defined as a **tuple** *G=(V, E)* of a **set 
 
 Intuitively, we can think of set *V* as being a set of **all atoms in the molecule**, and set *E* being a set of **all bonds in the molecule**. This is typically the convention, but it **does not have to be the case**.
 
-Molecular graphs are typically **undirected**, meaning the **pairs of nodes that define each edge are unordered**.
+Molecular graphs are typically **undirected**, meaning the **pairs of nodes that define each edge are unordered/the edges are bidirectional**.
 
 In order to construct a concrete, programmatic representation of a graph from this abstract mathematical concept, we need to **map the sets of nodes and edges to linear data structures**. Common data structures used to do this are **arrays** or **matrices**. A linear data structure is required in order to **specify the connectivity of the nodes**. Therefore, despite the face that the ordering in the sets is irrelevant, an **artificial node-ordering** in order to **encode a molecule using arrays or matrices**. 
 
