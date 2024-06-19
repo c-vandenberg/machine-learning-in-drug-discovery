@@ -1,4 +1,3 @@
-from queue import Queue, LifoQueue, PriorityQueue
 from collections import defaultdict
 from typing import Any, Union, List, Set, Dict, Tuple
 from queues import FifoQueue
@@ -7,7 +6,7 @@ from helpers.exception import CycleError
 
 class BaseGraph:
     """
-   A base class for representing a graph structure.
+   Base class for representing a graph data structure.
 
    Methods
    -------
@@ -272,6 +271,15 @@ class BaseGraph:
 
 
 class UndirectedGraph(BaseGraph):
+    """
+    Undirected graph data structure. Extends the BaseGraph parent class.
+
+    Methods
+    -------
+    is_cyclic() -> bool
+        Determine if the graph contains any cycles.
+    """
+
     def _add_edge(self, from_node: Any, to_node: Any, weight: Union[int, float, None] = None):
         """
         Add an edge between two nodes in the undirected graph. In undirected graph, edges are bidirectional, so the
@@ -357,6 +365,17 @@ class UndirectedGraph(BaseGraph):
 
 
 class DirectedGraph(BaseGraph):
+    """
+    Directed graph data structure. Extends the BaseGraph parent class.
+
+    Methods
+    -------
+    is_cyclic() -> bool
+        Determine if the graph contains any cycles.
+    topological_sort() -> List[Any]
+        Perform topological sorting of the nodes in the graph.
+    """
+
     def _add_edge(self, from_node: Any, to_node: Any, weight: Union[int, float, None] =  None):
         """
         Add an edge between two nodes in the directed graph. In undirected graph, edges are unidirectional, so the
@@ -403,7 +422,6 @@ class DirectedGraph(BaseGraph):
 
         return False
 
-    """ Recursive function to detect cycle in subgraph """
     def _detect_cycles(self, current_node: Any, visited: Dict[Any, bool], recursion_stack: Union[Dict, bool]):
         """
         Recursively detect cycles in the subgraph starting from the current node.
