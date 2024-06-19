@@ -1,8 +1,10 @@
-# 1.2 Molecular Descriptors in Machine Learning Models
+# 1.2 Molecular Descriptors (Linear Notations) in Machine Learning Models
 
-## 1.2.1 Introduction to Molecular Descriptors
+## 1.2.1 Introduction to Molecular Descriptors (Linear Notations)
 
-Molecular descriptors are an **abstract representations of certain structural features of a molecule**. The majority of molecular descriptors can be classified according to their **"dimensionality"**, which refers to the representation of molecules from which descriptor values are computed **<sup>1</sup>**. This includes:
+Molecular descriptors are an **abstract representations of certain structural features of a molecule**. Molecular descriptors are also known as **linear notations** as they are often represented as **strings of characters** that **encode certain molecular features** which can then be **interpreted by systemic sets of rules**.
+
+The majority of molecular descriptors can be classified according to their **"dimensionality"**, which refers to the representation of molecules from which descriptor values are computed **<sup>1</sup>**. This includes:
 
 1. **0D Molecular Descriptors**:
    * This is the simplest molecular representation and is independent of any knowledge concerning the molecular structure
@@ -137,6 +139,10 @@ In recent years, many of these applications have started to use sophisticated 3D
 * **Convolutional neural network** (CNN)
 * **Recurrent neural network** (RNN)
 
+A popular application of linear notations such as SMILES and molecular fingerprints are in **molecular property prediction**, **QSAR** and **de novo molecular design**. SMARTS patterns have also been used to define substructures **<sup>23</sup>** **<sup>24</sup>**.
+
+As discussed in **1.1.7**, many of these neural networks work via **representation learning**, where a **vector representation** is learned for molecules in the training set, and this learned representation is then used to **predict properties** **<sup>25</sup>** **<sup>26</sup>**. These kinds of learned presentations are known as **learned fingerprints**
+
 ## 1.2.7 References
 
 **[1]** Xue, L. and Bajorath, J. (2000) ‘Molecular descriptors in Chemoinformatics, computational combinatorial chemistry, and virtual screening’, *Combinatorial Chemistry & High Throughput Screening*, 3(5), pp. 363–372. <br><br>
@@ -160,5 +166,8 @@ In recent years, many of these applications have started to use sophisticated 3D
 **[19]** Nguyen, D.D. et al. (2019) ‘MathDL: Mathematical deep learning for D3R grand challenge 4’, *Journal of Computer-Aided Molecular Design*, 34(2), pp. 131–147.<br><br>
 **[20]** Gao, K. *et al.* (2020) ‘Are 2D fingerprints still valuable for drug discovery?’, *Physical Chemistry Chemical Physics*, 22(16), pp. 8373–8390.<br><br>
 **[21]** Abadi, M. *et al.* (2015) ‘TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems’, https://www.tensorflow.org/, Software available from tensorflow.org.<br><br>
-**[22]** Paszke, A. *et al.* (2017) ‘NIPS Autodiff Workshop’.
-
+**[22]** Paszke, A. *et al.* (2017) ‘NIPS Autodiff Workshop’.<br><br>
+**[23]** Todeschini, R., Consonni, V. (2007) *Methods and principles in medicinal chemistry*. pp 438–438.<br><br>
+**[24]** Chen, H., Engkvist, O., Wang, Y., Olivecrona, M., Blaschke, T. (2018) The rise of deep learning in drug discovery. *Drug Discovery Today*. 23(6), pp. 1241–1250.<br><br>
+**[25]** Yang, K., Swanson, K., Jin, W., Coley, C., Eiden, P., Gao, H. *et al* (2019) Analyzing learned molecular representations for property prediction. *Journal of Chemical Information and Modeling* 59(8), pp. 3370–3388.<br><br>
+**[26]** Duvenaud, D., Maclaurin, D., Aguilera-Iparraguirre, J., Gómez-Bombarelli, R., Hirzel, T., Aspuru-Guzik, A. *et al*. (2015) Convolutional networks on graphs for learning molecular fingerprints. In: *Advances in neural information processingsystems*. pp. 2224–32.<br><br>
