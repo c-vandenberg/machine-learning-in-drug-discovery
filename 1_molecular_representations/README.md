@@ -2,7 +2,7 @@
 
 ## Abstract
 
-With the advancement of deep learning (DL) technology, the growth of drug-related data, and the proliferation of user-friendly DL frameworks in popular programming langauages, **<sup>1</sup>** **<sup>2</sup>** methodologies based on machine learning (ML) algorithms are becoming more ubiquitous in all steps of the drug discovery & drug development process. **<sup>3</sup>**
+With the advancement of deep learning (DL) technology, the growth of drug-related data, and the proliferation of user-friendly DL frameworks in popular programming langauages, **<sup>1</sup>** **<sup>2</sup>** methodologies based on machine learning (ML) algorithms are becoming more ubiquitous in all steps of the drug discovery & drug development process. **<sup>3</sup>**. Test
 
 Data quality and data representation have a significant impact on the performance of ML-based predictive models, as both heavily contribute to the quality of pre-training. Therefore, there has been a surge of interest in research on molecular representation. This includes pre-computed/fixed molecular representations such as **molecular graph representions**, **linear notations** (e.g. SMILES & molecular fingerprints), **<sup>4</sup>** **<sup>5</sup>** as well as **learned molecular representations**. **<sup>6</sup>**.
 
