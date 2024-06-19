@@ -153,5 +153,5 @@ MOst of these applications use **graph representation learning**, by which a **l
 **[5]** What is graph data structure? (2023) *GeeksforGeeks*. Available at: https://www.geeksforgeeks.org/what-is-graph-data-structure/ (Accessed: 18 June 2024).
 **[6]** Gupta, H. and Asha, V. (2020) ‘Impact of encoding of high cardinality categorical data to solve prediction problems’, *Journal of Computational and Theoretical Nanoscience*, 17(9), pp. 4197–4201.<br><br>
 **[7]** Mater, A.C. and Coote, M.L. (2019) ‘Deep learning in Chemistry’, *Journal of Chemical Information and Modeling*, 59(6), pp. 2545–2559.<br><br>
-**[8]** Popova, M. *et al*. (2019) MolecularRNN: Generating realistic molecular graphs with optimized properties. arXiv Prepr
+**[8]** Popova, M. *et al*. (2019) MolecularRNN: Generating realistic molecular graphs with optimized properties. arXiv Prepr.<br><br>
 **[9]** Coley, CW., Jin, W., Rogers, L., Jamison, TF., Jaakkola, TS., Green, WH,, *et al*, (2018) A graph-convolutional neural network model for the prediction of chemical reactivity
