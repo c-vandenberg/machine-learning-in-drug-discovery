@@ -4,6 +4,8 @@
 
 Molecular descriptors are an **abstract representations of certain structural features of a molecule**. Molecular descriptors are also known as **linear notations** as they are often represented as **strings of characters** that **encode certain molecular features** which can then be **interpreted by systemic sets of rules**.
 
+As discussed in **1.1.6**, linear notations are much more compact and memory-efficient than graph representations and are **well adapted for basic cheminformatic analysis** such as **compound list generation** and **compound database queries**.
+
 The majority of molecular descriptors can be classified according to their **"dimensionality"**, which refers to the representation of molecules from which descriptor values are computed **<sup>1</sup>**. This includes:
 
 1. **0D Molecular Descriptors**:
