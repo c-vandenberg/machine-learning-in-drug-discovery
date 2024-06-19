@@ -194,7 +194,6 @@ class BaseGraph:
 
         return path
 
-    """ Use BFS algorithm to find the shortest find path between two nodes """
     def find_shortest_path(self, start_node: Any, end_node: Union[None, Any] = None) -> Union[List, None]:
         """
         Find the shortest path between two nodes using BFS.
@@ -270,3 +269,88 @@ class BaseGraph:
             A string representation of the nodes and their edges.
         """
         return str(self._nodes)
+
+
+class UndirectedGraph(BaseGraph):
+    def _add_edge(self, from_node: Any, to_node: Any, weight: Union[int, float, None] = None):
+        """
+        Add an edge between two nodes in the undirected graph. In undirected graph, edges are bidirectional, so the
+        edge is added in both directions.
+
+        Parameters
+        ----------
+        from_node : Any
+            The starting node of the edge.
+        to_node : Any
+            The ending node of the edge.
+        weight : Union[int, float, None]
+            The weight of the edge. Optional
+        """
+        # Validate that both `from_node` and `to_node` exist in the graph
+        self._validate_nodes(from_node, to_node)
+
+        self._nodes[from_node].append(
+            {to_node: weight}
+        )
+        self._nodes[to_node].append(
+            {from_node: weight}
+        )
+
+    def is_cyclic(self):
+        """
+        Determine if the graph contains any cycles.
+
+        Returns
+        -------
+        bool
+            True if the graph contains a cycle, False otherwise.
+        """
+        # Initialise a `visited` dictionary to keep track of visited nodes. Initialise nodes as not visited at start
+        visited: Dict = {node: False for node in self._nodes}
+
+        # Iterate over all unvisited nodes and call _detect_cycles() helper method to recursively check for cycles
+        for node in visited:
+            # Only detect cycles if we haven't yet visited it
+            if not visited[node]:
+                if self._detect_cycles(node, visited):
+                    return True
+
+        return False
+
+    def _detect_cycles(self, current_node: Any, visited: Dict[Any, bool], parent_node: Any = None,):
+        """
+        Recursively detect cycles in the subgraph starting from the current node.
+
+        Parameters
+        ----------
+        current_node : Any
+            The node currently being visited.
+        visited : Dict[Any, bool]
+            A dictionary keeping track of visited nodes.
+        parent_node : Any, optional
+            The parent node from which the current node was visited, by default None.
+
+        Returns
+        -------
+        bool
+            True if a cycle is detected, False otherwise.
+        """
+        # Mark current node as visited
+        visited[current_node] = True
+
+        # Recursively visit all nodes along the branch from the current node
+        for edge in self._nodes[current_node]:
+            neighbour_node_tuple: Tuple = list(edge.items())[0]
+            neighbour_node: Any = neighbour_node_tuple[0]
+
+            # If the neighbouring node has not yet been visited, recursively visit its neighbouring nodes
+            if not visited[neighbour_node]:
+                if self._detect_cycles(neighbour_node, visited, current_node):
+                    return True
+
+            # If the current neighbour has been visited and is not the parent node/root node from this branch search,
+            # there must be a cycle in the graph
+            elif parent_node != neighbour_node:
+                return True
+
+        return False
