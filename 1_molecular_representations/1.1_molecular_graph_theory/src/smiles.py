@@ -153,7 +153,7 @@ class MolecularGraphSmilesParser:
         if ring_nums:
             raise KeyError('Unmatched ring indices {}'.format(list(ring_nums.keys())))
 
-        # Detect cycles in graph and assign aromatic bond order if any cycles are aromatic
+        # Detect cycles in graph and assign aromatic bond order if any cycle atoms are aromatic
         cycles = molecular_graph.is_cyclic()
 
         if cycles:

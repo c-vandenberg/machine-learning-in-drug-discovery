@@ -124,6 +124,35 @@ class BaseMolecularGraph:
 
             raise ValueError(f'Node {missing_node} not present in Graph')
 
+    def find_path(self, start_node: Any, end_node: Union[None, Any] = None) -> Union[List, None]:
+        """
+        Find a path between two nodes using DFS (will not necessarily be the shortest path).
+
+        Parameters
+        ----------
+        start_node : Any
+            The starting node.
+        end_node : Union[None, Any]. Optional
+            The target node, by default None.
+
+        Returns
+        -------
+        list or None
+            A list representing the path if it exists, otherwise None.
+        """
+        self._validate_nodes(start_node, end_node)
+        path: Union[List, None] = None
+        self._dfs(start_node, end_node)
+
+        if self._has_path:
+            path = self._traversal_order[:]
+            self._has_path = False
+
+        self._visited_nodes.clear()
+        self._traversal_order.clear()
+
+        return path
+
     def _dfs(self, node: Any, end_node: Union[None, Any] = None) -> None:
         """
         Depth-first search (DFS) algorithm to traverse graph from a given starting node.
@@ -142,10 +171,57 @@ class BaseMolecularGraph:
             self._has_path = True
             return
 
-        for edge in self._nodes[node]:
-            neighbour_node: Any = list(edge.keys())[0]
+        for neighbour_node in self._nodes[node]['neighbours']:
             if neighbour_node not in self._visited_nodes:
                 self._dfs(neighbour_node, end_node)
+
+    def connected_components(self) -> Set:
+        """
+        Return all connected components in the graph using depth-first search (DFS) algorithm to traverse graph.
+
+        Returns
+        -------
+        set
+            A set of nodes that have neighbors (connected components).
+        """
+        for node in self._nodes:
+            if self._has_traversable_neighbours(self._nodes[node]) and node not in self._visited_nodes:
+                self._dfs(node)
+
+        connected_components: Set = set(self._visited_nodes)
+        self._visited_nodes.clear()
+        self._traversal_order.clear()
+
+        return connected_components
+
+    def find_shortest_path(self, start_node: Any, end_node: Union[None, Any] = None) -> Union[List, None]:
+        """
+        Find the shortest path between two nodes using BFS.
+
+        Parameters
+        ----------
+        start_node : Any
+            The starting node.
+        end_node : Union[None, Any]. Optional
+            The target node, by default None.
+
+        Returns
+        -------
+        list or None
+            A list representing the shortest path if it exists, otherwise None.
+        """
+        self._validate_nodes(start_node, end_node)
+        path: Union[List, None] = None
+        self._bfs(start_node, end_node)
+
+        if self._has_path:
+            path = self._traversal_order[:]
+            self._has_path = False
+
+        self._visited_nodes.clear()
+        self._traversal_order.clear()
+
+        return path
 
     def _bfs(self, start_node: Any, end_node: Union[None, Any] = None) -> None:
         """
@@ -181,83 +257,6 @@ class BaseMolecularGraph:
                     self._fifo_queue.enqueue(neighbour_node)
                     self._visited_nodes.add(neighbour_node)
                     self._traversal_order.append(neighbour_node)
-
-    def find_path(self, start_node: Any, end_node: Union[None, Any] = None) -> Union[List, None]:
-        """
-        Find a path between two nodes using DFS (will not necessarily be the shortest path).
-
-        Parameters
-        ----------
-        start_node : Any
-            The starting node.
-        end_node : Union[None, Any]. Optional
-            The target node, by default None.
-
-        Returns
-        -------
-        list or None
-            A list representing the path if it exists, otherwise None.
-        """
-        self._validate_nodes(start_node, end_node)
-        path: Union[List, None] = None
-        self._dfs(start_node, end_node)
-
-        if self._has_path:
-            path = self._traversal_order[:]
-            self._has_path = False
-
-        self._visited_nodes.clear()
-        self._traversal_order.clear()
-
-        return path
-
-    def find_shortest_path(self, start_node: Any, end_node: Union[None, Any] = None) -> Union[List, None]:
-        """
-        Find the shortest path between two nodes using BFS.
-
-        Parameters
-        ----------
-        start_node : Any
-            The starting node.
-        end_node : Union[None, Any]. Optional
-            The target node, by default None.
-
-        Returns
-        -------
-        list or None
-            A list representing the shortest path if it exists, otherwise None.
-        """
-        self._validate_nodes(start_node, end_node)
-        path: Union[List, None] = None
-        self._bfs(start_node, end_node)
-
-        if self._has_path:
-            path = self._traversal_order[:]
-            self._has_path = False
-
-        self._visited_nodes.clear()
-        self._traversal_order.clear()
-
-        return path
-
-    def connected_components(self) -> Set:
-        """
-        Return all connected components in the graph.
-
-        Returns
-        -------
-        set
-            A set of nodes that have neighbors (connected components).
-        """
-        for node in self._nodes:
-            if self._has_traversable_neighbours(self._nodes[node]) and node not in self._visited_nodes:
-                self._dfs(node)
-
-        connected_components: Set = set(self._visited_nodes)
-        self._visited_nodes.clear()
-        self._traversal_order.clear()
-
-        return connected_components
 
     @staticmethod
     def _has_traversable_neighbours(node: Any) -> bool:
