@@ -23,6 +23,7 @@ class BaseMolecularGraph:
    connected_components() -> Set
        Return all connected components in the graph.
    """
+
     def __init__(self, fifo_queue: FifoQueue):
         self._fifo_queue = fifo_queue
         self._nodes = dict()
@@ -185,6 +186,55 @@ class BaseMolecularGraph:
 
             raise ValueError(f'Node {missing_node} not present in Graph')
 
+    def _detect_cycles(self, current_node: Any, visited: Dict[Any, bool], path: List, cycles: List,
+                       parent_node: Any = None, is_undirected: bool = True):
+        """
+        Recursively detect cycles in the subgraph starting from the current node.
+
+        Parameters
+        ----------
+        current_node : Any
+            The node currently being visited.
+        visited : Dict[Any, bool]
+            A dictionary keeping track of visited nodes.
+        path : List[Any]
+            A list to keep track of the current path.
+        cycles : List[List[Any]]
+            A list to accumulate all detected cycles.
+        parent_node : Any, optional
+            The parent node from which the current node was visited, by default None.
+        is_undirected : bool, optional
+            Indicates if the graph is undirected, by default True.
+
+        Returns
+        -------
+        bool
+            True if a cycle is detected, False otherwise.
+        """
+        # Mark current node as visited
+        visited[current_node] = True
+        path.append(current_node)
+
+        # Recursively visit all nodes along the branch from the current node
+        for neighbour_node in self._nodes[current_node]['neighbours']:
+            # Skip the edge leading back to the parent node (required for undirected graphs)
+            if is_undirected and neighbour_node == parent_node:
+                continue
+
+            # If the neighbour/leaf node has not yet been visited, recursively visit its neighbour/leaf nodes
+            if not visited[neighbour_node]:
+                self._detect_cycles(neighbour_node, visited, path, cycles, current_node)
+
+            # If current neighbour/leaf node has been visited in current branch path, there must be a cycle
+            elif neighbour_node in path:
+                cycle_start_index = path.index(neighbour_node)
+                cycle = path[cycle_start_index:]
+                if cycle not in cycles:
+                    cycles.append(cycle)
+
+        # After exploring all neighbours/leaf nodes in branch, current node is removed from path
+        path.pop()
+
     def _dfs(self, current_node: Any, end_node: Any, predecessor: Dict[Any, Any], visited_nodes: set) -> bool:
         """
         Depth-first search (DFS) algorithm to recursively traverse graph from a given start node to given end node.
@@ -340,6 +390,7 @@ class UndirectedMolecularGraph(BaseMolecularGraph):
     is_cyclic() -> bool
         Determine if the undirected molecular graph contains any cycles.
     """
+
     def is_cyclic(self) -> Union[List, None]:
         """
         Determine if the undirected molecular graph contains any cycles. If it does, return list of cycles, else return
@@ -384,49 +435,6 @@ class UndirectedMolecularGraph(BaseMolecularGraph):
         self._nodes[to_node]['neighbours'].append(from_node)
         self._edges[(from_node, to_node)] = attr
 
-    def _detect_cycles(self, current_node: Any, visited: Dict[Any, bool], path: List, cycles: List,
-                       parent_node: Any = None):
-        """
-        Recursively detect cycles in the subgraph starting from the current node.
-
-        Parameters
-        ----------
-        current_node : Any
-            The node currently being visited.
-        visited : Dict[Any, bool]
-            A dictionary keeping track of visited nodes.
-        parent_node : Any, optional
-            The parent node from which the current node was visited, by default None.
-
-        Returns
-        -------
-        bool
-            True if a cycle is detected, False otherwise.
-        """
-        # Mark current node as visited
-        visited[current_node] = True
-        path.append(current_node)
-
-        # Recursively visit all nodes along the branch from the current node
-        for neighbour_node in self._nodes[current_node]['neighbours']:
-            # Skip the edge leading back to the parent node (required for undirected graphs)
-            if neighbour_node == parent_node:
-                continue
-
-            # If the neighbour/leaf node has not yet been visited, recursively visit its neighbour/leaf nodes
-            if not visited[neighbour_node]:
-                self._detect_cycles(neighbour_node, visited, path, cycles, current_node)
-
-            # If current neighbour/leaf node has been visited in current branch path, there must be a cycle
-            elif neighbour_node in path:
-                cycle_start_index = path.index(neighbour_node)
-                cycle = path[cycle_start_index:]
-                if cycle not in cycles:
-                    cycles.append(cycle)
-
-        # After exploring all neighbours/leaf nodes in branch, current node is removed from path
-        path.pop()
-
 
 class DirectedMolecularGraph(BaseMolecularGraph):
     """
@@ -440,7 +448,7 @@ class DirectedMolecularGraph(BaseMolecularGraph):
         Perform topological sorting of the nodes in the graph.
     """
 
-    def _add_edge(self, from_node: Any, to_node: Any,  **attr):
+    def _add_edge(self, from_node: Any, to_node: Any, **attr):
         """
         Add an edge between two nodes in the directed graph. In directed graph, edges are unidirectional, so the
         edge is only added in the direction of the `to_node` node.
@@ -471,9 +479,6 @@ class DirectedMolecularGraph(BaseMolecularGraph):
         """
         # Initialise a `visited` dictionary to keep track of visited nodes. Initialise nodes as not visited
         visited: Dict = {node: False for node in self._nodes}
-
-        # Initialise a `recursion_stack` dictionary to keep track of visited nodes in current recursion stack.
-        recursion_stack = {node: False for node in self._nodes}
         path: List = []
         cycles: List = []
 
@@ -481,50 +486,9 @@ class DirectedMolecularGraph(BaseMolecularGraph):
         for node in visited:
             # Only detect cycles if node is unvisited
             if not visited[node]:
-                self._detect_cycles(node, visited, recursion_stack, path, cycles)
+                self._detect_cycles(node, visited, path, cycles, is_undirected=False)
 
         return cycles if cycles else None
-
-
-    def _detect_cycles(self, current_node: Any, visited: Dict[Any, bool], recursion_stack: Union[Dict, bool],
-                       path: List, cycles: List, parent_node: Any = None):
-        """
-        Recursively detect cycles in the subgraph starting from the current node.
-
-        Parameters
-        ----------
-        current_node : Any
-            The node currently being visited.
-        visited : Dict[Any, bool]
-            A dictionary keeping track of visited nodes.
-        recursion_stack : Union[Dict, bool]
-            A dictionary keeping track of the recursion stack.
-
-        Returns
-        -------
-        bool
-            True if a cycle is detected, False otherwise.
-        """
-        visited[current_node] = True
-        recursion_stack[current_node] = True
-        path.append(current_node)
-
-        # Recursively visit all nodes along the branch from the current node
-        for neighbour_node in self._nodes[current_node]['neighbours']:
-            # If the neighbour/leaf node has not yet been visited, recursively visit its neighbour/leaf nodes
-            if not visited[neighbour_node]:
-                self._detect_cycles(neighbour_node, visited, recursion_stack, path, cycles)
-
-            # If current neighbour is in recursive stack then we have encountered a back edge (i.e. an edge pointing
-            # to a visited node in the current recursion stack), indicating a cycle in the graph
-            elif recursion_stack[neighbour_node]:
-                cycle_start_index = path.index(neighbour_node)
-                cycle = path[cycle_start_index:]
-                if cycle not in cycles:
-                    cycles.append(cycle)
-
-        recursion_stack[current_node] = False
-        path.pop()
 
     def topological_sort(self) -> List[Any]:
         """
