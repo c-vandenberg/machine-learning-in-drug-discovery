@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
-
 from queues import FifoQueue
 from molecular_graphs import UndirectedMolecularGraph
-from typing import Union, List, Set
-from SmilesPE.pretokenizer import atomwise_tokenizer
-from pysmiles import smiles_helper, read_smiles
-import networkx
+from typing import Union, List
+from smiles import MolecularGraphSmilesParser
 
 
 def main():
     # Create undirected graph
     undirected_fifo_queue: FifoQueue = FifoQueue()
     undirected_molecular_graph: UndirectedMolecularGraph = UndirectedMolecularGraph(undirected_fifo_queue)
+    molecular_graph_smiles_parser: MolecularGraphSmilesParser = MolecularGraphSmilesParser()
 
     acetaminophen_smiles: str = 'CC(=O)Nc1ccc(cc1)O'
-    molecular_graph = undirected_molecular_graph.parse_smiles(acetaminophen_smiles)
+    molecular_graph = molecular_graph_smiles_parser.smiles_to_molecular_graph(acetaminophen_smiles)
+
+    print(molecular_graph.__str__())
 
     # Add nodes
     undirected_molecular_graph.add_node("A")
