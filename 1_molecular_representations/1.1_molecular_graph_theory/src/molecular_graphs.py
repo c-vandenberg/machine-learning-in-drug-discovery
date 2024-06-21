@@ -1,3 +1,4 @@
+from queue import Queue
 from typing import Any, Union, List, Set, Dict, Tuple
 from queues import FifoQueue
 from helpers.exception import CycleError
@@ -88,6 +89,66 @@ class BaseMolecularGraph:
         """
         self._add_edge(from_node, to_node, **attr)
 
+    def find_path(self, start_node: Any, end_node: Union[None, Any] = None) -> Union[List, None]:
+        """
+        Find a path between two nodes using DFS (will not necessarily be the shortest path).
+
+        Parameters
+        ----------
+        start_node : Any
+            The starting node.
+        end_node : Union[None, Any]. Optional
+            The target node, by default None.
+
+        Returns
+        -------
+        list or None
+            A list representing the path if it exists, otherwise None.
+        """
+        self._validate_nodes(start_node, end_node)
+        predecessor = {start_node: None}
+        visited_nodes = set()
+        path = self._dfs(start_node, end_node, predecessor, visited_nodes)
+
+        return self._reconstruct_path(predecessor, end_node) if path else None
+
+    def find_shortest_path(self, start_node: Any, end_node: Union[None, Any] = None) -> Union[List, None]:
+        """
+        Find the shortest path between two nodes using BFS.
+
+        Parameters
+        ----------
+        start_node : Any
+            The starting node.
+        end_node : Union[None, Any]. Optional
+            The target node, by default None.
+
+        Returns
+        -------
+        list or None
+            A list representing the shortest path if it exists, otherwise None.
+        """
+        self._validate_nodes(start_node, end_node)
+
+        return self._bfs(start_node, end_node)
+
+    def connected_components(self) -> Set:
+        """
+        Return all connected components in the graph using depth-first search (DFS) algorithm to traverse graph.
+
+        Returns
+        -------
+        set
+            A set of nodes that have neighbors (connected components).
+        """
+        visited_nodes = set()
+
+        for node in self._nodes:
+            if self._has_traversable_neighbours(self._nodes[node]) and node not in visited_nodes:
+                self._dfs_connected_component(node, visited_nodes)
+
+        return visited_nodes
+
     def _add_edge(self, from_node: Any, to_node: Any, **attr):
         """
         Add edge between two nodes in graph (to be implemented/overridden by subclasses).
@@ -124,106 +185,60 @@ class BaseMolecularGraph:
 
             raise ValueError(f'Node {missing_node} not present in Graph')
 
-    def find_path(self, start_node: Any, end_node: Union[None, Any] = None) -> Union[List, None]:
+    def _dfs(self, current_node: Any, end_node: Any, predecessor: Dict[Any, Any], visited_nodes: set) -> bool:
         """
-        Find a path between two nodes using DFS (will not necessarily be the shortest path).
+        Depth-first search (DFS) algorithm to recursively traverse graph from a given start node to given end node.
+
+        Parameters
+        ----------
+        current_node : Any
+            The current node for DFS.
+        end_node : Any
+            The target node for DFS.
+        predecessor : Dict[Any, Any]
+            A map of nodes to their predecessors.
+        visited_nodes : set
+            A set of visited nodes.
+
+        Returns
+        -------
+        bool
+            True if a path to end_node is found, False otherwise.
+        """
+        visited_nodes.add(current_node)
+
+        if current_node == end_node:
+            return True
+
+        for neighbour_node in self._nodes[current_node]['neighbours']:
+            if neighbour_node not in visited_nodes:
+                predecessor[neighbour_node] = current_node
+                if self._dfs(neighbour_node, end_node, predecessor, visited_nodes):
+                    return True
+
+        return False
+
+    def _dfs_connected_component(self, start_node: Any, visited_nodes: Set[Any]):
+        """
+        Perform a DFS traversal to find all nodes in the connected component nodes from a given start node.
 
         Parameters
         ----------
         start_node : Any
-            The starting node.
-        end_node : Union[None, Any]. Optional
-            The target node, by default None.
-
-        Returns
-        -------
-        list or None
-            A list representing the path if it exists, otherwise None.
+            The starting node for the DFS traversal.
+        visited_nodes : Set[Any]
+            The set of visited nodes to update.
         """
-        self._validate_nodes(start_node, end_node)
-        path: Union[List, None] = None
-        self._dfs(start_node, end_node)
+        stack = [start_node]
+        while stack:
+            current_node = stack.pop()
+            if current_node not in visited_nodes:
+                visited_nodes.add(current_node)
+                for neighbour_node in self._nodes[current_node]['neighbours']:
+                    if neighbour_node not in visited_nodes:
+                        stack.append(neighbour_node)
 
-        if self._has_path:
-            path = self._traversal_order[:]
-            self._has_path = False
-
-        self._visited_nodes.clear()
-        self._traversal_order.clear()
-
-        return path
-
-    def _dfs(self, node: Any, end_node: Union[None, Any] = None) -> None:
-        """
-        Depth-first search (DFS) algorithm to traverse graph from a given starting node.
-
-        Parameters
-        ----------
-        node : Any
-            The starting node for DFS.
-        end_node : Union[None, Any]. Optional
-            The target node for DFS, by default None.
-        """
-        self._visited_nodes.add(node)
-        self._traversal_order.append(node)
-
-        if node == end_node:
-            self._has_path = True
-            return
-
-        for neighbour_node in self._nodes[node]['neighbours']:
-            if neighbour_node not in self._visited_nodes:
-                self._dfs(neighbour_node, end_node)
-
-    def connected_components(self) -> Set:
-        """
-        Return all connected components in the graph using depth-first search (DFS) algorithm to traverse graph.
-
-        Returns
-        -------
-        set
-            A set of nodes that have neighbors (connected components).
-        """
-        for node in self._nodes:
-            if self._has_traversable_neighbours(self._nodes[node]) and node not in self._visited_nodes:
-                self._dfs(node)
-
-        connected_components: Set = set(self._visited_nodes)
-        self._visited_nodes.clear()
-        self._traversal_order.clear()
-
-        return connected_components
-
-    def find_shortest_path(self, start_node: Any, end_node: Union[None, Any] = None) -> Union[List, None]:
-        """
-        Find the shortest path between two nodes using BFS.
-
-        Parameters
-        ----------
-        start_node : Any
-            The starting node.
-        end_node : Union[None, Any]. Optional
-            The target node, by default None.
-
-        Returns
-        -------
-        list or None
-            A list representing the shortest path if it exists, otherwise None.
-        """
-        self._validate_nodes(start_node, end_node)
-        path: Union[List, None] = None
-        self._bfs(start_node, end_node)
-
-        if self._has_path:
-            path = self._traversal_order[:]
-            self._has_path = False
-
-        self._visited_nodes.clear()
-        self._traversal_order.clear()
-
-        return path
-
-    def _bfs(self, start_node: Any, end_node: Union[None, Any] = None) -> None:
+    def _bfs(self, start_node: Any, end_node: Any) -> Union[List[Any], None]:
         """
         Breadth-first search (BFS) algorithm to traverse graph from a given starting node.
 
@@ -231,32 +246,61 @@ class BaseMolecularGraph:
         ----------
         start_node : Any
             The starting node for BFS.
-        end_node : Union[None, Any]. Optional
-            The target node for BFS, by default None.
-        """
-        if len(self._visited_nodes) != 0:
-            self._visited_nodes.clear()
+        end_node : Any
+            The target node for BFS.
 
-        if len(self._traversal_order) != 0:
-            self._traversal_order.clear()
+        Returns
+        -------
+        list or None
+            A list representing the shortest path if it exists, otherwise None.
+        """
+        visited_nodes = set()
+        predecessor = {start_node: None}
 
         self._fifo_queue.enqueue(start_node)
-        self._visited_nodes.add(start_node)
-        self._traversal_order.append(start_node)
+        visited_nodes.add(start_node)
 
-        while self._fifo_queue:
-            current_node = self._fifo_queue.dequeue()
+        while not self._fifo_queue.empty():
+            current_node = self._fifo_queue.get()
 
             if current_node == end_node:
-                self._has_path = True
-                return
+                return self._reconstruct_path(predecessor, end_node)
 
-            for edge in self._nodes[current_node]:
-                neighbour_node: Any = list(edge.keys())[0]
-                if neighbour_node not in self._visited_nodes:
+            for neighbour_node in self._nodes[current_node]['neighbours']:
+                if neighbour_node not in visited_nodes:
+                    visited_nodes.add(neighbour_node)
                     self._fifo_queue.enqueue(neighbour_node)
-                    self._visited_nodes.add(neighbour_node)
-                    self._traversal_order.append(neighbour_node)
+                    predecessor[neighbour_node] = current_node
+
+        return None
+
+    @staticmethod
+    def _reconstruct_path(predecessor: Dict[Any, Any], end_node: Any) -> List[Any]:
+        """
+        Reconstruct the shortest path from the predecessor map once end node has been found.
+
+        Parameters
+        ----------
+        predecessor : Dict[Any, Any]
+            A map of nodes to their predecessors.
+        end_node : Any
+            The ending node.
+
+        Returns
+        -------
+        list
+            The shortest path from start_node to end_node.
+        """
+        path = []
+        current_node = end_node
+
+        while current_node is not None:
+            path.append(current_node)
+            current_node = predecessor[current_node]
+
+        # Reverse the path to get it from start to end
+        path.reverse()
+        return path
 
     @staticmethod
     def _has_traversable_neighbours(node: Any) -> bool:
@@ -273,7 +317,7 @@ class BaseMolecularGraph:
         bool
             True if the node has neighbors, False otherwise.
         """
-        return True if len(node) != 0 else False
+        return bool(node['neighbours'])
 
     def __str__(self):
         """
@@ -294,10 +338,32 @@ class UndirectedMolecularGraph(BaseMolecularGraph):
     Methods
     -------
     is_cyclic() -> bool
-        Determine if the graph contains any cycles.
+        Determine if the undirected molecular graph contains any cycles.
     """
+    def is_cyclic(self) -> Union[List, None]:
+        """
+        Determine if the undirected molecular graph contains any cycles. If it does, return list of cycles, else return
+        None
 
-    def _add_edge(self, from_node: Any, to_node: Any, weight: Union[int, float, None] = None, **attr):
+        Returns
+        -------
+        Union[List, None]
+            Return List of cycles if any exist, else return None
+        """
+        # Initialise a `visited` dictionary to keep track of visited nodes. Initialise nodes as not visited
+        visited: Dict = {node: False for node in self._nodes}
+        path: List = []
+        cycles: List = []
+
+        # Iterate over all unvisited nodes and call _detect_cycles() helper method to recursively check for cycles
+        for node in visited:
+            # Only detect cycles if node is unvisited
+            if not visited[node]:
+                self._detect_cycles(node, visited, path, cycles)
+
+        return cycles if cycles else None
+
+    def _add_edge(self, from_node: Any, to_node: Any, **attr):
         """
         Add an edge between two nodes in the undirected graph. In undirected graph, edges are bidirectional, so the
         edge is added in both directions.
@@ -317,28 +383,6 @@ class UndirectedMolecularGraph(BaseMolecularGraph):
         self._nodes[from_node]['neighbours'].append(to_node)
         self._nodes[to_node]['neighbours'].append(from_node)
         self._edges[(from_node, to_node)] = attr
-
-    def is_cyclic(self) -> Union[List, None]:
-        """
-        Determine if the graph contains any cycles. If it does, return list of cycles, else return None
-
-        Returns
-        -------
-        Union[List, None]
-            Return List of cycles if any exist, else return None
-        """
-        # Initialise a `visited` dictionary to keep track of visited nodes. Initialise nodes as not visited
-        visited: Dict = {node: False for node in self._nodes}
-        path: List = []
-        cycles: List = []
-
-        # Iterate over all unvisited nodes and call _detect_cycles() helper method to recursively check for cycles
-        for node in visited:
-            # Only detect cycles if node is unvisited
-            if not visited[node]:
-                self._detect_cycles(node, visited, path, cycles)
-
-        return cycles if cycles else None
 
     def _detect_cycles(self, current_node: Any, visited: Dict[Any, bool], path: List, cycles: List,
                        parent_node: Any = None):
@@ -396,9 +440,9 @@ class DirectedMolecularGraph(BaseMolecularGraph):
         Perform topological sorting of the nodes in the graph.
     """
 
-    def _add_edge(self, from_node: Any, to_node: Any, weight: Union[int, float, None] =  None):
+    def _add_edge(self, from_node: Any, to_node: Any,  **attr):
         """
-        Add an edge between two nodes in the directed graph. In undirected graph, edges are unidirectional, so the
+        Add an edge between two nodes in the directed graph. In directed graph, edges are unidirectional, so the
         edge is only added in the direction of the `to_node` node.
 
         Parameters
@@ -407,19 +451,18 @@ class DirectedMolecularGraph(BaseMolecularGraph):
             The starting node of the edge.
         to_node : Any
             The ending node of the edge.
-        weight : Union[int, float, None]
-            The weight of the edge. Optional
+        **attr : dict
+            Any additional node attributes.
         """
         # Validate that both `from_node` and `to_node` exist in the graph
         self._validate_nodes(from_node, to_node)
 
-        self._nodes[from_node].append(
-            {to_node: weight}
-        )
+        self._nodes[from_node]['neighbours'].append(to_node)
+        self._edges[(from_node, to_node)] = attr
 
     def is_cyclic(self):
         """
-        Determine if the graph contains any cycles.
+        Determine if the directed molecular graph contains any cycles.
 
         Returns
         -------
@@ -430,19 +473,21 @@ class DirectedMolecularGraph(BaseMolecularGraph):
         visited: Dict = {node: False for node in self._nodes}
 
         # Initialise a `recursion_stack` dictionary to keep track of visited nodes in current recursion stack.
-        # Initialise nodes as not visited
         recursion_stack = {node: False for node in self._nodes}
+        path: List = []
+        cycles: List = []
 
         # Iterate over all unvisited nodes and call _detect_cycles() helper method to recursively check for cycles
         for node in visited:
             # Only detect cycles if node is unvisited
             if not visited[node]:
-                if self._detect_cycles(node, visited, recursion_stack):
-                    return True
+                self._detect_cycles(node, visited, recursion_stack, path, cycles)
 
-        return False
+        return cycles if cycles else None
 
-    def _detect_cycles(self, current_node: Any, visited: Dict[Any, bool], recursion_stack: Union[Dict, bool]):
+
+    def _detect_cycles(self, current_node: Any, visited: Dict[Any, bool], recursion_stack: Union[Dict, bool],
+                       path: List, cycles: List, parent_node: Any = None):
         """
         Recursively detect cycles in the subgraph starting from the current node.
 
@@ -460,27 +505,26 @@ class DirectedMolecularGraph(BaseMolecularGraph):
         bool
             True if a cycle is detected, False otherwise.
         """
-        # Mark current node as visited both overall and within to recursion stack
         visited[current_node] = True
         recursion_stack[current_node] = True
+        path.append(current_node)
 
         # Recursively visit all nodes along the branch from the current node
-        for edge in self._nodes[current_node]:
-            neighbour_node_tuple: Tuple = list(edge.items())[0]
-            neighbour_node: Any = neighbour_node_tuple[0]
-
-            # If the neighbouring node has not yet been visited, recursively visit its neighbouring nodes
+        for neighbour_node in self._nodes[current_node]['neighbours']:
+            # If the neighbour/leaf node has not yet been visited, recursively visit its neighbour/leaf nodes
             if not visited[neighbour_node]:
-                if self._detect_cycles(neighbour_node, visited, recursion_stack):
-                    return True
+                self._detect_cycles(neighbour_node, visited, recursion_stack, path, cycles)
 
-            # If current neighbour is in recursive stack then we have already visited it in this branch search and so
-            # there must be a cycle in the graph
+            # If current neighbour is in recursive stack then we have encountered a back edge (i.e. an edge pointing
+            # to a visited node in the current recursion stack), indicating a cycle in the graph
             elif recursion_stack[neighbour_node]:
-                return True
+                cycle_start_index = path.index(neighbour_node)
+                cycle = path[cycle_start_index:]
+                if cycle not in cycles:
+                    cycles.append(cycle)
 
         recursion_stack[current_node] = False
-        return False
+        path.pop()
 
     def topological_sort(self) -> List[Any]:
         """
