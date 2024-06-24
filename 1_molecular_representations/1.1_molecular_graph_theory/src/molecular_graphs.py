@@ -1,63 +1,72 @@
-from queue import Queue
+import logging
 from typing import Any, Union, List, Set, Dict, Tuple
 from queues import FifoQueue
-from helpers.exception import CycleError
+from helpers.exception import NonexistentNodeError, NonexistentEdgeError, CycleError
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    handlers=[logging.StreamHandler()])
+logger = logging.getLogger(__name__)
 
 
 class BaseMolecularGraph:
     """
-   Base class for a molecular graph data structure.
+    Base class for a molecular graph data structure.
 
-   Methods
-   -------
-   nodes() -> Dict[Union[int, float], List[Dict]]
-       Getter for the graph nodes and their edges.
-   add_node(node: Any)
-       Add node to graph if it doesn't already exist.
-   add_edge(from_node: Any, to_node: Any, weight: Union[int, float, None] = None)
-       Add edge between two nodes in graph.
-   find_path(start_node: Any, end_node: Union[None, Any] = None) -> Union[List, None]
-       Find a path between two nodes using DFS (will not necessarily be the shortest path).
-   find_shortest_path(start_node: Any, end_node: Union[None, Any] = None) -> Union[List, None]
-       Find the shortest path between two nodes using BFS.
-   connected_components() -> Set
-       Return all connected components in the graph.
-   """
+    Methods
+    -------
+    nodes() -> Dict[Union[int, float], List[Dict]]
+        Getter for the graph nodes and their edges.
+    add_node(node: Any)
+        Add node to graph if it doesn't already exist.
+    delete_node(node_to_delete: Any, default_return=None) -> None
+        Delete a node from the graph if it exists, along with any edges that contain the node.
+    get_node_data(node: Any, default_return=None) -> Any
+        Get the attribute dictionary associated with a node if it exists.
+    add_edge(from_node: Any, to_node: Any, weight: Union[int, float, None] = None)
+        Add edge between two nodes in graph.
+    delete_edge(edge_to_delete: Tuple[Any, Any]) -> None
+        Delete an edge from the graph if it exists.
+    get_edge_data(edge: Tuple, default_return=None) -> Any
+        Get the attribute dictionary associated with an edge if it exists.
+    find_path(start_node: Any, end_node: Union[None, Any] = None) -> Union[List, None]
+        Find a path between two nodes using DFS (will not necessarily be the shortest path).
+    find_shortest_path(start_node: Any, end_node: Union[None, Any] = None) -> Union[List, None]
+        Find the shortest path between two nodes using BFS.
+    connected_components() -> Set
+        Return all connected components in the graph.
+    """
 
     def __init__(self, fifo_queue: FifoQueue):
         self._fifo_queue = fifo_queue
         self._nodes = dict()
         self._edges = dict()
-        self._visited_nodes = set()
-        self._traversal_order = []
-        self._has_path = False
 
     @property
-    def nodes(self) -> dict:
+    def nodes(self) -> Dict:
         """
         Getter for the graph nodes
 
         Returns
         -------
-        dict
+        Dict
             A dictionary where keys are nodes and the values are sub dictionaries of the node attributes
         """
         return self._nodes
 
     @property
-    def edges(self) -> dict:
+    def edges(self) -> Dict:
         """
         Getter for the graph edges
 
         Returns
         -------
-        dict
+        Dict
             A dictionary where keys are tuples representing the graph edges, and the values are sub dictionaries of the
             edge attributes
         """
         return self._edges
 
-    def add_node(self, node: Any, **attr):
+    def add_node(self, node: Any, **attr) -> None:
         """
         Add node to graph if it doesn't already exist.
 
@@ -65,8 +74,12 @@ class BaseMolecularGraph:
         ----------
         node : Any
             The node to be added to the graph.
-        **attr : dict
+        **attr : Dict
             Any additional node attributes.
+
+        Returns
+        -------
+        None
         """
         if node not in self._nodes:
             # Nodes are defined as a dictionary with 'neighbors' key and attributes
@@ -75,7 +88,78 @@ class BaseMolecularGraph:
             # If node already exists, update the attributes
             self._nodes[node].update(attr)
 
-    def add_edge(self, from_node: Any, to_node: Any, **attr):
+    def delete_node(self, node_to_delete: any, default_return=None):
+        """
+        Delete a node from the graph if it exists, along with any edges that contain the node.
+
+        Parameters
+        ----------
+        node_to_delete : Any
+            The node to be deleted from the graph.
+        default_return : Any, optional
+            The value to return if the node does not exist. Defaults to None.
+
+        Returns
+        -------
+        None
+
+        Raises
+        ------
+        NonexistentNodeError
+            If the node is not present in the graph.
+        """
+        try:
+            self._validate_nodes(node_to_delete)
+
+            # Remove node from neighbours list of all connected nodes
+            for node in self._nodes:
+                if node_to_delete in self._nodes[node]['neighbours']:
+                    self._nodes[node]['neighbours'].remove(node_to_delete)
+
+            # Remove node
+            del self._nodes[node_to_delete]
+
+            edges_to_remove: List = [edge for edge in self._edges if node_to_delete in edge]
+
+            # Remove any edges that contain node
+            for edge in edges_to_remove:
+                del self._edges[edge]
+        except NonexistentNodeError as e:
+            logger.exception(e.message)
+
+            return default_return
+
+    def get_node_data(self, node: any, default_return=None) -> Union[Dict, None]:
+        """
+        Get the attribute dictionary associated with a node if it exists.
+
+        Parameters
+        ----------
+        node : Any
+            The node whose data is to be retrieved.
+        default_return : Any, optional
+            The value to return if the node does not exist. Defaults to None.
+
+        Returns
+        -------
+        Union[Dict, None]
+            The attribute dictionary of the node if it exists, else returns `default_return`.
+
+        Raises
+        ------
+        NonexistentNodeError
+            If the node is not present in the graph.
+        """
+        try:
+            self._validate_nodes(node)
+
+            return self._nodes[node]
+        except NonexistentNodeError as e:
+            logger.exception(e.message)
+
+            return default_return
+
+    def add_edge(self, from_node: Any, to_node: Any, **attr) -> None:
         """
         Add edge between two nodes in graph.
 
@@ -85,10 +169,79 @@ class BaseMolecularGraph:
             The starting node of the edge.
         to_node : Any
             The ending node of the edge.
-        **attr : dict
+        **attr : Dict
             Any additional edge attributes.
+
+        Returns
+        -------
+        None
         """
+        self._validate_nodes(from_node, to_node)
         self._add_edge(from_node, to_node, **attr)
+
+    def delete_edge(self, edge_to_delete: Tuple) -> None:
+        """
+        Delete an edge from the graph if it exists.
+
+        Parameters
+        ----------
+        edge_to_delete : Tuple[Any, Any]
+            The edge to be deleted from the graph, represented as a tuple of two nodes.
+
+        Returns
+        -------
+        None
+
+        Raises
+        ------
+        NonexistentEdgeError
+            If the edge is not present in the graph.
+        """
+        try:
+            self._validate_edge(edge_to_delete)
+
+            # Remove two edge nodes from each other's neighbours list if they are present (accounts for directed and
+            # non-directed graphs)
+            node_u, node_v = edge_to_delete
+            if node_v in self._nodes[node_u]['neighbours']:
+                self._nodes[node_u]['neighbours'].remove(node_v)
+            if node_u in self._nodes[node_v]['neighbours']:
+                self._nodes[node_v]['neighbours'].remove(node_u)
+
+            # Remove edge
+            del self._edges[edge_to_delete]
+        except NonexistentEdgeError as e:
+            logger.exception(e.message)
+
+    def get_edge_data(self, edge: Tuple, default_return=None) -> Union[Dict, None]:
+        """
+        Get the attribute dictionary associated with an edge if it exists.
+
+        Parameters
+        ----------
+        edge : Tuple
+            The edge whose data is to be retrieved.
+        default_return : Any, optional
+            The value to return if the node does not exist. Defaults to None.
+
+        Returns
+        -------
+        Union[Dict, None]
+            The attribute dictionary of the edge if it exists, else returns `default_return`.
+
+        Raises
+        ------
+        NonexistentEdgeError
+            If the edge is not present in the graph.
+        """
+        try:
+            self._validate_edge(edge)
+
+            return self._edges[edge]
+        except NonexistentEdgeError as e:
+            logger.exception(e.message)
+
+            return default_return
 
     def find_path(self, start_node: Any, end_node: Union[None, Any] = None) -> Union[List, None]:
         """
@@ -103,15 +256,26 @@ class BaseMolecularGraph:
 
         Returns
         -------
-        list or None
-            A list representing the path if it exists, otherwise None.
-        """
-        self._validate_nodes(start_node, end_node)
-        predecessor = {start_node: None}
-        visited_nodes = set()
-        path = self._dfs(start_node, end_node, predecessor, visited_nodes)
+        Union[List, None]
+            A list representing the path if it exists, else None.
 
-        return self._reconstruct_path(predecessor, end_node) if path else None
+        Raises
+        ------
+        NonexistentNodeError
+            If either the start node or the end node is not present in the graph.
+        """
+        try:
+            self._validate_nodes(start_node, end_node)
+
+            predecessor = {start_node: None}
+            visited_nodes = set()
+            path = self._dfs(start_node, end_node, predecessor, visited_nodes)
+
+            return self._reconstruct_path(predecessor, end_node) if path else None
+        except NonexistentNodeError as e:
+            logger.exception(e.message)
+
+            return None
 
     def find_shortest_path(self, start_node: Any, end_node: Union[None, Any] = None) -> Union[List, None]:
         """
@@ -126,12 +290,22 @@ class BaseMolecularGraph:
 
         Returns
         -------
-        list or None
-            A list representing the shortest path if it exists, otherwise None.
-        """
-        self._validate_nodes(start_node, end_node)
+        Union[List, None]
+            A list representing the shortest path if it exists, else None.
 
-        return self._bfs(start_node, end_node)
+        Raises
+        ------
+        NonexistentNodeError
+            If either the start node or the end node is not present in the graph.
+        """
+        try:
+            self._validate_nodes(start_node, end_node)
+
+            return self._bfs(start_node, end_node)
+        except NonexistentNodeError as e:
+            logger.exception(e.message)
+
+            return None
 
     def connected_components(self) -> Set:
         """
@@ -150,7 +324,18 @@ class BaseMolecularGraph:
 
         return visited_nodes
 
-    def _add_edge(self, from_node: Any, to_node: Any, **attr):
+    def __str__(self) -> str:
+        """
+        Return the string representation of the graph.
+
+        Returns
+        -------
+        str
+            A string representation of the nodes and their edges.
+        """
+        return str(self._nodes)
+
+    def _add_edge(self, from_node: Any, to_node: Any, **attr) -> None:
         """
         Add edge between two nodes in graph (to be implemented/overridden by subclasses).
 
@@ -160,12 +345,16 @@ class BaseMolecularGraph:
             The starting node of the edge.
         to_node : Any
             The ending node of the edge.
-        **attr : dict
+        **attr : Dict
             Any additional edge attributes.
+
+        Returns
+        -------
+        None
         """
         pass
 
-    def _validate_nodes(self, start_node: Any, end_node: Union[None, Any] = None):
+    def _validate_nodes(self, start_node: Any, end_node: Union[None, Any] = None) -> None:
         """
         Validate that the nodes exist in the graph.
 
@@ -176,18 +365,44 @@ class BaseMolecularGraph:
         end_node : Union[None, Any]. Optional
             The ending node, by default None.
 
+        Returns
+        -------
+        None
+
         Raises
         ------
-        ValueError
+        NonexistentNodeError
             If either the start node or the end node is not present in the graph.
         """
         if start_node not in self._nodes or (end_node not in self._nodes and end_node):
             missing_node: Any = start_node if start_node not in self._nodes else end_node
 
-            raise ValueError(f'Node {missing_node} not present in Graph')
+            raise NonexistentNodeError(f'Node {missing_node} not present in Graph')
+
+    def _validate_edge(self, edge: Tuple) -> None:
+        """
+        Validate that the edge exist in the graph.
+
+        Parameters
+        ----------
+        edge : Tuple
+            The edge to validate.
+
+        Returns
+        -------
+        None
+
+        Raises
+        ------
+        NonexistentEdgeError
+            If either the edge is not present in the graph.
+        """
+        if edge not in self._edges:
+            edge_str: str = ' -> '.join(map(str, edge))
+            raise NonexistentEdgeError(f'Edge {edge_str} not present in Graph')
 
     def _detect_cycles(self, current_node: Any, visited: Dict[Any, bool], path: List, cycles: List,
-                       parent_node: Any = None, is_undirected: bool = True):
+                       parent_node: Any = None, is_undirected: bool = True) -> None:
         """
         Recursively detect cycles in the subgraph starting from the current node.
 
@@ -208,8 +423,7 @@ class BaseMolecularGraph:
 
         Returns
         -------
-        bool
-            True if a cycle is detected, False otherwise.
+        None
         """
         # Mark current node as visited
         visited[current_node] = True
@@ -253,7 +467,7 @@ class BaseMolecularGraph:
         Returns
         -------
         bool
-            True if a path to end_node is found, False otherwise.
+            True if a path to end_node is found, else False.
         """
         visited_nodes.add(current_node)
 
@@ -268,7 +482,7 @@ class BaseMolecularGraph:
 
         return False
 
-    def _dfs_connected_component(self, start_node: Any, visited_nodes: Set[Any]):
+    def _dfs_connected_component(self, start_node: Any, visited_nodes: Set[Any]) -> None:
         """
         Perform a DFS traversal to find all nodes in the connected component nodes from a given start node.
 
@@ -278,6 +492,10 @@ class BaseMolecularGraph:
             The starting node for the DFS traversal.
         visited_nodes : Set[Any]
             The set of visited nodes to update.
+
+        Returns
+        -------
+        None
         """
         stack = [start_node]
         while stack:
@@ -301,8 +519,8 @@ class BaseMolecularGraph:
 
         Returns
         -------
-        list or None
-            A list representing the shortest path if it exists, otherwise None.
+        Union[List[Any], None]
+            A list representing the shortest path if it exists, else None.
         """
         visited_nodes = set()
         predecessor = {start_node: None}
@@ -338,7 +556,7 @@ class BaseMolecularGraph:
 
         Returns
         -------
-        list
+        List
             The shortest path from start_node to end_node.
         """
         path = []
@@ -369,17 +587,6 @@ class BaseMolecularGraph:
         """
         return bool(node['neighbours'])
 
-    def __str__(self):
-        """
-        Return the string representation of the graph.
-
-        Returns
-        -------
-        str
-            A string representation of the nodes and their edges.
-        """
-        return str(self._nodes)
-
 
 class UndirectedMolecularGraph(BaseMolecularGraph):
     """
@@ -391,14 +598,14 @@ class UndirectedMolecularGraph(BaseMolecularGraph):
         Determine if the undirected molecular graph contains any cycles.
     """
 
-    def is_cyclic(self) -> Union[List, None]:
+    def is_cyclic(self) -> Union[List[List], None]:
         """
         Determine if the undirected molecular graph contains any cycles. If it does, return list of cycles, else return
         None
 
         Returns
         -------
-        Union[List, None]
+        Union[List[List], None]
             Return List of cycles if any exist, else return None
         """
         # Initialise a `visited` dictionary to keep track of visited nodes. Initialise nodes as not visited
@@ -414,7 +621,7 @@ class UndirectedMolecularGraph(BaseMolecularGraph):
 
         return cycles if cycles else None
 
-    def _add_edge(self, from_node: Any, to_node: Any, **attr):
+    def _add_edge(self, from_node: Any, to_node: Any, **attr) -> None:
         """
         Add an edge between two nodes in the undirected graph. In undirected graph, edges are bidirectional, so the
         edge is added in both directions.
@@ -425,8 +632,17 @@ class UndirectedMolecularGraph(BaseMolecularGraph):
             The starting node of the edge.
         to_node : Any
             The ending node of the edge.
-        **attr : dict
+        **attr : Dict
             Any additional edge attributes.
+
+        Returns
+        -------
+        None
+
+        Raises
+        ------
+        NonexistentNodeError
+            If either the start node or the end node is not present in the graph.
         """
         # Validate that both `from_node` and `to_node` exist in the graph
         self._validate_nodes(from_node, to_node)
@@ -448,34 +664,14 @@ class DirectedMolecularGraph(BaseMolecularGraph):
         Perform topological sorting of the nodes in the graph.
     """
 
-    def _add_edge(self, from_node: Any, to_node: Any, **attr):
-        """
-        Add an edge between two nodes in the directed graph. In directed graph, edges are unidirectional, so the
-        edge is only added in the direction of the `to_node` node.
-
-        Parameters
-        ----------
-        from_node : Any
-            The starting node of the edge.
-        to_node : Any
-            The ending node of the edge.
-        **attr : dict
-            Any additional node attributes.
-        """
-        # Validate that both `from_node` and `to_node` exist in the graph
-        self._validate_nodes(from_node, to_node)
-
-        self._nodes[from_node]['neighbours'].append(to_node)
-        self._edges[(from_node, to_node)] = attr
-
-    def is_cyclic(self):
+    def is_cyclic(self) -> Union[List[List], None]:
         """
         Determine if the directed molecular graph contains any cycles.
 
         Returns
         -------
-        bool
-            True if the graph contains a cycle, False otherwise.
+        Union[List[List], None]
+            Return List of cycles if any exist, else return None
         """
         # Initialise a `visited` dictionary to keep track of visited nodes. Initialise nodes as not visited
         visited: Dict = {node: False for node in self._nodes}
@@ -523,7 +719,36 @@ class DirectedMolecularGraph(BaseMolecularGraph):
 
         return stack
 
-    def _topological_sort_util(self, current_node: Any, visited: Dict[Any, bool], stack: List):
+    def _add_edge(self, from_node: Any, to_node: Any, **attr) -> None:
+        """
+        Add an edge between two nodes in the directed graph. In directed graph, edges are unidirectional, so the
+        edge is only added in the direction of the `to_node` node.
+
+        Parameters
+        ----------
+        from_node : Any
+            The starting node of the edge.
+        to_node : Any
+            The ending node of the edge.
+        **attr : Dict
+            Any additional node attributes.
+
+        Returns
+        -------
+        None
+
+        Raises
+        ------
+        NonexistentNodeError
+            If either the start node or the end node is not present in the graph.
+        """
+        # Validate that both `from_node` and `to_node` exist in the graph
+        self._validate_nodes(from_node, to_node)
+
+        self._nodes[from_node]['neighbours'].append(to_node)
+        self._edges[(from_node, to_node)] = attr
+
+    def _topological_sort_util(self, current_node: Any, visited: Dict[Any, bool], stack: List) -> None:
         """
         Helper method to perform topological sorting.
 
@@ -535,6 +760,11 @@ class DirectedMolecularGraph(BaseMolecularGraph):
             A dictionary keeping track of visited nodes.
         stack : List
             A list to store the topologically sorted nodes.
+
+
+        Returns
+        -------
+        None
         """
         # Mark current node as visited
         visited[current_node] = True
