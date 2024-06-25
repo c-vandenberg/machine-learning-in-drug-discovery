@@ -9,12 +9,12 @@ As discussed in **1.1.6**, linear notations are much more compact and memory-eff
 The majority of molecular descriptors can be classified according to their **"dimensionality"**, which refers to the representation of molecules from which descriptor values are computed **<sup>1</sup>**. This includes:
 
 1. **0D Molecular Descriptors**:
-   * This is the simplest molecular representation and is independent of any knowledge concerning the molecular structure
-   * Examples include atomic mass, atomic charge, covalent & VDW radii, atomic polarizability, electronegativities & hydrophobic atomic constants **<sup>2</sup>**
+   * This is the simplest molecular representation and is independent of any knowledge concerning the molecular structure.
+   * Examples include atomic mass, atomic charge, covalent and VDW radii, atomic polarizability, electronegativities & hydrophobic atomic constants. **<sup>2</sup>**
 2. **1D Molecular Descriptors**:
-   * This is a substructure list representation and consists of a list of **structural fragments** of a molecule
-   * The list of fragments can be **functional groups**, **substituents of interest** or **fingerprints**. Therefore, complete knowledge of the molecules structure is not required **<sup>2</sup>**
-   * A common approach is to **encode** this list of molecular fragments into a **bit string**, which encodes the **presence or absence of a certain structural fragment**. This is called a **1D molecular fingerprint** **<sup>3</sup>** 
+   * This is a substructure list representation and consists of a list of **structural fragments** of a molecule.
+   * The list of fragments can be **functional groups**, **substituents of interest** or **fingerprints**. Therefore, complete knowledge of the molecule's structure is not required. **<sup>2</sup>**
+   * A common approach is to **encode** this list of molecular fragments into a **bit string**, which encodes the **presence or absence of a certain structural fragment**. This is called a **1D molecular fingerprint**. **<sup>3</sup>**
 
         <br>
         <div align="center">
@@ -28,9 +28,9 @@ The majority of molecular descriptors can be classified according to their **"di
    * The most popular 1D molecular fingerprint methods is the **Morgan Fingerprint** **<sup>4</sup>**, upon which the **extended-connectivity fingerprint (ECFP)**
 
 3. **2D Molecular Descriptors**:
-   * 2D molecular descriptors consider how the atoms are connected/define the molecular representation based on the connectivity of atoms
-   * The most commonly used 2D molecular representation approach is a **simplified molecular-input line-entry system (SMILES) string** **<sup>5</sup>**
-   * A SMILES string is linear notation that encodes connectivity, structural & geometric properties of a molecule
+   * 2D molecular descriptors consider how the atoms are connected/define the molecular representation based on the connectivity of atoms.
+   * The most commonly used 2D molecular representation approach is a **simplified molecular-input line-entry system (SMILES) string**. **<sup>5</sup>**
+   * A SMILES string is a linear notation that encodes connectivity, structural & geometric properties of a molecule.
 
         <br>
         <div align="center">
@@ -42,19 +42,19 @@ The majority of molecular descriptors can be classified according to their **"di
         <br>
 
 4. **3D Molecular Descriptors**:
-   * 3D molecular descriptors define the molecular representation not only as the connectivity of the atoms, but also as the spatial configuration of the molecule **<sup>2</sup>**
-   * A popular 3D descriptor approach is 3D pharmacophore-type representations where features (e.g. hydrophobic regions or hydrogen bond donors) known or thought to be responsible for biological activity are mapped to positions on the molecule **<sup>1</sup>**
-   * Examples of 3D molecular descriptors include **WHIM** descriptors **<sup>6</sup>**, **EVA** **<sup>7</sup>** & **the EEVA** **<sup>8</sup>** descriptors, **3D-MoRSE** descriptors **<sup>9</sup>** and the **GETAWAY** **<sup>10</sup>** descriptors
+   * 3D molecular descriptors define the molecular representation not only as the connectivity of the atoms, but also as the spatial configuration of the molecule. **<sup>2</sup>**
+   * A popular 3D descriptor approach is 3D pharmacophore-type representations where features (e.g. hydrophobic regions or hydrogen bond donors) known or thought to be responsible for biological activity are mapped to positions on the molecule. **<sup>1</sup>**
+   * Examples of 3D molecular descriptors include **WHIM** descriptors **<sup>6</sup>**, **EVA** **<sup>7</sup>** & **the EEVA** **<sup>8</sup>** descriptors, **3D-MoRSE** descriptors **<sup>9</sup>** and the **GETAWAY** **<sup>10</sup>** descriptors.
 
 ## 1.2.2 Molecular Fingerprints
 
-Fingerprint representations of molecular structure & properties are a particularly complex form of molecular descriptor. Fingerprints are typically **encoded as binary bit strings** that represent a **bit 'pattern'** characteristic of a given molecule. **<sup>1</sup>** 
+Fingerprint representations of molecular structure and properties are a particularly complex form of molecular descriptor. Fingerprints are typically **encoded as binary bit strings** that represent a **bit 'pattern'** characteristic of a given molecule. **<sup>1</sup>** 
 
 Depending on what molecular descriptor (or molecular descriptors) the fingerprint is based on, what this bit 'pattern' represents will be different. For example, molecular fingerprints can be designed to account for fragment-based (1D) molecular descriptors, connectivity-based (2D) molecular descriptors, or spatial configuration-based (3D) molecular descriptors.
 
-An example of a **binary molecular fingerprint** (also known as a **keyed-based molecular fingerprint**) model is shown below (taken from *Xue et al*). **<sup>2</sup>** 
+An example of a **binary molecular fingerprint** (also known as a **key-based molecular fingerprint**) model is shown below (taken from *Xue et al*). **<sup>2</sup>** 
 
-In a binary/key-based molecular fingerprint, each bit accounts for the **absence** (i.e. "0") or **presence** (i.e. "1") of given structural or chemical properties. In this case, it is number of hydrogen-bonds, number of aromatic bonds & fraction of single non-ring bonds. These are then combined with a **32 bit MACCS key** structural key fragment, which defines the absence or presence of specific chemical substructures or patterns:
+In a binary/key-based molecular fingerprint, each bit accounts for the **absence** (i.e. "0") or **presence** (i.e. "1") of given structural or chemical properties. In this case, it is number of hydrogen-bonds, number of aromatic bonds and fraction of single non-ring bonds. These are then combined with a **32-bit MACCS key** structural key fragment, which defines the absence or presence of specific chemical substructures or patterns:
 
   <br>
   <div align="center">
@@ -84,7 +84,7 @@ A widely used key-based molecular fingerprint is **Molecular ACCess System (MACC
 
 However, widely used molecular fingerprints often consist of many more bit positions than the one shown in **Fig 3**. For example, in the **Daylight fingerprint** **<sup>13</sup>**, which was a milestone in the field in 1995, consists of 2,048 bits. 
 
-Such complex molecular fingerprints are referred to as **hash-based molecular fingerprints**. These differ from key-based fingerprints in that each feature is generated from the molecule itself, whereas with key-based fingerprints the **patterns are pre-defined**. The length of the hashed-fingerprints can set prior to their generation, and a **hash function** maps molecular patterns (e.g. properties or structural patterns) to **non-unique/overlapping bit segments**, which usually produces very specific bit patterns. **<sup>14</sup>**
+Such complex molecular fingerprints are referred to as **hash-based molecular fingerprints**. These differ from key-based fingerprints in that each feature is generated from the molecule itself, whereas with key-based fingerprints the **patterns are pre-defined**. The length of the hashed-fingerprints can be set prior to their generation, and a **hash function** maps molecular patterns (e.g. properties or structural patterns) to **non-unique/overlapping bit segments**, which usually produces very specific bit patterns. **<sup>14</sup>**
 
 As a result, single bit positions can **no longer be associated with one specific feature** as they are in binary/keyed molecular fingerprints. **<sup>2</sup>**
 
@@ -103,47 +103,47 @@ A widely used class of circular fingerprints are the **Extended Connectivity Fin
 
 ## 1.2.5 Advantages & Applications of Molecular Fingerprints
 
-Molecular fingerprints are a fundamental and versatile approach for representing chemical compounds in cheminformatics & computational chemistry. The reasons for this and the uses of molecular fingerprints are several-fold:
+Molecular fingerprints are a fundamental and versatile approach for representing chemical compounds in cheminformatics and computational chemistry. The reasons for this and the uses of molecular fingerprints are several-fold:
 
 1. **Dimensionality Reduction**:
-  * Chemical compounds can be highly complex. Molecular fingerprints condense this complexity into a binary or numerical format, **reducing the dimensionality of the data**
-  * This makes is more feasible to compare, analyze, and model large chemical datasets
+  * Chemical compounds can be highly complex. Molecular fingerprints condense this complexity into a binary or numerical format, **reducing the dimensionality of the data**.
+  * This makes it more feasible to compare, analyze, and model large chemical datasets.
 
 2. **Chemical Similarity**:
-  * Molecular fingerprints are widely used for assessing the similarity between chemical compounds
-  * By comparing the fingerprints of different molecules, structurallly similar compounds can be identified, which is crucial in lead compound identification & virtual screening
+  * Molecular fingerprints are widely used for assessing the similarity between chemical compounds.
+  * By comparing the fingerprints of different molecules, structurally similar compounds can be identified, which is crucial in lead compound identification and virtual screening.
 
 3. **Substructure Analysis**:
-  * There is often a need for to identify specific substructures within molecules
-  * Because molecular fingerprints can be designed to encode the presence of absence of predefined substructures or molecular fragments, this allows for efficient substructure searching
+  * There is often a need to identify specific substructures within molecules.
+  * Because molecular fingerprints can be designed to encode the presence or absence of predefined substructures or molecular fragments, this allows for efficient substructure searching.
 
 4. **Quantitative Structure-Activity Relationship (QSAR) Modelling**:
-  * QSAR models aim to predict the biological or chemical activity of compounds based on their structural features
-  * Molecular fingerprints, which capture & encode molecular structure, are key input variables for QSAR modelling
+  * QSAR models aim to predict the biological or chemical activity of compounds based on their structural features.
+  * Molecular fingerprints, which capture and encode molecular structure, are key input variables for QSAR modelling.
 
 5. **Database Searching**:
-  * Molecular fingerprints facilitate the **rapid searching of chemical databases**
-  * By representing molecules as fingerprints, rapid querying of chemical databases is possible, allowing for quick identification of compounds with desired structural or functional characteristics
+  * Molecular fingerprints facilitate the **rapid searching of chemical databases**.
+  * By representing molecules as fingerprints, rapid querying of chemical databases is possible, allowing for quick identification of compounds with desired structural or functional characteristics.
 
-6. **Clustering & Diversity Analysis**:
-  * Molecular fingerprints can be used to **group chemical compounds into clusters** based on structural similarities
-  * This allows for efficient exploration of chemical space for identifying diverse compound sets and designing compound libraries
+6. **Clustering and Diversity Analysis**:
+  * Molecular fingerprints can be used to **group chemical compounds into clusters** based on structural similarities.
+  * This allows for efficient exploration of chemical space for the identification of diverse compound sets and designing compound libraries.
 
 ## 1.2.6 Molecular Fingerprints in Machine Learning
 
-As stated in section 1.2.1, molecular fingerprints serve as a compact and informative representation of molecules, and are used extensively in applications ranging from similarity searching & clustering, to QSAR modeling and virtual screening in drug discovery.
+As stated in section 1.2.1, molecular fingerprints serve as a compact and informative representation of molecules, and are used extensively in applications ranging from similarity searching and clustering, to QSAR modeling and virtual screening in drug discovery.
 
 In recent years, many of these applications have started to use sophisticated 3D structure-based fingerprints built from algebraic topology, **<sup>16</sup>** differential geometry, **<sup>17</sup>** geometric graph theory, **<sup>18</sup>** and algebraic graph theory. **<sup>19</sup>** These molecular fingerprints are then paired with advanced machine learning (ML) algorithms **<sup>21</sup>** **<sup>22</sup>** such as:
 * **Random forest** (RF)
 * **Gradient boosting decision tree** (GBDT)
-* **Single-task deepneural networks** (ST-DNNs)
+* **Single-task deep neural networks** (ST-DNNs)
 * **Multi-task deep neural networks** (MT-DNNs)
 * **Convolutional neural network** (CNN)
 * **Recurrent neural network** (RNN)
 
-A popular application of linear notations such as SMILES and molecular fingerprints are in **molecular property prediction**, **QSAR** and **de novo molecular design**. SMARTS patterns have also been used to define substructures **<sup>23</sup>** **<sup>24</sup>**.
+Popular applications of linear notations such as SMILES and molecular fingerprints are in **molecular property prediction**, **QSAR** and **de novo molecular design**. SMARTS patterns have also been used to define substructures **<sup>23</sup>** **<sup>24</sup>**.
 
-As discussed in **1.1.7**, many of these neural networks work via **representation learning**, where a **vector representation** is learned for molecules in the training set, and this learned representation is then used to **predict properties** **<sup>25</sup>** **<sup>26</sup>**. These kinds of learned presentations are known as **learned fingerprints**
+As discussed in **1.1.7**, many of these neural networks work via **representation learning**, where a **vector representation** is learned for molecules in the training set, and this learned representation is then used to **predict properties** **<sup>25</sup>** **<sup>26</sup>**. These kinds of learned presentations are known as **learned fingerprints**.
 
 ## 1.2.7 References
 
