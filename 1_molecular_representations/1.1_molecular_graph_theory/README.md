@@ -2,13 +2,13 @@
 
 ## 1.1.1 Introduction To The Molecular Graph Representation
 
-The vast majority of the molecular representations discussed in this literature review are built on the concept of the molecular graph representation. It is therefore important to introduce the theory behind molecular graphs and gain a solid understanding of it. This will primarily involve the abstract mathematical structure/data structure of the graph itself, however it is importatnt to note that notations and file formats such as **SMILES strings** and **Molfiles** are also build using molecular graphs. **<sup>1</sup>**
+The vast majority of the molecular representations discussed in this literature review are built on the concept of the molecular graph representation. It is therefore important to introduce the theory behind molecular graphs and gain a solid understanding of it. This will primarily involve the abstract mathematical structure/data structure of the graph itself; however, it is important to note that notations and file formats such as **SMILES strings** and **Molfiles** are also built using molecular graphs. **<sup>1</sup>**
 
-Molecular graph representation is based on the concept of **mapping a molecules atoms and bonds into sets of nodes and edges**. Typically, the nodes are represented using letters indicating the atom type (as per the periodic table), or simply using points where the bonds meet (for carbon atoms). **<sup>1</sup>**
+Molecular graph representation is based on the concept of **mapping a molecule's atoms and bonds into sets of nodes and edges**. Typically, the nodes are represented using letters indicating the atom type (as per the periodic table), or simply using points where the bonds meet (for carbon atoms). **<sup>1</sup>**
 
 A molecular graph representation is formally a **2D object** that can be used to **represent 3D information/spatial relationships**. For example, a molecular graph can contain information such as **atomic coordinates**, **bond angles** and **chirality**. However, because graph nodes only show **pairwise relationships**, this spatial information must be **encoded as node and/or edge attributes**. **<sup>1</sup>**
 
-Typically, in schematic representations of graphs, the nodes are represented representated using circles or spheres, and the edges using lines (**Fig 1**). The 2D and 3D representations of graphs can be visualised by many software packages, such as **ChemDraw**, **<sup>2</sup>** **Avogadro**, **<sup>3</sup>** and **VMD** **<sup>4</sup>**
+Typically, in schematic representations of graphs, the nodes are represented using circles or spheres, and the edges using lines (**Fig 1**). The 2D and 3D representations of graphs can be visualised by many software packages, such as **ChemDraw**, **<sup>2</sup>** **Avogadro**, **<sup>3</sup>** and **VMD** **<sup>4</sup>**
 
 <br>
 <div align="center">
@@ -29,7 +29,7 @@ Intuitively, we can think of set *V* as being a set of **all atoms in the molecu
 
 Molecular graphs are typically **undirected**, meaning the **pairs of nodes that define each edge are unordered/the edges are bidirectional**.
 
-In order to construct a concrete, programmatic representation of a graph from this abstract mathematical concept, we need to **map the sets of nodes and edges to linear data structures**. Common data structures used to do this are **arrays** or **matrices**. A linear data structure is required in order to **specify the connectivity of the nodes**. Therefore, despite the face that the ordering in the sets is irrelevant, an **artificial node-ordering** in order to **encode a molecule using arrays or matrices**. 
+In order to construct a concrete, programmatic representation of a graph from this abstract mathematical concept, we need to **map the sets of nodes and edges to linear data structures**. Common data structures used to do this are **arrays** or **matrices**. A linear data structure is required in order to **specify the connectivity of the nodes**. Therefore, despite the fact that the ordering in the sets is irrelevant, an **artificial node-ordering is required** in order to **encode a molecule using arrays or matrices**. 
 
 The molecular information to be mapped to the graph can be:
 1. How atoms are connected in the molecule
@@ -46,7 +46,7 @@ The most common representation for **how the atoms are connected** in a molecule
 
 ### The Identity of Atoms - Node Features Matrix
 
-The most common representation for **the idendity of atoms** in a molecule is a **node features matrix** (**Fig 2c**), which works as follows:
+The most common representation for **the identity of atoms** in a molecule is a **node features matrix** (**Fig 2c**), which works as follows:
 1. For node features matrix **X**, each **row** of **X** corresponds to a node *v<sub>i</sub>* (i.e. an **atom in the molecule**) in molecular graph *G*
 2. This row is also referred to as the **node feature vector** *x<sub>i</sub>* for that atom
 3. The **length** of *x<sub>i</sub>* corresponds to the **number of atom features** you have chosen to encode
@@ -54,7 +54,7 @@ The most common representation for **the idendity of atoms** in a molecule is a 
 
 ### The Identity of Bonds
 
-The most common representation for **the idendity of bonds** in a molecule is a **edge features matrix** (**Fig 2d**), which works as follows:
+The most common representation for **the identity of bonds** in a molecule is a **edge features matrix** (**Fig 2d**), which works as follows:
 1. For edge features matrix **E**, each **row** of **E** corresponds to an edge *e<sub>ij</sub> = (v<sub>i</sub>,v<sub>j</sub>)* (i.e. the **bond between atoms i and j**) in molecular graph *G*
 2. This row is also referred to as the **edge feature vector** *e<sub>ij</sub>* for that edge
 3. The **length** of *e<sub>ij</sub>* corresponds to the **number of bond features** you have chosen to encode
@@ -74,19 +74,19 @@ triple bonds. “Implicit Hs” stands for the number of implicit hydrogens on a
 
 ### One-Hot Encoding
 
-One-hot encoding is a technique in data science whereby **categorical information data is converted into a binary vector**. It is common in ML algorithms as it helps to **preserve information & improves prediction**, and **makes the dataset compatible with various types of ML algorithms**. This is because many ML algorithms **cannot work with categorical data directly**, and require all input & output variables to be **numeric**.
+One-hot encoding is a technique in data science whereby **categorical data is converted into a binary vector**. It is common in ML algorithms as it helps to **preserve information and improves prediction**, and **makes the dataset compatible with various types of ML algorithms**. This is because many ML algorithms **cannot work with categorical data directly**, and require all input and output variables to be **numeric**.
 
 Therefore, with one-hot encoding, **each unique category value is assigned a binary vector** that has **all zero values**, except for the **index of the category**, which is given a value of **1**.
 
-The main drawback of one-hot encoding is that it can lead to a **large increase in data dimensionality**, especially a the categorical variable has many categories. This is often referred to as the **curse of dimensionality** **<sup>6</sup>**
+The main drawback of one-hot encoding is that it can lead to a **large increase in data dimensionality**, especially if the categorical variable has many categories. This is often referred to as the **curse of dimensionality**. **<sup>6</sup>**
 
 ## 1.1.3 Graph Traversal Algorithms
 
-As discussed before, although graphs themselves are **non-linear data structures** made up of sets of nodes & edges, in practice, **matrix representations of graphs are node order dependend**. **<sup>1</sup>**
+As discussed before, although graphs themselves are **non-linear data structures** made up of sets of nodes and edges, in practice, **matrix representations of graphs are node order dependent**. **<sup>1</sup>**
 
-The node order used in a matrix representation is determined by a **graph traversal algorithm** (**Fig 3**). It is often important to **reliably/consistently generate the same matrix representation of the same molecule**, and this is dependent on **generating the same node order** each time. Therefore, the way in which the graph traversal algorithm **breaks ties** when a node branches off must be consistent so that the algorithm **consistently selects the same branch traversal order**.
+The node order used in a matrix representation is determined by a **graph traversal algorithm** (**Fig 3**). It is often important to **reliably and consistently generate the same matrix representation of the same molecule**, and this is dependent on **generating the same node order** each time. Therefore, the way in which the graph traversal algorithm **breaks ties** when a node branches off must be consistent so that the algorithm **consistently selects the same branch traversal order**.
 
-To achieve this consistency, a **depth-first** or **breadth-first** search algorithm can be used. If however, consistency is not important, a **random serarch** algorithm can be used.
+To achieve this consistency, a **depth-first** or **breadth-first** search algorithm can be used. If however, consistency is not important, a **random search** algorithm can be used.
 
 <br>
 <div align="center">
@@ -103,16 +103,16 @@ explored. <b>c</b> A random search explores nodes in the graph in an arbitrary o
 
 ## 1.1.4 Molecular Graph Reprentations
 
-The matrix representations discussed in **1.1.2** are **not the only way to represent graphs**. As discussed in **1.1.3**, depending on **what graph traversal algorithm is used**, the **order of the rows in atom/bond block will be different**.
+The matrix representations discussed in **1.1.2** are **not the only way to represent graphs**. As discussed in **1.1.3**, depending on **what graph traversal algorithm is used**, the **order of the rows in the atom/bond block will be different**.
 
 Indeed, when constructing molecular graphs, there is not one correct way to represent any molecule and the representation chosen must be appropriate for the task. **<sup>1</sup>**
 
 ## 1.1.5 Advantages of Molecular Graph Representations
 
 **3D Information**:
-  * Despite being 2D data structures with no spatial relationships between elements, we can **encode 3D information into a graph representation**
+  * Despite being **2D** data structures with no spatial relationships between elements, we can **encode 3D information into a graph representation**
   * For example, **node (atomic) information** such as **stereochemistry** can be encoded into the **node features matrix, X**, and **edge (bond) information** such as **bond length** can be encoded into the **edge features matrix, E**
-  * The fact that 3D information can be naturally encoded in a graph representation gives graphs **many advantages over various types of linear notations** such as SMILES strings (however, some linear notations such as **SYBYL Line Notation** can also encode atomic 3D information) **<sup>1</sup>**
+  * The fact that **3D** information can be naturally encoded in a graph representation gives graphs **many advantages over various types of linear notations** such as SMILES strings (however, some linear notations such as **SYBYL Line Notation** can also encode atomic 3D information) **<sup>1</sup>**
 
 ## 1.1.6 Disadvantages of Molecular Graph Representations
 
@@ -122,7 +122,7 @@ Indeed, when constructing molecular graphs, there is not one correct way to repr
   * For example, organometallic compounds such as **metallocenes** or **metal carbonyl compounds** are not well described by molecular graphs because the **haptic** and **synergic bonds** respectively **cannot be explained by the simple, atomic pairwise relationship in valence bond theory** **<sup>1</sup>**
 
 **Dynamic Bonds**
-  * For molecules where bonds are broken & formed frequently or if their structure is constantly rearranging (e.g. **tautomers**), a single molecular graph representation would not be appropriate
+  * For molecules where bonds are broken and formed frequently or if their structure is constantly rearranging (e.g. **tautomers**), a single molecular graph representation would not be appropriate
 
 **Memory Efficiency**
   * Molecular graphs are **extremely memory inefficient** and their memory requirement increases with the **square of the number of nodes** at least
@@ -137,13 +137,13 @@ Many molecular representations, such as molecular graphs, are used in **represen
 
 Representation learning is the idea of **learning an internal representation** (e.g. a **vector**) for a **given object** (e.g. a **molecule**) and then using that internal representation for a **predictive task**. These internal representations are **learned**, meaning models can be **trained to create them** using **backpropagation** in neural networks.
 
-With representation learning tasks, it is key is to first **identify a suitable input representation of a molecular** that contains **as much of the desirec/necessary information to solve the problem as possible** **<sup>1</sup>**
+With representation learning tasks, it is key is to first **identify a suitable input representation of a molecule** that contains **as much of the desirec/necessary information to solve the problem as possible** **<sup>1</sup>**
 
 ### Graph Neural Networks
 
 The development of graph neural networks has resulted in a a proliferation of work whereby the molecular graph representation is used directly for **molecular property prediction**, **<sup>7</sup>**  **molcular graph generation**, **<sup>8</sup>** and **synthesis prediction**. **<sup>9</sup>** 
 
-MOst of these applications use **graph representation learning**, by which a **learned molecular graph embedding** is obtained from inputting molecular grapoh representations into a graph neural network. These learned molecular graph embeddings can then be used as input into a **property prediction model** such as **random forest** or **deep neural network (DNN)** in the same way as a **classical molecular fingerprint** (*cf.* **1.2.6**)
+Most of these applications use **graph representation learning**, by which a **learned molecular graph embedding** is obtained from inputting molecular grapoh representations into a graph neural network. These learned molecular graph embeddings can then be used as input into a **property prediction model** such as a **random forest** or **deep neural network (DNN)** in the same way as a **classical molecular fingerprint** (*cf.* **1.2.6**)
 
 ## 1.1.8 References
 **[1]** David, L. *et al*. (2020) ‘Molecular representations in AI-Driven Drug Discovery: A review and practical guide’, *Journal of Cheminformatics*, 12(1).<br><br>
