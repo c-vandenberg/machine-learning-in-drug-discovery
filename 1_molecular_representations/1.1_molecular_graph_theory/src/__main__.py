@@ -58,7 +58,7 @@ def main():
         pysmiles_mol_graph
     ).todense()
 
-    print(f'{nx_adj_matrix}\n')
+    print(f'Ciprofloxacin PySMILES adjacency matrix:\n{nx_adj_matrix}\n')
 
     # 2) Use RDKit to parse SMILES string into RDKit Mol object, convert to adjacency matrix and
     # obtain NetworkX Graph object
@@ -66,7 +66,7 @@ def main():
     rdkit_adj_matrix: Mol = GetAdjacencyMatrix(ciprofloxacin_rdkit_mol, useBO=True)
     rdkit_mol_graph: Graph = networkx.from_numpy_array(rdkit_adj_matrix)
 
-    print(f'{rdkit_adj_matrix}\n')
+    print(f'Ciprofloxacin RDKit adjacency matrix:\n{rdkit_adj_matrix}\n')
 
     """ Part 2 - Node Features """
     # Generate attribute matrix (tuple containing ndarray and matrix key) for `element` node attributes. Matrix shows
@@ -75,24 +75,24 @@ def main():
         pysmiles_mol_graph,
         node_attr='element'
     )
-    print(f'{pysmiles_element_matrix}\n')
+    print(f'Ciprofloxacin element bond types node attribute matrix:\n{pysmiles_element_matrix}\n')
 
     # Generate one-hot encoded node attribute matrix for `element` node attribute
     one_hot_element_matrix = matrix_utils.node_attribute_matrix(pysmiles_mol_graph, 'element')
-    print(f'{one_hot_element_matrix}\n')
+    print(f'Ciprofloxacin one-hot encoded `element` node attribute matrix:\n{one_hot_element_matrix}\n')
 
     # Generate one-hot encoded node attribute matrix for `aromatic` node attribute
     one_hot_aromatic_matrix = matrix_utils.node_attribute_matrix(pysmiles_mol_graph, 'aromatic')
-    print(f'{one_hot_aromatic_matrix}\n')
+    print(f'Ciprofloxacin one-hot encoded `aromatic` node attribute matrix:\n{one_hot_aromatic_matrix}\n')
 
     # Generate one-hot encoded node attribute matrix for `charge` node attribute
     one_hot_charge_matrix = matrix_utils.node_attribute_matrix(pysmiles_mol_graph, 'charge')
-    print(f'{one_hot_charge_matrix}\n')
+    print(f'Ciprofloxacin one-hot encoded `charge` node attribute matrix:\n{one_hot_charge_matrix}\n')
 
     """ Part 3 - Edge Features Matrix """
-    # Generate one-hot encoded edge attribute matrix for `bond_order` edge attribute
+    # Generate one-hot encoded edge attribute matrix for `order` (bond order) edge attribute
     one_hot_bond_order_matrix = matrix_utils.edge_attribute_matrix(pysmiles_mol_graph, 'order')
-    print(f'{one_hot_bond_order_matrix}\n')
+    print(f'Ciprofloxacin one-hot encoded `order` (bond order) edge attribute matrix:\n{one_hot_bond_order_matrix}\n')
 
     """
     1.1.3 Graph Traversal Algorithms
@@ -120,8 +120,6 @@ def main():
 
     """ Part 3 - Traverse Graph and Detect Cycles """
     print(f'Ciprofloxacin Molecular Graph Cycles = {custom_mol_graph.is_cyclic()}\n')
-
-    test = 'test'
 
 
 if __name__ == '__main__':
