@@ -19,6 +19,7 @@ This literature review serves as an introduction to the different molecular repr
   * 1.1.6 **Disadvantages of Molecular Graph Representations**
   * 1.1.7 **Molecular Graphs in AI-Driven Small Molecule Drug Discovery**
   * 1.1.8 **References**
+    
 1.2 **Molecular Descriptors**:
   * 1.2.1 **Introduction to Molecular Descriptors**:
   * 1.2.2 **Molecular Fingerprints**
