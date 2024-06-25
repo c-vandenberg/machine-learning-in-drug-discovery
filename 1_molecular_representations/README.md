@@ -10,15 +10,23 @@ This literature review serves as an introduction to the different molecular repr
 
 ## Contents
 
-1.1 **Molecular Graph Theory**<br><br>
+1.1 **Molecular Graph Theory**:
+  * 1.1.1 **Introduction To The Molecular Graph Representation**
+  * 1.1.2 **Mathematical Defintion of a Graph**
+  * 1.1.3 **Graph Traversal Algorithms**
+  * 1.1.4 **Molecular Graph Reprentations**
+  * 1.1.5 **Advantages of Molecular Graph Representations**
+  * 1.1.6 **Disadvantages of Molecular Graph Representations**
+  * 1.1.7 **Molecular Graphs in AI-Driven Small Molecule Drug Discovery**
+  * 1.1.8 **References**
 1.2 **Molecular Descriptors**:
-   * 1.2.1 **Introduction to Molecular Descriptors**:
-   * 1.2.2 **Molecular Fingerprints**
-   * 1.2.3 **Key-Based Molecular Fingerprints - MACCS Keys**
-   * 1.2.4 **Hash-Based Molecular Fingerprints - Daylight Fingerprint & ECFPs**
-   * 1.2.5 **Advantages & Applications of Molecular Fingerprints**
-   * 1.2.6 **Molecular Fingerprints in Machine Learning**
-   * 1.2.7 **References**
+  * 1.2.1 **Introduction to Molecular Descriptors**:
+  * 1.2.2 **Molecular Fingerprints**
+  * 1.2.3 **Key-Based Molecular Fingerprints - MACCS Keys**
+  * 1.2.4 **Hash-Based Molecular Fingerprints - Daylight Fingerprint & ECFPs**
+  * 1.2.5 **Advantages & Applications of Molecular Fingerprints**
+  * 1.2.6 **Molecular Fingerprints in Machine Learning**
+  * 1.2.7 **References**
 
 Additionally, each section of the literature review will have accompanying Python exercises related to the topic in question.
 
