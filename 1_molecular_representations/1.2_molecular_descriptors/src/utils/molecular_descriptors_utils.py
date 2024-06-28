@@ -20,7 +20,6 @@ def generate_canonical_smiles(smiles_dataset: Iterable) -> List:
     canonical_smiles = [Chem.MolToSmiles(mol) for mol in mols]
     return canonical_smiles
 
-
 def calculate_rdkit_descriptors(smiles_dataset: Iterable) -> Union[List, Tuple]:
     # Convert each SMILES string in the dataset into an RDKit Mol object
     mols = [Chem.MolFromSmiles(smiles_string) for smiles_string in smiles_dataset]
