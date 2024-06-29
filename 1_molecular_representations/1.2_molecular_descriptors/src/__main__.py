@@ -4,6 +4,10 @@ import pandas
 from pandas import DataFrame
 from numpy import ndarray
 from rdkit import Chem
+from rdkit.Chem import Mol
+from rdkit.Chem import DataStructs
+from rdkit.Chem import AllChem
+from rdkit.DataStructs.cDataStructs import ExplicitBitVect
 from utils import molecular_descriptors_utils
 from constants.smiles_constants import SmilesConstants
 
@@ -31,13 +35,13 @@ def main():
 
     """
     3. Molecular Descriptors in the RDKit Library
-       In this section, we will generate the following molecular descriptors via the RDKit library:
-        * Molecular ACCess System keys or MACCS-keys
-        * Avalon fingerprint
-        * Atom-pair fingerprint
-        * Topological-Torsions fingerprint.
-        * Morgan fingerprint (Circular Fingerprint)
-        * RDKit Fingerprint
+        In this section, we will generate the following molecular descriptors via the RDKit library:
+            * Molecular ACCess System keys or MACCS-keys
+            * Avalon fingerprint
+            * Atom-pair fingerprint
+            * Topological-Torsions fingerprint.
+            * Morgan fingerprint (Circular Fingerprint)
+            * RDKit Fingerprint
     """
 
     """
@@ -94,22 +98,101 @@ def main():
     )
 
     """
-    3.6 Calculate RDKit Descriptors for All Canonical SMILES in Data Set
+    4. Calculate Molecular Descriptors (RDKit & Mordred)
     """
-    # Calculate RDKit descriptors
-    rdkit_mol_descriptors, desc_names = molecular_descriptors_utils.calculate_rdkit_descriptors(
-        sanitised_dataset[SmilesConstants.SMILES]
-    )
-    rdk_descriptors_dataframe: DataFrame = pandas.DataFrame(rdkit_mol_descriptors)
 
     """
-    3.7 Calculate Mordred Descriptors for All Canonical SMILES in Data Set
-       Mordred is a Python package that can calculate more than 1800 0D, 1D, 2D and 3D molecular descriptors
+    4.1 Calculate RDKit Descriptors for All Canonical SMILES in Data Set
     """
-    mordred_descriptors: DataFrame = molecular_descriptors_utils.calculate_mordred_descriptors(
+
+
+    """
+    4.2 Calculate Mordred Descriptors for All Canonical SMILES in Data Set
+        Mordred is a Python package that can calculate more than 1800 0D, 1D, 2D and 3D molecular descriptors
+    """
+
+
+    """
+    5. Calculate Tanimoto Coefficient
+        The Tanimoto similarity algorithm provides a measure of similarity between the molecular fingerprints of two 
+        molecules. Usually, these two molecular fingerprints are represented as two sets of fingerprint 'bits', denoted 
+        as A and B.
+
+        The Tanimoto coefficient, T(A,B), is calculated as the ratio of the intersection of A and B to the union of A 
+        and B (Fig 2). This coefficient ranges from 0, indicating no common bits between the fingerprints, to 1, 
+        representing identical fingerprints.
+        
+        In this section we will calculate the Tanimoto coefficient for the Morgan fingerprints of the first two
+         molecules in the data set
+    """
+    # Calcualte Morgan fingerprints
+    molecule_2: Mol = AllChem.MolFromSmiles(sanitised_dataset['SMILES'][2])
+    molecule_10: Mol = AllChem.MolFromSmiles(sanitised_dataset['SMILES'][10])
+
+    molecule_2_morgan_fingerprint: ExplicitBitVect = AllChem.GetMorganFingerprintAsBitVect(
+        molecule_2,
+        2,
+        nBits=2048,
+        bitInfo={}
+    )
+    molecule_10_morgan_fingerprint: ExplicitBitVect = AllChem.GetMorganFingerprintAsBitVect(
+        molecule_10,
+        2,
+        nBits=2048,
+        bitInfo={}
+    )
+
+    # Calculate Tanimoto coefficient betwee Morgan fingerprints using RDKit
+    molecule_2_10_tanimoto_coeff = DataStructs.FingerprintSimilarity(
+        molecule_2_morgan_fingerprint,
+        molecule_10_morgan_fingerprint,
+        metric=DataStructs.TanimotoSimilarity
+    )
+
+    """
+    6. Applications of Molecular Fingerprints
+        The two applications of molecular fingerprints we will look at in this section are:
+            1. Searching for Compounds (e.g. using a Tanimoto similarity search)
+            2. Compound Clustering
+    """
+
+    """
+    6.1 Searching for Compounds Similar to a Query Compound
+        In this section we will query the sanitised dataset for all compounds similar to the compound acetylsalicylic 
+        acid (aspirin).
+
+        This will be achieved by performing a Tanimoto similarity search of the Morgan fingerprint for acetylsalicylic 
+        acid against the Morgan fingerprints of all compounds in the sanitised dataset
+    """
+    tanimoto_coeffs = molecular_descriptors_utils.tanimoto_similarity_smiles_search(
+        'O=C(C)Oc1ccccc1C(=O)O',
         sanitised_dataset[SmilesConstants.SMILES]
     )
 
+    """
+    6.2 Compound Clustering (Taylor-Butina Clustering)
+        Cluster Analysis or Clustering is the task of grouping of a set of objects (usually unlabelled data) in such a 
+        way that objects in the same group (a cluster) are more similar to each other than those in other 
+        groups/clusters.
+
+        As clustering/cluster analysis is used on unlabelled data (i.e. data where the elements have no distinct 
+        identifiers or classifications), it is defined under the branch of unsupervised learning in machine learning. 
+        Unsupervised learning aims at gaining insights from unlabelled data points.
+
+        The algorithm we will use to perform our clustering/cluster analysis is called Taylor-Butina Clustering. 6 7
+
+        Taylor-Butina clustering is a unsupervised, non-hierarchical clustering method that guarantees every cluster 
+        contains molecules which are within a distance cutoff from to the central molecule. 
+            * Non-hierarchical clustering here refers to clustering methods that do not produce a nested series of 
+            clusters. Instead they create a single paritioning of the data into a set of distinct clusters. 
+            * This contrasts with hierarchical clustering, which creates a tree-like structure of clusters that can be 
+            divided or combined at various level
+    """
+    taylor_butina_clusters = molecular_descriptors_utils.taylor_butina_tanimoto_clustering(
+        sanitised_dataset[SmilesConstants.SMILES]
+    )
+
+    test = 'test'
 
 if __name__ == '__main__':
     main()

@@ -1,5 +1,6 @@
 import logging
 import numpy
+import pandas
 from typing import Union, List, Tuple
 from numpy import ndarray
 from pandas import Series
@@ -12,12 +13,28 @@ from rdkit.Chem import rdMolDescriptors
 from rdkit.Chem import Mol
 from rdkit.DataStructs.cDataStructs import ExplicitBitVect
 from rdkit.ML.Descriptors.MoleculeDescriptors import MolecularDescriptorCalculator
+from rdkit.Chem import AllChem
+from rdkit.Chem import DataStructs
+from rdkit.ML.Cluster import Butina
 from mordred import Calculator, descriptors
 
 logger = logging.getLogger(__name__)
 
 
 def generate_canonical_smiles(smiles_dataset: Series) -> List:
+    """
+    Convert SMILES strings to their canonical form.
+
+    Parameters
+    ----------
+    smiles_dataset : Series
+        A series of SMILES strings.
+
+    Returns
+    -------
+    List[str]
+        A list of canonical SMILES strings.
+    """
     # Convert SMILES string into RDKit Mol object, which is a molecular graph representation
     mols: List = [Chem.MolFromSmiles(smiles_string) for smiles_string in smiles_dataset]
 
@@ -28,6 +45,19 @@ def generate_canonical_smiles(smiles_dataset: Series) -> List:
 
 
 def calculate_maccs_keys_fingerprints(smiles_dataset: Series) -> ndarray:
+    """
+    Calculate MACCS-keys fingerprints for a dataset of SMILES strings.
+
+    Parameters
+    ----------
+    smiles_dataset : Series
+        A series of SMILES strings.
+
+    Returns
+    -------
+    ndarray
+        A numpy array of MACCS-keys fingerprints.
+    """
     maccs_keys: List = []
     # Convert each SMILES string in the dataset into an RDKit Mol object
     for smiles_string in smiles_dataset:
@@ -42,6 +72,19 @@ def calculate_maccs_keys_fingerprints(smiles_dataset: Series) -> ndarray:
 
 
 def calculate_avalon_fingerprints(smiles_dataset: Series) -> ndarray:
+    """
+    Calculate Avalon fingerprints for a dataset of SMILES strings.
+
+    Parameters
+    ----------
+    smiles_dataset : Series
+        A series of SMILES strings.
+
+    Returns
+    -------
+    ndarray
+        A numpy array of Avalon fingerprints.
+    """
     avalon_fingerprints: List = []
     for smiles_string in smiles_dataset:
         # Convert SMILES string into an RDKit Mol object
@@ -56,6 +99,19 @@ def calculate_avalon_fingerprints(smiles_dataset: Series) -> ndarray:
 
 
 def calculate_atom_pairs_fingerprints(smiles_dataset: Series) -> ndarray:
+    """
+    Calculate Atom-Pairs fingerprints for a dataset of SMILES strings.
+
+    Parameters
+    ----------
+    smiles_dataset : Series
+        A series of SMILES strings.
+
+    Returns
+    -------
+    ndarray
+        A numpy array of Atom Pairs fingerprints.
+    """
     atom_pairs_fingerprints: List = []
     for smiles_string in smiles_dataset:
         # Convert SMILES string into an RDKit Mol object
@@ -73,6 +129,19 @@ def calculate_atom_pairs_fingerprints(smiles_dataset: Series) -> ndarray:
 
 
 def calculate_tt_fingerprints(smiles_dataset: Series) -> ndarray:
+    """
+    Calculate Topological-Torsions fingerprints for a dataset of SMILES strings.
+
+    Parameters
+    ----------
+    smiles_dataset : Series
+        A series of SMILES strings.
+
+    Returns
+    -------
+    ndarray
+        A numpy array of Topological-Torsions fingerprints.
+    """
     tt_fingerprints: List = []
     for smiles_string in smiles_dataset:
         # Convert SMILES string into an RDKit Mol object
@@ -90,6 +159,19 @@ def calculate_tt_fingerprints(smiles_dataset: Series) -> ndarray:
 
 
 def calculate_morgan_fingerprints(smiles_dataset: Series) -> ndarray:
+    """
+    Calculate Morgan fingerprints for a dataset of SMILES strings.
+
+    Parameters
+    ----------
+    smiles_dataset : Series
+        A series of SMILES strings.
+
+    Returns
+    -------
+    ndarray
+        A numpy array of Morgan fingerprints.
+    """
     morgan_fingerprints: List = []
     for smiles_string in smiles_dataset:
         # Convert SMILES string into an RDKit Mol object
@@ -110,6 +192,19 @@ def calculate_morgan_fingerprints(smiles_dataset: Series) -> ndarray:
 
 
 def calculate_rdkit_descriptors(smiles_dataset: Series) -> Union[List, Tuple]:
+    """
+    Calculate RDKit descriptors for a dataset of SMILES strings.
+
+    Parameters
+    ----------
+    smiles_dataset : Series
+        A series of SMILES strings.
+
+    Returns
+    -------
+    Union[List, Tuple]
+        A list of RDKit descriptors and a tuple of descriptor names.
+    """
     # Convert each SMILES string in the dataset into an RDKit Mol object
     mols: List = [Chem.MolFromSmiles(smiles_string) for smiles_string in smiles_dataset]
 
@@ -139,11 +234,122 @@ def calculate_rdkit_descriptors(smiles_dataset: Series) -> Union[List, Tuple]:
 
 def calculate_mordred_descriptors(smiles_dataset: Series) -> DataFrame:
     """
+    Calculate Mordred descriptors for a dataset of SMILES strings.
+
     Mordred is a Python package that can calculate more than 1800 0D, 1D, 2D and 3D molecular descriptors
 
+    Parameters
+    ----------
+    smiles_dataset : Series
+        A series of SMILES strings.
+
+    Returns
+    -------
+    DataFrame
+        A dataframe of Mordred descriptors.
     """
     mordred_calculator: Calculator = Calculator(descriptors, ignore_3D=False)
     mols: List = [Chem.MolFromSmiles(smiles_strings) for smiles_strings in smiles_dataset]
 
     # Calculate all >1800 Mordred descriptors for each Mol in a MordredDataFrame
     return mordred_calculator.pandas(mols)
+
+
+def tanimoto_similarity_smiles_search(query_compound_smiles: str, smiles_dataset: Series,
+                                      similarity_threshold=0.5) -> DataFrame:
+    """
+    Perform a Tanimoto similarity search on a dataset of SMILES strings.
+
+    Parameters
+    ----------
+    query_compound_smiles : str
+        The SMILES string of the query compound.
+    smiles_dataset : Series
+        A series of SMILES strings.
+    similarity_threshold : float (Optional)
+        The similarity threshold for filtering results (default = 0.5).
+
+    Returns
+    -------
+    DataFrame
+        A dataframe of Tanimoto similarities that meet the threshold.
+    """
+    query_compound_mol: Mol = AllChem.MolFromSmiles(query_compound_smiles)
+
+    query_compound_morgan_fingerprint: ExplicitBitVect = AllChem.GetMorganFingerprintAsBitVect(
+        query_compound_mol,
+        2,
+        nBits=4096
+    )
+
+    # Convert each SMILES string in the dataset into an RDKit Mol object
+    dataset_mols: List = [Chem.MolFromSmiles(smiles_string) for smiles_string in smiles_dataset]
+
+    # Calulate dataset Morgan fingerprints
+    dataset_morgan_fingerprints: List = [AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits=4096)
+                                         for mol in dataset_mols]
+
+    # Calculate Tanimoto coefficient of query compound against each compound in the data set and insert into list
+    tanimoto_coeffs: List = [
+        DataStructs.FingerprintSimilarity(
+            query_compound_morgan_fingerprint,
+            dataset_morgan_fingerprint,
+            metric=DataStructs.TanimotoSimilarity
+        ) for dataset_morgan_fingerprint in dataset_morgan_fingerprints
+    ]
+
+    tanimoto_coeffs_dataframe: DataFrame = pandas.DataFrame(tanimoto_coeffs, columns=['Tanimoto Coefficient'])
+
+    # Sort Tanimoto coefficient values in descending order and only return those compounds whose values are less than
+    # or equal to the predefined similarity threshold (default value of 0.5)
+    sorted_tanimoto_coeffs_dataframe: DataFrame = tanimoto_coeffs_dataframe.sort_values(
+        'Tanimoto Coefficient',
+        ascending=False)
+
+    return sorted_tanimoto_coeffs_dataframe[
+        sorted_tanimoto_coeffs_dataframe['Tanimoto Coefficient'] >= similarity_threshold
+    ]
+
+
+def taylor_butina_tanimoto_clustering(smiles_dataset: Series) -> List:
+    """
+    Perform a Taylor-Butina cluster analysis on a dataset of SMILES strings based on Tanimoto similarity.
+
+    Parameters
+    ----------
+    smiles_dataset : Series
+        A series of SMILES strings.
+
+    Returns
+    -------
+    List[int]
+        A list of cluster IDs for each molecule.
+    """
+    # Convert each SMILES string in the dataset into an RDKit Mol object
+    dataset_mols: List = [Chem.MolFromSmiles(smiles_string) for smiles_string in smiles_dataset]
+
+    # Calulate dataset Morgan fingerprints
+    dataset_morgan_fingerprints: List = [AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits=4096)
+                                         for mol in dataset_mols]
+    num_morgan_fingerprints: int = len(dataset_morgan_fingerprints)
+
+    dist_matrix: List = []
+    for index in range(1, num_morgan_fingerprints):
+        # Calculate Tanimoto coefficients between current index fingerprint and all preceding fingerprints in data set
+        tanimoto_coefficients = DataStructs.BulkTanimotoSimilarity(
+            dataset_morgan_fingerprints[index],
+            dataset_morgan_fingerprints[:index]
+        )
+
+        # Convert Tanimoto coeffieicnts to distances (1 - Tanimoto coefficients) and extend dist_matrix
+        dist_matrix.extend([1 - tanimoto_coeff for tanimoto_coeff in tanimoto_coefficients])
+
+    # Cluster the Tanimoto similarity scores/coefficients using Taylot-Butina algorithm
+    taylor_butina_clusters = Butina.ClusterData(dist_matrix, num_morgan_fingerprints, 0.3, isDistData=True)
+    cluster_id_list = [0] * len(smiles_dataset)
+
+    for index, cluster in enumerate(taylor_butina_clusters, 1):
+        for member in cluster:
+            cluster_id_list[member] = index
+
+    return cluster_id_list
