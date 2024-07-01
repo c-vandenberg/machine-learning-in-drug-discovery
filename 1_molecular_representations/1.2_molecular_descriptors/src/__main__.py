@@ -3,7 +3,7 @@ import os
 import pandas
 from pandas import DataFrame
 from numpy import ndarray
-from rdkit import Chem
+from typing import List
 from rdkit.Chem import Mol
 from rdkit.Chem import DataStructs
 from rdkit.Chem import AllChem
@@ -105,12 +105,10 @@ def main():
     4.1 Calculate RDKit Descriptors for All Canonical SMILES in Data Set
     """
 
-
     """
     4.2 Calculate Mordred Descriptors for All Canonical SMILES in Data Set
         Mordred is a Python package that can calculate more than 1800 0D, 1D, 2D and 3D molecular descriptors
     """
-
 
     """
     5. Calculate Tanimoto Coefficient
@@ -143,7 +141,7 @@ def main():
     )
 
     # Calculate Tanimoto coefficient betwee Morgan fingerprints using RDKit
-    molecule_2_10_tanimoto_coeff = DataStructs.FingerprintSimilarity(
+    molecule_2_10_tanimoto_coeff: float = DataStructs.FingerprintSimilarity(
         molecule_2_morgan_fingerprint,
         molecule_10_morgan_fingerprint,
         metric=DataStructs.TanimotoSimilarity
@@ -164,7 +162,7 @@ def main():
         This will be achieved by performing a Tanimoto similarity search of the Morgan fingerprint for acetylsalicylic 
         acid against the Morgan fingerprints of all compounds in the sanitised dataset
     """
-    tanimoto_coeffs = molecular_descriptors_utils.tanimoto_similarity_smiles_search(
+    tanimoto_coeffs: DataFrame = molecular_descriptors_utils.tanimoto_similarity_smiles_search(
         'O=C(C)Oc1ccccc1C(=O)O',
         sanitised_dataset[SmilesConstants.SMILES]
     )
@@ -188,11 +186,10 @@ def main():
             * This contrasts with hierarchical clustering, which creates a tree-like structure of clusters that can be 
             divided or combined at various level
     """
-    taylor_butina_clusters = molecular_descriptors_utils.taylor_butina_tanimoto_clustering(
+    taylor_butina_clusters: List = molecular_descriptors_utils.taylor_butina_tanimoto_clustering(
         sanitised_dataset[SmilesConstants.SMILES]
     )
 
-    test = 'test'
 
 if __name__ == '__main__':
     main()
