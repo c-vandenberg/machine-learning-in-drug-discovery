@@ -3,8 +3,6 @@ from typing import Any, Union, List, Set, Dict, Tuple
 from queues import FifoQueue
 from helpers.exception import NonexistentNodeError, NonexistentEdgeError, CycleError
 
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    handlers=[logging.StreamHandler()])
 logger = logging.getLogger(__name__)
 
 

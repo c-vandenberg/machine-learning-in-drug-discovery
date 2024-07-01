@@ -1,6 +1,5 @@
 import pandas
 import networkx
-import numpy
 from typing import Set, List, Any
 
 
