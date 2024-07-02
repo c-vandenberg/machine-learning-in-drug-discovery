@@ -149,16 +149,15 @@ In summary:
 Below are some **common definitions and notation** in machine learning: **<sup>5</sup>**
 
 1. **Features**:
-     * A set of ![N](https://latex.codecogs.com/svg.latex?\color{white}N) vectors ![feature_vector}](https://latex.codecogs.com/svg.latex?\color{white}\{\vec{x}_i\}) each having a dimension ![D](https://latex.codecogs.com/svg.latex?\color{white}D).
+     * A set of ![N](https://latex.codecogs.com/svg.latex?\color{white}N) vectors ![input_vectors](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7B%5Cvec%7Bx%7D_i%5C%7D%7D) each having a dimension ![D](https://latex.codecogs.com/svg.latex?\color{white}D).
      * These vectors can consist of real numbers, integers, or other types of values
 2. **Labels**:
-     * A set of ![N](https://latex.codecogs.com/svg.latex?\color{white}N) integers or real numbers ![label_yi}](https://latex.codecogs.com/svg.latex?\color{white}\{y_i\}).​![label_y](https://latex.codecogs.com/svg.latex?\color{white}y_i).
-     * Each ![label_yi}](https://latex.codecogs.com/svg.latex?\color{white}\{y_i\}).​![label_y](https://latex.codecogs.com/svg.latex?\color{white}y_i) is typically a scalar value representing the target output associated with a feature vector.
+     * A set of ![N](https://latex.codecogs.com/svg.latex?\color{white}N) integers or real numbers ![label](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7By_i%5C%7D.y_i%7D)
+     * Each ![label](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7By_i%5C%7D.y_i%7D) is typically a scalar value representing the target output associated with a feature vector.
 3. **Labeled Data**:
-     * A set of ![N](https://latex.codecogs.com/svg.latex?\color{white}N) tuples ![labelled_data](https://latex.codecogs.com/svg.latex?\color{white}\{\left(\vec{x}_i,y_i\right)\}), where each tuple consists of a feature vector and its corresponding label.
+     * A set of ![N](https://latex.codecogs.com/svg.latex?\color{white}N) tuples ![labelled_data](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7B%5Cleft%28%5Cvec%7Bx%7D_i%2C%20y_i%5Cright%29%5C%7D%7D), where each tuple consists of a feature vector and its corresponding label.
 4. **Unlabeled Data**:
-     * A set of ![N](https://latex.codecogs.com/svg.latex?\color{white}N) feature vectors ![unlabelled_data](https://latex.codecogs.com/svg.latex?\color{white}\{\vec{x}_i\})
- that do not have associated labels.
+     * A set of ![N](https://latex.codecogs.com/svg.latex?\color{white}N) feature vectors ![input_vectors](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7B%5Cvec%7Bx%7D_i%5C%7D%7D) that do not have associated labels.
 6. **Data Generation Process**:
      * The unknown function ![function](https://latex.codecogs.com/svg.latex?\color{white}f(\vec{x})) that, for a given feature vector, returns a real-valued label (output) ![output](https://latex.codecogs.com/svg.latex?\color{white}{y}).
      * This is the process we aim to model with machine learning.
