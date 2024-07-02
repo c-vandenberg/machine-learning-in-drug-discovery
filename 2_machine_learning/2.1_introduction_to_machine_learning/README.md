@@ -46,7 +46,7 @@ Generally, how ML works can be divided into **three main parts**: **<sup>2</sup>
   5. **Random forest**
   6. **Support vector machine (SVM)**
  
-    <br>
+     <br>
       <div align="center">
         <img src="https://github.com/c-vandenberg/machine-learning-in-drug-discovery/assets/60201356/c96f4b00-d155-4d53-a4f5-89c64d99c44d", 
          alt="supervised-learning"/>
@@ -56,7 +56,7 @@ Generally, how ML works can be divided into **three main parts**: **<sup>2</sup>
       </div>
      <br>
       
-* Generally, you **build and test a models mapping function** in **two phases** in supervised learning (**Fig 2**):
+Generally, you **build and test a models mapping function** in **two phases** in supervised learning (**Fig 2**):
  1. **First Phase**:
     * In the first phase, you **segment the data set** into **two subsets**: **training data** and **test data**.
     * Both subsets contain a **test vector** (the inputs) and **one or more known desired output values**.
@@ -87,8 +87,7 @@ Generally, how ML works can be divided into **three main parts**: **<sup>2</sup>
       </div>
      <br>
      
-* In unsupervised learning, the mapping function **segments the data set into classes**. 
-* Each **input vector** becomes **part of a class**, but the **algorithm cannot apply labels to those classes**  (**Fig 3**)
+In unsupervised learning, the mapping function **segments the data set into classes**. Each **input vector** becomes **part of a class**, but the **algorithm cannot apply labels to those classes**  (**Fig 3**)
  
 ### Semi-Supervised Learning
 * **Semi-supervised learning** offers a **happy medium** between supervised and unsupervised learning
@@ -111,7 +110,7 @@ Generally, how ML works can be divided into **three main parts**: **<sup>2</sup>
       </div>
       <br>
       
-* An illustrative example of reinforcement learning is **a simple agent that plays blackjack**:
+An illustrative example of reinforcement learning is **a simple agent that plays blackjack**:
  1. Here, the **states represent the sum of the cards for the player**.
  2. The **actions represent what a blackjack-playing agent may do** (in this case, **hit or stand**).
  3. Training this agent to play blackjack would involve many hands, where **reward for a given state–action nexus is given for winning or losing**.
