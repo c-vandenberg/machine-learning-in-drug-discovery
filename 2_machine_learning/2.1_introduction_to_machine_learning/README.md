@@ -6,7 +6,7 @@ The concept of the **algorithm** is at the core of computer programming. An algo
 
 Machine learning (ML) is a branch of AI and computer science that focuses on using data to develop algorithms for these types of tasks. It is therefore a **method of modelling data**, typically with **predictive functions**.
 
-Generally, how ML works can be divided into **three main parts** (**N.B.** The below description mainly applies to **supervised machine learning**): **<sup>2</sup>**
+Generally, how ML works can be divided into **three main parts**: **<sup>2</sup>**
 1. **A Decision Process**:
   * In general, ML algorithms are used to **train mapping functions** to **make a prediction or classification**.
   * These mapping functions will have **various parameters/weights**
