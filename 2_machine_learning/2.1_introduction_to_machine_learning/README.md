@@ -144,9 +144,34 @@ In summary:
    * An error is provided **not after each example** (as is the case for supervised learning), but instead **on receiving a reinforcement signal**.
    * This learning is **similar to human learning**, where **feedback isn't necessarily provided for all actions** but when a **reward is warranted**.
    
+## 2.1.3 Machine Learning Notation
 
-## 2.1.3 References
+Below are some **common definitions and notation** in machine learning: **<sup>5</sup>**
+
+1. **Features**:
+     * A set of ![N](https://latex.codecogs.com/svg.latex?\color{white}N) vectors ![feature_vector}](https://latex.codecogs.com/svg.latex?\color{white}\{\vec{x}_i\}) each having a dimension ![D](https://latex.codecogs.com/svg.latex?\color{white}D).
+     * These vectors can consist of real numbers, integers, or other types of values
+2. **Labels**:
+     * A set of ![N](https://latex.codecogs.com/svg.latex?\color{white}N) integers or real numbers ![labels](https://latex.codecogs.com/svg.latex?\color{white}\{y_i\}.y_i).
+     * Each ![\{y_i\}.y_i](https://latex.codecogs.com/svg.latex?\color{white}\{y_i\}.y_i)​ is typically a scalar value representing the target output associated with a feature vector.
+3. **Labeled Data**:
+     * A set of ![N](https://latex.codecogs.com/svg.latex?\color{white}N) tuples ![labelled_data](https://latex.codecogs.com/svg.latex?\color{white}\{\left(\vec{x}_i,y_i\right)\}), where each tuple consists of a feature vector and its corresponding label.
+4. **Unlabeled Data**:
+     * A set of ![N](https://latex.codecogs.com/svg.latex?\color{white}N) feature vectors ![unlabelled_data](https://latex.codecogs.com/svg.latex?\color{white}\{\vec{x}_i\})
+ that do not have associated labels.
+6. **Data Generation Process**:
+     * The unknown function f(x⃗)f(x) that, for a given feature vector, returns a real-valued label yy.
+     * This is the process we aim to model with machine learning.
+7. **Model**:
+     * A function ![mapping_function](https://latex.codecogs.com/svg.latex?\color{white}f(\vec{x})) that takes a given feature vector and returns a predicted output ![output](https://latex.codecogs.com/svg.latex?\color{white}\hat{y}).
+     * The goal of machine learning is to make this function **map the input to the predicted output as accurately as possible** and make it as close to the data generation process as possible.
+     * This is therefore a **mapping function**
+8. **Predictions**:
+     * The predicted output ![output](https://latex.codecogs.com/svg.latex?\color{white}\hat{y}) for a given input ![input](https://latex.codecogs.com/svg.latex?\color{white}\vec{x}), produced by the model f^(x⃗)f^​(x).
+
+## 2.1.4 References
 **[1]** Alpaydin, E. (2020) *Introduction to machine learning*. Cambridge, MA: The MIT Press. <br><br>
 **[2]** *What is machine learning (ML)?* (2021) IBM. Available at: https://www.ibm.com/topics/machine-learning (Accessed: 01 July 2024). <br><br>
 **[3]** Salah, S., Alsamamra, H.R. and Shoqeir, J.H. (2022) ‘Exploring wind speed for energy considerations in eastern Jerusalem-Palestine using machine-learning algorithms’, *Energies*, 15(7), p. 2602. <br><br>
-**[4]** Jones, T. (2017) *Models for machine learning*, IBM developer. Available at: https://developer.ibm.com/articles/cc-models-machine-learning (Accessed: 02 July 2024). 
+**[4]** Jones, T. (2017) *Models for machine learning*, IBM developer. Available at: https://developer.ibm.com/articles/cc-models-machine-learning (Accessed: 02 July 2024). <br><br>
+**[5]** White, A.D. (2022) ‘Deep learning for molecules and materials’, *Living Journal of Computational Molecular Science*, 3(1).
