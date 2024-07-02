@@ -26,16 +26,16 @@ Generally, how supervised machine learning works can be divided into **five main
       * In general, ML algorithms are used to **train mapping functions** to **make a prediction or classification**.
       * These mapping functions will have **various parameters/weights**
       * Based on an **input data set**, which can be **labelled** or **unlabelled**, the **parameters of the mapping function will be adjusted** so that it produces an **estimate about a pattern in the data**
-  * The result of this training is a **model** which can be thought of as a **representation of the patterns and relationships** that the mapping function has **learned from the data**
+      * The result of this training is a **model** which can be thought of as a **representation of the patterns and relationships** that the mapping function has **learned from the data**
 3. **An Error Function (Critic)**:
-  * An error function **evaluates the prediction of the model**.
-  * If there are **known examples**, an error function can make a **comparison to assess the accuracy of the model**.
+      * An error function **evaluates the prediction of the model**.
+      * If there are **known examples**, an error function can make a **comparison to assess the accuracy of the model**.
 4. **A Model Optimisation Process**:
-  * After comparing the models prediction to the known examples, if there are any discrepancies, the **parameters/weights are adjusted** to **reduce the discrepancy between the known example and model estimate**.
-  * This **"evaluate and optimise"** process (steps 2-4) is **repeated iteratively**, updating the parameters/weights autonomously until a **threshold of accruacy has been met**.
+      * After comparing the models prediction to the known examples, if there are any discrepancies, the **parameters/weights are adjusted** to **reduce the discrepancy between the known example and model estimate**.
+      * This **"evaluate and optimise"** process (steps 2-4) is **repeated iteratively**, updating the parameters/weights autonomously until a **threshold of accruacy has been met**.
 5. **Test Trained Model Against Test Data**
-  * Finally, the trained model/mapping function is **tested against the test data**
-  * The test data represents data that **has not been used for training** and provides a good measure for **how well the mapping function generalises to unseen data**
+      * Finally, the trained model/mapping function is **tested against the test data**
+      * The test data represents data that **has not been used for training** and provides a good measure for **how well the mapping function generalises to unseen data**
 
 The supervised learning algorithms we will discuss include:
 1. **Regression**
