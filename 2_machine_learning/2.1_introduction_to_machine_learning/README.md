@@ -145,7 +145,7 @@ In summary:
    * This learning is **similar to human learning**, where **feedback isn't necessarily provided for all actions** but when a **reward is warranted**.
    
 
-##  2.X References
+## 2.1.3 References
 **[1]** Alpaydin, E. (2020) *Introduction to machine learning*. Cambridge, MA: The MIT Press. <br><br>
 **[2]** *What is machine learning (ML)?* (2021) IBM. Available at: https://www.ibm.com/topics/machine-learning (Accessed: 01 July 2024). <br><br>
 **[3]** Salah, S., Alsamamra, H.R. and Shoqeir, J.H. (2022) ‘Exploring wind speed for energy considerations in eastern Jerusalem-Palestine using machine-learning algorithms’, *Energies*, 15(7), p. 2602. <br><br>
