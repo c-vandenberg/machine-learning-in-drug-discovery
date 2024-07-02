@@ -59,11 +59,12 @@ Generally, how ML works can be divided into **three main parts**: **<sup>2</sup>
 Generally, you **build and test a models mapping function** in **two phases** in supervised learning (**Fig 2**):
  1. **First Phase**:
     * In the first phase, you **segment the data set** into **two subsets**: **training data** and **test data**.
-    * Both subsets contain a **test vector** (the inputs) and **one or more known desired output values**.
+    * Both subsets contain a **test vector** (the inputs) and **one or more known desired output values (if not unsupervised learning)**.
     * You then **train the mapping function** with the training data set and **alter its parameters/weights** until it **meets some level of performance** (a metric for how accurately the mapping function maps the training data to the associated desired output, evaluated by an **error function/critic**).
+    * In this phase, the algorithm will conduct the **Decision Process**, **Error Function (Critic)**, and **Model Optimisation Process** iterative cycle described in **2.1.1
  2. **Second Phase**:
     * In the next phase, you **test the trained algorithm/mapping function against the test data**.
-    * The test data represents data that **has not been used for training** and provides a good measure for **how well the mapping function generalises to unseend data**
+    * The test data represents data that **has not been used for training** and provides a good measure for **how well the mapping function generalises to unseen data**
  
 ### Unsupervised Learning
 * **Unsupervised learning** uses ML algorithms to **analyse and cluster unlabelled data sets** into **subsets** called **clusters**.
@@ -108,7 +109,7 @@ In unsupervised learning, the mapping function **segments the data set into clas
           <b>Fig 4</b> The reinforcement learning model. <b><sup>4</sup></b>
         </p>
       </div>
-      <br>
+     <br>
       
 An illustrative example of reinforcement learning is **a simple agent that plays blackjack**:
  1. Here, the **states represent the sum of the cards for the player**.
