@@ -8,16 +8,16 @@ Machine learning (ML) is a branch of AI and computer science that focuses on usi
 
 Generally, how ML works can be divided into **three main parts**: **<sup>2</sup>**
 1. **A Decision Process**:
-  * In general, ML algorithms are used to **train mapping functions** to **make a prediction or classification**.
-  * These mapping functions will have **various parameters/weights**
-  * Based on an **input data set**, which can be **labelled** or **unlabelled**, the **parameters of the mapping function will be adjusted** so that it produces an **estimate about a pattern in the data**
-  * The result of this training is a **model** which can be thought of as a **representation of the patterns and relationships** that the mapping function has **learned from the data**
+   * In general, ML algorithms are used to **train mapping functions** to **make a prediction or classification**.
+   * These mapping functions will have **various parameters/weights**
+   * Based on an **input data set**, which can be **labelled** or **unlabelled**, the **parameters of the mapping function will be adjusted** so that it produces an **estimate about a pattern in the data**
+   * The result of this training is a **model** which can be thought of as a **representation of the patterns and relationships** that the mapping function has **learned from the data**
 2. **An Error Function (Critic)**:
-  * An error function **evaluates the prediction of the model**.
-  * If there are **known examples**, an error function can make a **comparison to assess the accuracy of the model**.
+   * An error function **evaluates the prediction of the model**.
+   * If there are **known examples**, an error function can make a **comparison to assess the accuracy of the model**.
 3. **A Model Optimisation Process**:
-  * After comparing the models prediction to the known examples, if there are any discrepancies, the **parameters/weights are adjusted** to **reduce the discrepancy between the known example and model estimate**.
-  * This **"evaluate and optimise"** process is **repeated iteratively**, updating the parameters/weights autonomously until a **threshold of accruacy has been met**.
+   * After comparing the models prediction to the known examples, if there are any discrepancies, the **parameters/weights are adjusted** to **reduce the discrepancy between the known example and model estimate**.
+   * This **"evaluate and optimise"** process is **repeated iteratively**, updating the parameters/weights autonomously until a **threshold of accruacy has been met**.
 
      <br>
       <div align="center">
