@@ -20,12 +20,12 @@
 
 Generally, how supervised machine learning works can be divided into **five main parts**: **<sup>2</sup>**
 1. **Data Segmentation**:
-  * Before any training begins, the data set is **segmented into two subsets**; **training data** and **test data**.
-  * oth subsets contain a **test vector** (the inputs) and **one or more known desired output values**.
+      * Before any training begins, the data set is **segmented into two subsets**; **training data** and **test data**.
+      * oth subsets contain a **test vector** (the inputs) and **one or more known desired output values**.
 2. **A Decision Process**:
-  * In general, ML algorithms are used to **train mapping functions** to **make a prediction or classification**.
-  * These mapping functions will have **various parameters/weights**
-  * Based on an **input data set**, which can be **labelled** or **unlabelled**, the **parameters of the mapping function will be adjusted** so that it produces an **estimate about a pattern in the data**
+      * In general, ML algorithms are used to **train mapping functions** to **make a prediction or classification**.
+      * These mapping functions will have **various parameters/weights**
+      * Based on an **input data set**, which can be **labelled** or **unlabelled**, the **parameters of the mapping function will be adjusted** so that it produces an **estimate about a pattern in the data**
   * The result of this training is a **model** which can be thought of as a **representation of the patterns and relationships** that the mapping function has **learned from the data**
 3. **An Error Function (Critic)**:
   * An error function **evaluates the prediction of the model**.
