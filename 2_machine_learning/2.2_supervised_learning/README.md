@@ -3,6 +3,7 @@
 ## 2.2.1 Introduction to Supervised Learning
 
 * **Supervised learning** is defined by its use of **labelled data sets** to train **mapping functions** to **classify data** or **predict outcomes accurately**.
+* In other words, supervised learning invovles predicting **the output ![output](https://latex.codecogs.com/svg.latex?\color{white}{y})** for a **given input vector ![input_vectors](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7B%5Cvec%7Bx%7D_i%5C%7D%7D)** 
 * As input data is fed into the model, the **model adjusts the mapping function's parameters/weights** until it has been **fitted appropriately** to the data set.
 * The idea is that once the mapping function is trained, it can then be used on **unseen data to meet some predictive performance**
 * As such, supervised learning algorithms consist of **input-output pairs** and the goal is to **learn a mapping from inputs to outputs**.
@@ -37,7 +38,34 @@ Generally, how supervised machine learning works can be divided into **five main
       * Finally, the trained model/mapping function is **tested against the test data**
       * The test data represents data that **has not been used for training** and provides a good measure for **how well the mapping function generalises to unseen data**
 
-The supervised learning algorithms we will discuss include:
-1. **Regression**
-2. **Random Forest**
-3. **Classficiation**
+Supervised learning can be **separated into two distinct types**
+1. **Classficiation**:
+   * **Classification** is a supervised learning method whereby the algorithm is used to **accurately assign test data into specific categories**.
+   * The algorithm is trained to **recognise specific entities within the data set** and attempts to **draw some conclusions on how those entities should be labelled or defined**
+   * Common classification algorithms include:
+   1. **Linear Classifiers**
+   2. **Support Vector Machines (SVM)**
+   3. **Decision Trees**
+   4. **K-Nearest Neighbour**
+   5. **Random Forest**
+2. **Regression**:
+   * **Regression** is a supervised learning method used to **understand the relationship between dependent and independent variables**.
+   * In other words, regression uses mathematical methods to **predict a continuous outcome ![output](https://latex.codecogs.com/svg.latex?\color{white}{y})** based on the value of **one or more predictor variables/input vectors ![input_vectors](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7B%5Cvec%7Bx%7D_i%5C%7D%7D)**
+   * In regression, the algorithm is **trained on both input vectors and output labels**. This helps in **establishing a relationship among the variables** by **estimating how one variable affects the other**.
+   * Common regression algorithms include:
+   1. **Linear Regression**
+   2. **Logistic Regression**
+   3. **Polynomial Regression**
+
+## 2.2.2 Classification Algorithms in Supervised Learning
+
+## 2.2.2 Regression Algorithms in Supervised Learning
+
+**Regression** is a fundamental concept in supervised machine learning whereby the algorithm is **trained on both input vectors and output labels**. This helps in **establishing a relationship among the variables** by **estimating how one variable affects the other**.
+
+More formally:
+* Regression in machine learning consts of mathematical methods that **allow data scientists to **predict a continuous outcome ![output](https://latex.codecogs.com/svg.latex?\color{white}{y})** based on the value of **one or more predictor variables/input vectors ![input_vectors](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7B%5Cvec%7Bx%7D_i%5C%7D%7D)** 
+
+
+
+**Linear regression** is one of the simplest supervised machine learning algorithms
