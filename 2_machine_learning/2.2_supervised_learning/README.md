@@ -14,7 +14,7 @@
         <img src="https://github.com/c-vandenberg/machine-learning-in-drug-discovery/assets/60201356/c96f4b00-d155-4d53-a4f5-89c64d99c44d", 
          alt="supervised-learning"/>
         <p>
-          <b>Fig 1</b> The two phases of building and testing a mapping function with supervised learning. <b><sup>4</sup></b>
+          <b>Fig 1</b> The two phases of building and testing a mapping function with supervised learning. <b><sup>1</sup></b>
         </p>
       </div>
      <br>
@@ -80,10 +80,10 @@ The equation for simple linear regression is:
 <br>
 
 where:
-- ![Y](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DY) is the dependent variable
-- ![X](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DX) is the independent variable
-- ![\beta_0](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_0) is the intercept
-- ![\beta_1](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_1) is the slope
+- ![simple_linear_regression_dependent_var](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DY) is the **dependent variable/output**
+- ![simple_linear_regression_independent_var](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DX) is the **independent variable/input vector**
+- ![simple_linear_regression_intercept](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_0) is the **intercept**
+- ![simple_linear_regression_gradient](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_1) is the **slope/gradient**
 
 
 ### Multiple Linear Regression
@@ -100,10 +100,10 @@ The equation for multiple linear regression (and also **univariate linear regres
 <br>
 
 where:
-* ![Y](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DY) is the dependent variable
-* ![X_1, X_2, \ldots, X_p](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DX_1%2C%20X_2%2C%20%5Cldots%2C%20X_p) are the independent variables
-* ![\beta_0](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_0) is the intercept
-* ![\beta_1, \beta_2, \ldots, \beta_n](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_1%2C%20%5Cbeta_2%2C%20%5Cldots%2C%20%5Cbeta_n) are the slopes
+* ![mulitple_linear_regression_dependent_var](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DY) is the **dependent variable/output**
+* ![mulitple_linear_regression_independent_vars](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DX_1%2C%20X_2%2C%20%5Cldots%2C%20X_p) are the **independent variables/input vectors**
+* ![mulitple_linear_regression__intercept](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_0) is the **intercept**
+* ![mulitple_linear_regression_gradient](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_1%2C%20%5Cbeta_2%2C%20%5Cldots%2C%20%5Cbeta_n) is the **slope/gradient**
 
 Multiple linear regression can be represented in **matrix form**, which provides a compact and efficient way to represent and compute the **relationships between multiple dependent and independent variables**:
 
@@ -145,12 +145,12 @@ where:
 <br>
 
 where:
-* ![Y_i](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DY_i) is the dependent variable for the \(i\)-th observation
-* ![\alpha](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_%7B0%7D) is the intercept
-* ![\beta_{1}x_{i}^{(1)}](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_%7B1%7Dx_%7Bi%7D%5E%7B%281%29%7D) is the coefficient and the \(i\)-th observation of the first independent variable
-* ![\beta_{2}x_{i}^{(2)}](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_%7B2%7Dx_%7Bi%7D%5E%7B%282%29%7D) is the coefficient and the \(i\)-th observation of the second independent variable
-* ![\ldots](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cldots)  represents additional terms up to \(n\) independent variables
-* ![\beta_{n}x_{i}^{(n)}](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_%7Bn%7Dx_%7Bi%7D%5E%7B%28n%29%7D) is the coefficient and the \(i\)-th observation of the \(n\)-th independent variable
+* ![multivariate_linear_regression_independent_ith_var](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DY_i) is the **dependent variable/output for the *i*-th observation**
+* ![multivariate_linear_regression_intercept](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_%7B0%7D) is the **intercept**
+* ![multivariate_linear_regression_1st_independent_var_coeff](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_%7B1%7Dx_%7Bi%7D%5E%7B%281%29%7D) is the **coefficient and the *i*-th observation of the first independent variable**
+* ![multivariate_linear_regression_2nd_independent_var_coeff](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_%7B2%7Dx_%7Bi%7D%5E%7B%282%29%7D) is the **coefficient and the *i*-th observation of the second independent variable**
+* ![multivariate_linear_regression_n_independent_vars](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cldots)  represents **additional terms up to *n* independent variables**
+* ![multivariate_linear_regression_final_independent_var](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_%7Bn%7Dx_%7Bi%7D%5E%7B%28n%29%7D) is the **coefficient and the *i*-th observation of the *n*-th independent variable**
 
 
 Like with multiple linear regression, multivariate linear regression can be represented in **matrix form**:
@@ -211,10 +211,42 @@ The **standard logistic function**, where ![supremum](https://latex.codecogs.com
 
 <br>
   <div align="center">
-    <img src="", 
-     alt=""/>
+    <img src="https://github.com/c-vandenberg/machine-learning-in-drug-discovery/assets/60201356/ef0af9b3-c922-4160-89e3-d14949569d01", alt="standard-logistic-function-curve"/>
     <p>
-      <b>Fig 2</b> . <b><sup>4</sup></b>
+      <b>Fig 2</b> The standard logistic function sigmoid curve. <b><sup>2</sup></b>
     </p>
   </div>
  <br>
+
+At a high level, how logistic regression works is:
+1. The logistic function **transforms the linear regression function continous value output into a categorical value output**. 
+2. It therefore **maps the set of independent variables/input vectors** into a **predicted dependent variable/output value between 0 and 1** (i.e. a **probability between 0 and 1**).
+3. We can see from **Fig 2** that:
+    * **![function](https://latex.codecogs.com/svg.latex?\color{white}f({x})) tends towards 1 as ![x_to_inf](https://latex.codecogs.com/svg.latex?\color{white}x\to\infty)**
+    * **![function](https://latex.codecogs.com/svg.latex?\color{white}f({x})) tends towards 0 as ![x_to_inf](https://latex.codecogs.com/svg.latex?\color{white}x\to-\infty)**
+    * **![function](https://latex.codecogs.com/svg.latex?\color{white}f({x})) is always bounded between 0 and 1**
+
+### 3) Polynomial Regression
+
+**Polynomial regression** is a type of regression analysis employed in machine learning when the relationship between the independent variables/input vectors and the dependent variable(s)/output(s) is **not linear**, but is instead an **nth-degree polynomial**:
+
+<br>
+    <div align="center">
+        <img src="https://latex.codecogs.com/svg.latex?\color{white}y=\beta_0+\beta_1x+\beta_2x^2+\cdots+\beta_nx^n", alt='polynomial_regression_function_equation'/>
+    </div>
+<br>
+
+where:
+* ![polynomial_regression_independent_var](https://latex.codecogs.com/svg.latex?\color{white}x) is the **independent variable/input vectors**
+* ![polynomial_regression_dependent_var](https://latex.codecogs.com/svg.latex?\color{white}y) is the **dependent variable/input vectors**
+* ![polynomial_regression_intercept](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_0) is the **intercept**
+* ![polynomial_regression_coeffs](https://latex.codecogs.com/svg.latex?\color{white}\beta_1,\\beta_2,\\ldots,\\beta_n) are the **1st, 2nd to nth independent variable/input vector coefficients**
+
+As stated before, by **including higher degree terms (squared, cubic, quadratic etc.)**, a polynomial regression model can **capture non-linear patterns in the data set**:
+1. **The choice of the polynomial degree (n)** is a **crucial aspect** of polynomial regression. A **higher degree** allows the model to **fit the training data more closely**, but it may also **lead to overfitting**, especially if the degree is too high.
+2. The polynomial regression model is trained to **find the independent variable/input vector coefficients** that **minimize the difference between the predicted values and the actual values** in the training data.
+3. Once the model is trained, it can be used to **make predictions on new, unseen data**. The polynomial equation captures the **non-linear patterns** observed in the training data, allowing the model to **generalize to non-linear relationships in unseen data**.
+
+ ## 2.2.X References
+ **[1]** Jones, T. (2017) 'Models for machine learning', *IBM developer*. Available at: https://developer.ibm.com/articles/cc-models-machine-learning (Accessed: 02 July 2024). <br><br>
+ **[2]** Vadurova, D., Gausland, Yvonne. (2018). "Analysis of consumers' ability to identify fake news". <br><br>
