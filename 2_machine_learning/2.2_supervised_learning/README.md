@@ -65,9 +65,11 @@ Supervised learning can be **separated into two distinct types**
 
 **Linear regression** is one of the simplest supervised machine learning algorithms. Linear regression is used to find the **linear relationship between the dependent variable (output ![output](https://latex.codecogs.com/svg.latex?\color{white}{y})) and one or more independent variables (input vectors ![input_vectors](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7B%5Cvec%7Bx%7D_i%5C%7D%7D)**). It is **typically leveraged to make predictions about future outcomes**.
 
+Below are the different types of linear regression. As with all other types of regression, all linear regression types **seek to plot a line of best fit**, which is calculated through the method of **least squares**. What makes linear regression differ from other types of regression (e.g. **polynomial regression**) is that this line of best fit is a **straight line when plotted on a graph**
+
 ### Simple Linear Regression 
 
-**Simple linear regression** is the **simplest for of linear regression** and involves **only one independent feature/variable**, and **one dependent variable/output**.
+**Simple linear regression** is the **simplest form of linear regression** and involves **only one independent feature/variable**, and **one dependent variable/output**.
 
 The equation for simple linear regression is:
 
@@ -178,3 +180,41 @@ where:
         <img src="https://latex.codecogs.com/svg.latex?\color{white}\beta=\begin{bmatrix}\beta_{0}\\\beta_{1}\\\beta_{2}\\\vdots\\\beta_{n}\end{bmatrix}", alt='beta_vector_matrix'/>
     </div>
 <br>
+
+### 2) Logistic Regression
+
+**Logisitic Regression** is a supervised machine learning algorithm that **accomplishes binary classification tasks** by **predicting the probability of an outcome, event, or observation**. While linear regression is **leveraged when dependent variables are continuous**, logistic regression is selected when the **dependent variables are categorical**, meaning they have **binary outputs** (e.g. 'true' and 'false', 'yes' and 'no' etc.).
+
+While both linear and logistic regression seek to **understand relationships between data inputs** logistic regression is mainly used to solve **binary classification problems** (e.g. spam identification).
+
+Logisitic regression utilises what is known as the **logistic function**, which produces an **S-shaped curve**, also known as a **sigmoid curve**. The logistic function has the general equation:
+
+<br>
+    <div align="center">
+        <img src="https://latex.codecogs.com/svg.latex?\color{white}f(x)=\frac{L}{1+e^{-k(x-x_{0})}}", alt='logistic_function_equation'/>
+    </div>
+<br>
+
+where:
+* ![supremum](https://latex.codecogs.com/svg.latex?\color{white}L) - is the **supremum of the values of the function**. The supremum refers to the **upper bound for the set of values of the function** (i.e. it is the **maximum value that the function can attain**
+* ![logistic_growth_rate](https://latex.codecogs.com/svg.latex?\color{white}k) -  is the **logistic growth rate** (i.e. the **steepness/gradient of the curve**)
+* ![function_midpoint_x_value](https://latex.codecogs.com/svg.latex?\color{white}x_{0}) - is the **x value of the function's midpoint**
+
+
+The **standard logistic function**, where ![supremum](https://latex.codecogs.com/svg.latex?\color{white}L) = 1, ![logistic_growth_rate](https://latex.codecogs.com/svg.latex?\color{white}k) = 1, and ![function_midpoint_x_value](https://latex.codecogs.com/svg.latex?\color{white}x_{0}) = 0 has the below equation and is plotted in **Fig 2**:
+
+<br>
+    <div align="center">
+        <img src="https://latex.codecogs.com/svg.latex?\color{white}f(x)=\frac{1}{1+e^{-x}}", alt='standard_logistic_function_equation'/>
+    </div>
+<br>
+
+<br>
+  <div align="center">
+    <img src="", 
+     alt=""/>
+    <p>
+      <b>Fig 2</b> . <b><sup>4</sup></b>
+    </p>
+  </div>
+ <br>
