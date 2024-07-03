@@ -92,7 +92,8 @@ The equation for multiple linear regression (and also **univariate linear regres
 
 <br>
     <div align="center">
-        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7Dy%20%3D%20%5Cbeta_0%20%2B%20%5Cbeta_1%20X_1%20%2B%20%5Cbeta_2%20X_2%20%2B%20%5Cldots%20%2B%20%5Cbeta_n%20X_n", alt='multiple_linear_regression'/>
+        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7Dy%20%3D%20%5Cbeta_0%20%2B%20%5Cbeta_1%20X_1%20%2B%20%5Cbeta_2%20X_2%20%2B%20%5Cldots%20%2B%20%5Cbeta_n%20X_n", 
+            alt='multiple_linear_regression'/>
     </div>
 <br>
 
@@ -106,9 +107,12 @@ Multiple linear regression can be represented in **matrix form**, which provides
 
 <br>
     <div align="center">
-        <img src="", alt='multiple_linear_regression_matrix'/>
+        <img src="https://latex.codecogs.com/svg.latex?\color{white}\mathbf{y}=\mathbf{X}\boldsymbol{\beta}", alt='multiple_linear_regression_matrix'/>
     </div>
 <br>
+
+where:
+
 
 ### Multvariate Linear Regression
 
