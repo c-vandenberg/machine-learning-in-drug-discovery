@@ -43,29 +43,89 @@ Supervised learning can be **separated into two distinct types**
    * **Classification** is a supervised learning method whereby the algorithm is used to **accurately assign test data into specific categories**.
    * The algorithm is trained to **recognise specific entities within the data set** and attempts to **draw some conclusions on how those entities should be labelled or defined**
    * Common classification algorithms include:
-   1. **Linear Classifiers**
-   2. **Support Vector Machines (SVM)**
-   3. **Decision Trees**
-   4. **K-Nearest Neighbour**
-   5. **Random Forest**
+       1. **Linear Classifiers**
+       2. **Support Vector Machines (SVM)**
+       3. **Decision Trees**
+       4. **K-Nearest Neighbour**
+       5. **Random Forest**
 2. **Regression**:
    * **Regression** is a supervised learning method used to **understand the relationship between dependent and independent variables**.
    * In other words, regression uses mathematical methods to **predict a continuous outcome ![output](https://latex.codecogs.com/svg.latex?\color{white}{y})** based on the value of **one or more predictor variables/input vectors ![input_vectors](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7B%5Cvec%7Bx%7D_i%5C%7D%7D)**
    * In regression, the algorithm is **trained on both input vectors and output labels**. This helps in **establishing a relationship among the variables** by **estimating how one variable affects the other**.
    * Common regression algorithms include:
-   1. **Linear Regression**
-   2. **Logistic Regression**
-   3. **Polynomial Regression**
+       1. **Linear Regression**
+       2. **Logistic Regression**
+       3. **Polynomial Regression**
 
 ## 2.2.2 Classification Algorithms in Supervised Learning
 
-## 2.2.2 Regression Algorithms in Supervised Learning
+## 2.2.3 Regression Algorithms in Supervised Learning
 
-**Regression** is a fundamental concept in supervised machine learning whereby the algorithm is **trained on both input vectors and output labels**. This helps in **establishing a relationship among the variables** by **estimating how one variable affects the other**.
+### 1) Linear Regression
 
-More formally:
-* Regression in machine learning consts of mathematical methods that **allow data scientists to **predict a continuous outcome ![output](https://latex.codecogs.com/svg.latex?\color{white}{y})** based on the value of **one or more predictor variables/input vectors ![input_vectors](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7B%5Cvec%7Bx%7D_i%5C%7D%7D)** 
+**Linear regression** is one of the simplest supervised machine learning algorithms. Linear regression is used to find the **linear relationship between the dependent variable (output ![output](https://latex.codecogs.com/svg.latex?\color{white}{y})) and one or more independent variables (input vectors ![input_vectors](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7B%5Cvec%7Bx%7D_i%5C%7D%7D)**). It is **typically leveraged to make predictions about future outcomes**.
+
+### Simple Linear Regression 
+
+**Simple linear regression** is the **simplest for of linear regression** and involves **only one independent feature/variable**, and **one dependent variable/output**.
+
+The equation for simple linear regression is:
+
+<br>
+    <div align="center">
+        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7Dy%20%3D%20%5Cbeta_0%20%2B%20%5Cbeta_1%20X", alt='simple_linear_regression'/>
+    </div>
+<br>
+
+where:
+- ![Y](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DY) is the dependent variable
+- ![X](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DX) is the independent variable
+- ![\beta_0](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_0) is the intercept
+- ![\beta_1](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_1) is the slope
 
 
+### Multiple Linear Regression
 
-**Linear regression** is one of the simplest supervised machine learning algorithms
+**Multiple linear regression** involves **more than one independent feature/variable**, and **one dependent variable/output**.
+
+The equation for multiple linear regression (and also **univariate linear regression**) is:
+
+<br>
+    <div align="center">
+        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7Dy%20%3D%20%5Cbeta_0%20%2B%20%5Cbeta_1%20X_1%20%2B%20%5Cbeta_2%20X_2%20%2B%20%5Cldots%20%2B%20%5Cbeta_n%20X_n", alt='multiple_linear_regression'/>
+    </div>
+<br>
+
+where:
+* ![Y](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DY) is the dependent variable
+* ![X_1, X_2, \ldots, X_p](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DX_1%2C%20X_2%2C%20%5Cldots%2C%20X_p) are the independent variables
+* ![\beta_0](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_0) is the intercept
+* ![\beta_1, \beta_2, \ldots, \beta_n](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_1%2C%20%5Cbeta_2%2C%20%5Cldots%2C%20%5Cbeta_n) are the slopes
+
+Multiple linear regression can be represented in **matrix form**, which provides a compact and efficient way to represent and compute the **relationships between multiple dependent and independent variables**:
+
+<br>
+    <div align="center">
+        <img src="", alt='multiple_linear_regression_matrix'/>
+    </div>
+<br>
+
+### Multvariate Linear Regression
+
+**Multivariate linear regression** involves **more than one dependent variables/outputs**
+
+<br>
+    <div align="center">
+        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DY_i%20%3D%20%5Calpha%20%2B%20%5Cbeta_%7B1%7Dx_%7Bi%7D%5E%7B%281%29%7D%20%2B%20%5Cbeta_%7B2%7Dx_%7Bi%7D%5E%7B%282%29%7D%20%2B%20%5Cldots%20%2B%20%5Cbeta_%7Bn%7Dx_%7Bi%7D%5E%7B%28n%29%7D", alt='multivariate_linear_regression'/>
+    </div>
+<br>
+
+where:
+* ![Y_i](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DY_i) is the dependent variable for the \(i\)-th observation
+* ![\alpha](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Calpha) is the intercept
+* ![\beta_{1}x_{i}^{(1)}](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_%7B1%7Dx_%7Bi%7D%5E%7B%281%29%7D) is the coefficient and the \(i\)-th observation of the first independent variable
+* ![\beta_{2}x_{i}^{(2)}](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_%7B2%7Dx_%7Bi%7D%5E%7B%282%29%7D) is the coefficient and the \(i\)-th observation of the second independent variable
+* ![\ldots](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cldots) represents additional terms up to \(n\) independent variables
+* ![\beta_{n}x_{i}^{(n)}](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_%7Bn%7Dx_%7Bi%7D%5E%7B%28n%29%7D) is the coefficient and the \(i\)-th observation of the \(n\)-th independent variable
+
+Both multiple and multivariate linear regression can be represented in **matrix form**, which provides a compact and efficient way to represent and compute the **relationships between multiple dependent and independent variables**
