@@ -57,7 +57,5 @@ Supervised learning can be **separated into two distinct types**
        2. **Logistic Regression**
        3. **Polynomial Regression**
 
-## 2.2.2 Classification Algorithms in Supervised Learning
-
- ## 2.2.X References
+ ## References
  **[1]** Jones, T. (2017) 'Models for machine learning', *IBM developer*. Available at: https://developer.ibm.com/articles/cc-models-machine-learning (Accessed: 02 July 2024). <br><br>
