@@ -113,6 +113,24 @@ Multiple linear regression can be represented in **matrix form**, which provides
 
 where:
 
+<br>
+    <div>
+        <img src="https://latex.codecogs.com/svg.latex?\color{white}Y=\begin{bmatrix}Y_{1}\\Y_{2}\\\vdots\\Y_{n}\end{bmatrix}", alt='output_vector_matrix'/>
+    </div>
+<br>
+
+<br>
+    <div>
+        <img src="https://latex.codecogs.com/svg.latex?\color{white}X=\begin{bmatrix}x_{11}&x_{12}&\cdots&x_{1n}\\x_{21}&x_{22}&\cdots&x_{2n}\\\vdots&\vdots&\ddots&\vdots\\x_{n1}&x_{n2}&\cdots&x_{nn}\end{bmatrix}", alt='input_vector_matrix'/>
+    </div>
+<br>
+
+<br>
+    <div>
+        <img src="https://latex.codecogs.com/svg.latex?\color{white}\beta=\begin{bmatrix}\beta_{0}\\\beta_{1}\\\beta_{2}\\\vdots\\\beta_{n}\end{bmatrix}", alt='beta_vector_matrix'/>
+    </div>
+<br>
+
 
 ### Multvariate Linear Regression
 
@@ -120,16 +138,43 @@ where:
 
 <br>
     <div align="center">
-        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DY_i%20%3D%20%5Calpha%20%2B%20%5Cbeta_%7B1%7Dx_%7Bi%7D%5E%7B%281%29%7D%20%2B%20%5Cbeta_%7B2%7Dx_%7Bi%7D%5E%7B%282%29%7D%20%2B%20%5Cldots%20%2B%20%5Cbeta_%7Bn%7Dx_%7Bi%7D%5E%7B%28n%29%7D", alt='multivariate_linear_regression'/>
+        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DY_i%20%3D%20%5Cbeta_%7B0%7D%20%2B%20%5Cbeta_%7B1%7Dx_%7Bi%7D%5E%7B%281%29%7D%20%2B%20%5Cbeta_%7B2%7Dx_%7Bi%7D%5E%7B%282%29%7D%20%2B%20%5Cldots%20%2B%20%5Cbeta_%7Bn%7Dx_%7Bi%7D%5E%7B%28n%29%7D", alt='multivariate_linear_regression'/>
     </div>
 <br>
 
 where:
 * ![Y_i](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DY_i) is the dependent variable for the \(i\)-th observation
-* ![\alpha](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Calpha) is the intercept
+* ![\alpha](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_%7B0%7D) is the intercept
 * ![\beta_{1}x_{i}^{(1)}](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_%7B1%7Dx_%7Bi%7D%5E%7B%281%29%7D) is the coefficient and the \(i\)-th observation of the first independent variable
 * ![\beta_{2}x_{i}^{(2)}](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_%7B2%7Dx_%7Bi%7D%5E%7B%282%29%7D) is the coefficient and the \(i\)-th observation of the second independent variable
-* ![\ldots](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cldots) represents additional terms up to \(n\) independent variables
+* ![\ldots](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cldots)  represents additional terms up to \(n\) independent variables
 * ![\beta_{n}x_{i}^{(n)}](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cbeta_%7Bn%7Dx_%7Bi%7D%5E%7B%28n%29%7D) is the coefficient and the \(i\)-th observation of the \(n\)-th independent variable
 
-Both multiple and multivariate linear regression can be represented in **matrix form**, which provides a compact and efficient way to represent and compute the **relationships between multiple dependent and independent variables**
+
+Like with multiple linear regression, multivariate linear regression can be represented in **matrix form**:
+
+<br>
+    <div align="center">
+        <img src="https://latex.codecogs.com/svg.latex?\color{white}\mathbf{y}=\mathbf{X}\boldsymbol{\beta}", alt='multiple_linear_regression_matrix'/>
+    </div>
+<br>
+
+where:
+
+<br>
+    <div>
+        <img src="https://latex.codecogs.com/svg.latex?\color{white}Y=\begin{bmatrix}Y_{1}\\Y_{2}\\\vdots\\Y_{n}\end{bmatrix}", alt='output_vector_matrix'/>
+    </div>
+<br>
+
+<br>
+    <div>
+        <img src="https://latex.codecogs.com/svg.latex?\color{white}X=\begin{bmatrix}x_{11}&x_{12}&\cdots&x_{1n}\\x_{21}&x_{22}&\cdots&x_{2n}\\\vdots&\vdots&\ddots&\vdots\\x_{n1}&x_{n2}&\cdots&x_{nn}\end{bmatrix}", alt='input_vector_matrix'/>
+    </div>
+<br>
+
+<br>
+    <div>
+        <img src="https://latex.codecogs.com/svg.latex?\color{white}\beta=\begin{bmatrix}\beta_{0}\\\beta_{1}\\\beta_{2}\\\vdots\\\beta_{n}\end{bmatrix}", alt='beta_vector_matrix'/>
+    </div>
+<br>
