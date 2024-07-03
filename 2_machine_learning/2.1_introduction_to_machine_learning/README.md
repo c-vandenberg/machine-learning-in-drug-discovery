@@ -162,11 +162,11 @@ Below are some **common definitions and notation** in machine learning: **<sup>5
      * The unknown function ![function](https://latex.codecogs.com/svg.latex?\color{white}f(\vec{x})) that, for a given feature vector, returns a real-valued label (output) ![output](https://latex.codecogs.com/svg.latex?\color{white}{y}).
      * This is the process we aim to model with machine learning.
 7. **Model**:
-     * A function ![mapping_function](https://latex.codecogs.com/svg.latex?\color{white}f(\vec{x})) that takes a given feature vector and returns a predicted output ![predicted_output](https://latex.codecogs.com/svg.latex?\color{white}\hat{y}).
+     * A function ![mapping_function](https://latex.codecogs.com/svg.latex?\color{white}\hat{f}(\vec{x})) that takes a given feature vector and returns a predicted output ![predicted_output](https://latex.codecogs.com/svg.latex?\color{white}\hat{y}).
      * The goal of machine learning is to make this function **map the input to the predicted output as accurately as possible** and make it as close to the data generation process as possible.
      * This is therefore a **mapping function**
 8. **Predictions**:
-     * The predicted output ![output](https://latex.codecogs.com/svg.latex?\color{white}\hat{y}) for a given input ![input](https://latex.codecogs.com/svg.latex?\color{white}\vec{x}), produced by the model ![mapping_function](https://latex.codecogs.com/svg.latex?\color{white}f(\vec{x})).
+     * The predicted output ![output](https://latex.codecogs.com/svg.latex?\color{white}\hat{y}) for a given input ![input](https://latex.codecogs.com/svg.latex?\color{white}\vec{x}), produced by the model ![mapping_function](https://latex.codecogs.com/svg.latex?\color{white}\hat{f}(\vec{x})).
 
 ## 2.1.4 References
 **[1]** Alpaydin, E. (2020) 'Introduction to machine learning'. Cambridge, MA: The MIT Press. <br><br>
