@@ -89,17 +89,15 @@ While there multiple ways to **select the best attribute at each node**, two met
 #### Entropy and Information Gain
 
 **Entropy** is a concept that stems form **information theory**, which measures the **impurity of the sample values**. It is defined by the following formula:
+<br>
+<br>
 
-<br>
-    <div align="center">
-        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Ctext%7BEntropy%7D(S)%20%3D%20-%20%5Csum_%7Bc%20%5Cin%20C%7D%20p(c)%20%5Clog_2%20p(c)", alt='entropy-formula'/>
-    </div>
-<br>
+$$\color{white}\text{Entropy}(S) = - \sum_{c \in C} p(c) \log_2 p(c)$$
 
 where:
-* ![dataset_entropy](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DS(X)) - is the **entropy of the current data set**.<br><br>
-* ![summation_of_elements_in_class_c](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Csum_%7Bc%20%5Cin%20C%7D) - is the **summation of all elements/data points in class *C*.** <br><br>
-* ![data_point_class_c_proportion](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7Dp(c)) - is the **proportion of elements/data points in class *C* to the number of total elements/data points in the total data set**.<br><br>
+* $`S(X)`$ - is the **entropy of the current data set**.<br><br>
+* $`\sum_{c \in C}`$ - is the **summation of all elements/data points in class *C*.** <br><br>
+* $`p(c)`$) - is the **proportion of elements/data points in class *C* to the number of total elements/data points in the total data set**.<br><br>
 
 Entropy values can **fall between 0 and 1**:
 * If **all elements/data points in the data set belong to one class**, then the **entropy value will equal 0 (lowest value)**.
@@ -111,18 +109,16 @@ In order to **select the best feature to split on** and **find the optimal decis
 **Information gain** represents the **difference in entropy before and after a split** on a given feature/attribute. The feature/attribute with the **highest information gain will produce the best split** as it is doing the **best job at classifying the training data according to its target classification**. **<sup>1</sup>**
 
 Information gain is usually represented with the following formula:
+<br>
+<br>
 
-<br>
-    <div align="center">
-        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DIG(X,%20%5Calpha)%20=%20S(X)%20-%20%5Csum_{v%20%5Cin%20%5Ctext%7BValues%7D(%5Calpha)}%20%5Cfrac%7B|X_v|%7D%7B|X|%7D%20S(X_v)", alt='information-gain-formula'/>
-    </div>
-<br>
+$$\color{white}IG(X, \alpha) = S(X) - \sum_{v \in \text{Values}(\alpha)} \frac{|X_v|}{|X|} S(X_v)$$
 
 where:<br><br>
-* ![dataset_entropy](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DS(X)) - is the **entropy of the full data set**<br><br>
-* ![data_subset](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DX_v) - is a **subset of the full data set**<br><br>
-* ![data_subset_proportion](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cfrac%7B|X_v|%7D%7B|X|%7D) - is the **proportion of the number of elements/data points in the subset to the number of elements/data points in the full dataset**<br><br>
-* ![data_subset_entropy](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DS(X_v)) - is the **entropy of the subset**<br><br>
+* $`S(X)`$ - is the **entropy of the full data set**<br><br>
+* $`X_v`$ - is a **subset of the full data set**<br><br>
+* $`\frac{|X_v|}{|X|}`$ - is the **proportion of the number of elements/data points in the subset to the number of elements/data points in the full dataset**<br><br>
+* $`S(X_v)`$ - is the **entropy of the subset**<br><br>
 
 As an worked example:
 
@@ -140,46 +136,36 @@ As an worked example:
 For the data set in **Fig 3**, the **entropy is 0.985** for the "Tennis" feature/attribute.
 
 The entropy is calculated by finding the **proportion of days where "Tennis" is "Yes" (4/7)**, and the **proportion of days where "Tennis" is "No" (3/7)**. These values are then plugged into the entropy formula:
+<br>
+<br>
 
-<br>
-    <div align="center">
-        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%20S(Tennis)%20%3D%20-%5Cleft(%5Cfrac%7B4%7D%7B7%7D%5Cright)%20%5Clog_2%5Cleft(%5Cfrac%7B4%7D%7B7%7D%5Cright)%20-%20%5Cleft(%5Cfrac%7B3%7D%7B7%7D%5Cright)%20%5Clog_2%5Cleft(%5Cfrac%7B3%7D%7B7%7D%5Cright)%20%3D%200.985", alt='play_tennis_example_entropy_calculation'/>
-    </div>
-<br>
+$$ S(Tennis) = -\left(\frac{4}{7}\right) \log_2\left(\frac{4}{7}\right) - \left(\frac{3}{7}\right) \log_2\left(\frac{3}{7}\right) = 0.985 $$
 
 **2) Information Gain Calculation for Each Feature/Attribute**
 
 We can then **compute the information gain** for **each of the attributes individually** in order to **decide which should be used for the first split in the decision tree**
 
 For example, the information gain for the attribute **"Wind**" would be involves calculating the **entropy for strong wind** and the **entropy for weak wind**:
-
 <br>
-    <div align="center">
-        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%20S(Strong%20Wind)%20%3D%20-%5Cleft(%5Cfrac%7B2%7D%7B7%7D%5Cright)%20%5Clog_2%5Cleft(%5Cfrac%7B2%7D%7B7%7D%5Cright)%20%3D%200.516", alt='strong_wind_example_entropy_calculation'/>
-    </div>
 <br>
 
+$$ S(Strong Wind) = -\left(\frac{2}{7}\right) \log_2\left(\frac{2}{7}\right) = 0.516 $$
+
 <br>
-    <div align="center">
-        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%20S(Weak%20Wind)%20%3D%20-%5Cleft(%5Cfrac%7B5%7D%7B7%7D%5Cright)%20%5Clog_2%5Cleft(%5Cfrac%7B5%7D%7B7%7D%5Cright)%20%3D%200.347", alt='weak_wind_example_entropy_calculation'/>
-    </div>
-<br>
+
+$$ S(Weak Wind) = -\left(\frac{5}{7}\right) \log_2\left(\frac{5}{7}\right) = 0.347 $$
 
 The **informtation gain** for the "Wind" attribute when the "Tennis" attribute is used to split the data can be calculated by:
+<br>
+<br>
 
-<br>
-    <div align="center">
-        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DIG(Tennis%2C%20Wind)%20%3D%20S(Tennis)%20-%20%5Cleft(%5Cfrac%7B%7CStrongWind%7C%7D%7B%7CWind%7C%7D%5Cright)%20*%20S(SrongWind)%20-%20%5Cleft(%5Cfrac%7B%7CWeakWind%7C%7D%7B%7CWind%7C%7D%5Cright)%20*%20S(WeakWind)", alt='tennis_wind_example_information_gain_calculation'/>
-    </div>
-<br>
+$$ IG(Tennis, Wind) = S(Tennis) - \left(\frac{|StrongWind|}{|Wind|}\right) S(StrongWind) - \left(\frac{|WeakWind|}{|Wind|}\right) S(WeakWind) $$
 
 Plugging in the numbers:
+<br>
+<br>
 
-<br>
-    <div align="center">
-        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DIG(Tennis%2C%20Wind)%20%3D%200.985%20-%20%5Cleft(%5Cfrac%7B2%7D%7B7%7D%5Cright)%20*%200.516%20-%20%5Cleft(%5Cfrac%7B5%7D%7B7%7D%5Cright)%20*%200.347%20%3D%200.590", alt='tennis_wind_example_information_gain_calculation_plugged_numbers'/>
-    </div>
-<br>
+$$ IG(Tennis, Wind) = 0.985 - \left(\frac{2}{7}\right) 0.516 - \left(\frac{5}{7}\right) 0.347 = 0.590 $$
 
 We would then **repeat this calculation for information gain for each attribute in Fig 3**, and **select the attribute with the highest information gain** to be the **first split point in the decision tree**.
 
@@ -192,18 +178,15 @@ Gini impurity is the **probability of incorrectly classifying a random data poin
 Similar to entropy, Gini Coefficient values can **fall between 0 and 1**:
 * If **all elements/data points in the data set belong to one class**, then the **Gini Coefficient value will equal 0 (lowest value)**.
 * If **half of the elements/data points are classified as one class and the other half are in another class**, then the **Gini Coefficient value will equal 1 (highest value)**.
-
-
 <br>
-    <div align="center">
-        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%20G(X)%20%3D%201%20-%20%5Csum_%7Bi%3D1%7D%5En%20p_i%5E2", alt='gini_coefficient_formula'/>
-    </div>
 <br>
+
+$$ G(X) = 1 - \sum_{i=1}^n p_i^2 $$
 
 where:
-* ![gini_coefficient](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%20G(X)) - is the Gini Coefficient for a **given data set X**.
-* ![element_class_probability](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%20p_i) - is the **probability of an element being classified into class *i* in set *X***.
-* ![number_of_classes](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%20n) - is the number of classes.
+* $`G(X)`$- is the Gini Coefficient for a **given data set X**.
+* $`p_i`$- is the **probability of an element being classified into class *i* in set *X***.
+* $`n`$ - is the number of classes.
 
 ## 2) Random Forest
 
