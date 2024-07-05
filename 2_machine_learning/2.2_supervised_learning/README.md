@@ -3,7 +3,7 @@
 ## 2.2.1 Introduction to Supervised Learning
 
 * **Supervised learning** is defined by its use of **labelled data sets** to train **mapping functions** to **classify data** or **predict outcomes accurately**.
-* In other words, supervised learning involves predicting **the output ![output](https://latex.codecogs.com/svg.latex?\color{white}{y})** for a **given input vector ![input_vectors](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7B%5Cvec%7Bx%7D_i%5C%7D%7D)** 
+* In other words, supervised learning involves predicting **the output ${y}$** for a **given input vector ![input_vectors](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7B%5Cvec%7Bx%7D_i%5C%7D%7D)** 
 * As input data is fed into the model, the **model adjusts the mapping function's parameters/weights** until it has been **fitted appropriately** to the data set.
 * The idea is that once the mapping function is trained, it can then be used on **unseen data to meet some predictive performance**
 * As such, supervised learning algorithms consist of **input-output pairs** and the goal is to **learn a mapping from inputs to outputs**.
