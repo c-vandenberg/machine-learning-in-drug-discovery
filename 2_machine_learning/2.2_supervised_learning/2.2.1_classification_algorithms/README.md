@@ -209,9 +209,35 @@ where:
 
 **Random Forest** is another supervised machine learning algorithm that can be used for **both classification and regression** (like decision trees).
 
-The **"forest"** references a **collection of uncorrelated decision trees**, which are then **merged together** to **reduce variance (data spread)** and **create more accurate data predictions**. In this way, random forest is an **ensemble learning method** as it uses **multiple machine learning algorithms (multiple decision trees) to obtain a better predictive performance** than could be obtained from any of the constituent learning algorithms alone. **<sup>7</sup>** **<sup>8</sup>** **<sup>9</sup>**
+The **"forest"** references a **collection of uncorrelated decision trees**. The **outputs of these multiple decision tress** are then **merged together** to **reduce variance (data spread)** and **create more accurate data predictions**. 
 
-Randopm
+In this way, random forest is an **ensemble learning method** as it uses **multiple machine learning algorithms (multiple decision trees) to obtain a better predictive performance** than could be obtained from any of the constituent learning algorithms alone. **<sup>7</sup>** **<sup>8</sup>** **<sup>9</sup>**
+
+### Ensemble Learning Methods
+
+Ensemble learning methods are made up of a **set of classifiers** (e.g. decision trees), where the **predictions of each classifier are aggregated** in order to **identify the most popular result**.
+
+The most well-known ensemble methods are **bagging** (also known as **bootstrap bagging**), and **boosting**
+1. **Bagging (Boostrap Bagging)**:
+   * Bagging, developed by *Breiman et al.*, **<sup>10</sup>** is an ensemble method that involves **training multiple models independently on random subsets of the data**, and **aggregating their predictions through voting (for classification) or averaging (for regression)**.
+   * Each model is trained on a random subset of the data set and **sampled with replacement**. This means that **the individual data points can be chosen more than once**.
+   * This random subset is known as a **bootstrap sample**.
+   * By training models on **different bootstraps**, bagging **reduces variance of the individual models**.
+   * It also **avoids overfitting** by **exposing the constituent models to different parts of the data set**.
+   * By averaging/voting the predictions from all the sampled models, the **aggregated/ensemble model incorporates the strengths of the individual models and cancels out their errors**
+  
+
+<br>
+    <div align="center">
+        <img src="https://github.com/c-vandenberg/machine-learning-in-drug-discovery/assets/60201356/d1151bfc-1843-437d-bde8-57dbae2b1e59", alt="bootstrap-bagging" width="750"/>
+      <p>
+        <b>Fig 4</b> Bootstrap bagging schematic. <b><sup>11</sup></b>
+      </p>
+    </div>
+<br>
+
+2. **Boosting**:
+* Boosting  **<sup>12</sup>** is an ensemble learning method that **combines a set of weak learners (classifers that are only slightly correlated to the true classification** to give a **strong learner (classifier that is well-correlated with the true classification** differs from bagging in the 
 
 ## References
 **[1]** What is a decision tree? (2021) *IBM*. Available at: https://www.ibm.com/topics/decision-trees (Accessed: 04 July 2024).
@@ -223,3 +249,6 @@ Randopm
 **[7]** Opitz, D. and Maclin, R. (1999) ‘Popular Ensemble Methods: An Empirical Study’, *Journal of Artificial Intelligence Research*, 11, pp. 169–198. <br><br>
 **[8]** Polikar, R. (2006) ‘Ensemble based systems in decision making’, *IEEE Circuits and Systems Magazine*, 6(3), pp. 21–45. <br><br>
 **[9]** Rokach, L. (2009) ‘Ensemble-based classifiers’, *Artificial Intelligence Review*, 33(1–2), pp. 1–39. <br><br>
+**[10]** Breiman, L. (1996) ‘Bagging predictors’, *Machine Learning*, 24(2), pp. 123–140. <br><br>
+**[11]** Awan, A.A. (2023) A guide to bagging in machine learning: Ensemble method to reduce variance and improve accuracy, *DataCamp*. Available at: https://www.datacamp.com/tutorial/what-bagging-in-machine-learning-a-guide-with-examples (Accessed: 05 July 2024). <br><br>
+**[12]** Schapire, R.E. (1990) ‘The strength of weak learnability’, *Machine Learning*, 5(2), pp. 197–227. <br><br>
