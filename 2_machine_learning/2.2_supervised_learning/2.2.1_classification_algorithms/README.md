@@ -97,9 +97,9 @@ While there multiple ways to **select the best attribute at each node**, two met
 <br>
 
 where:
-* ![dataset_entropy](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DS(X)) - is the **entropy of the current data set**.
-* ![summation_of_elements_in_class_c](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D-%5Csum_%7Bc%20%5Cin%20C%7D) - is the **summation of all elements/data points in class *C*.**
-* ![data_point_class_c_proportion](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7Dp(c)) - is the **proportion of elements/data points in class *C* to the number of total elements/data points in the total data set**.
+* ![dataset_entropy](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DS(X)) - is the **entropy of the current data set**.<br><br>
+* ![summation_of_elements_in_class_c](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Csum_%7Bc%20%5Cin%20C%7D) - is the **summation of all elements/data points in class *C*.** <br><br>
+* ![data_point_class_c_proportion](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7Dp(c)) - is the **proportion of elements/data points in class *C* to the number of total elements/data points in the total data set**.<br><br>
 
 Entropy values can **fall between 0 and 1**:
 * If **all elements/data points in the data set belong to one class**, then the **entropy value will equal 0 (lowest value)**.
@@ -119,7 +119,7 @@ Information gain is usually represented with the following formula:
 <br>
 
 where:<br><br>
-* ![dataset_entropy](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DS(X)) - is the **entropy of the full data set**<br<br><br>
+* ![dataset_entropy](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DS(X)) - is the **entropy of the full data set**<br><br>
 * ![data_subset](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DX_v) - is a **subset of the full data set**<br><br>
 * ![data_subset_proportion](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cfrac%7B|X_v|%7D%7B|X|%7D) - is the **proportion of the number of elements/data points in the subset to the number of elements/data points in the full dataset**<br><br>
 * ![data_subset_entropy](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DS(X_v)) - is the **entropy of the subset**<br><br>
@@ -187,7 +187,23 @@ In this case, **"Outlook" produces the highest information gain**. From there, t
 
 #### Gini Impurity
 
-Gini impurity is the **probability of
+Gini impurity is the **probability of incorrectly classifying a random data point in the data set** if it were **labelled based on the class distribution of the data set**.
+
+Similar to entropy, Gini Coefficient values can **fall between 0 and 1**:
+* If **all elements/data points in the data set belong to one class**, then the **Gini Coefficient value will equal 0 (lowest value)**.
+* If **half of the elements/data points are classified as one class and the other half are in another class**, then the **Gini Coefficient value will equal 1 (highest value)**.
+
+
+<br>
+    <div align="center">
+        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%20G(X)%20%3D%201%20-%20%5Csum_%7Bi%3D1%7D%5En%20p_i%5E2", alt='gini_coefficient_formula'/>
+    </div>
+<br>
+
+where:
+* ![gini_coefficient](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%20G(X)) - is the Gini Coefficient for a **given data set X**.
+* ![element_class_probability](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%20p_i) - is the **probability of an element being classified into class *i* in set *X***.
+* ![number_of_classes](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%20n) - is the number of classes.
 
 ## 2) Random Forest
 
