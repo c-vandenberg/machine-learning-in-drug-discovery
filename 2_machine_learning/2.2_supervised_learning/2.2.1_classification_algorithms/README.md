@@ -2,7 +2,7 @@
 
 ## 1) Decision Trees
 
-**Decision Trees** is a supervised learning method for **classification of discrete input data** (although it can also be used in **prediction of continuous input data via regression**).
+**Decision Trees** are a supervised learning method for **classification of discrete input data** (although it can also be used in **prediction of continuous input data via regression**).
 
 A decision tree is a **hierarchical, tree data structure** consisting of **a root node**, **branches**, **internal nodes** and **leaf nodes**. 
 
@@ -38,16 +38,27 @@ As an example (**Fig 2**), we can imagine trying to assess **whether or not to g
     </div>
   <br>
 
+### How Decision Trees Work
+
 1. Decision tree learning employs a **divide and conquer strategy** by conducting a **greedy search** to **identify the optimal split points within the tree**.
     * A **greedy search algorithm** follows the **problem-sovling heuristic** of making the **locally optimal choice at each stage**. **<sup>3</sup>**
-    * In many cases, a greedy search **does not produce an globally optimal solution**, however they can yield a **locally optimal solution** that can **approximate a globally optimal solution** in a reasonable amount of time.
+    * In many cases, a greedy search **does not produce an globally optimal solution**, however they can yield a **locally optimal solution** that can **approximate a globally optimal solution** in a reasonable amount of time. **<sup>1</sup>**
 
-2. The process of splitting the data is then **repeated in a top-down, recursive manner** until all, or the majority of the input vectors have been **classified under specific class labels**.
+2. The process of splitting the data is then **repeated in a top-down, recursive manner** until all, or the majority of the input vectors have been **classified under specific class labels**. **<sup>1</sup>**
 
-3. **Smaller decision trees** are **more easily able to attain pure leaf nodes** (i.e. data points in a **single class**).
+3. **Smaller decision trees** are **more easily able to attain pure leaf nodes** (i.e. data points in a **single class**). **<sup>1</sup>**
 
-4. However, **as the tree grows in size**, it becomes **increasingly difficult to maintain this purity**
+4. However, **as the tree grows in size**, it becomes **increasingly difficult to maintain this purity**, and it usually results in **too little data falling within a given subtree**. When this occurs, it is known as **data fragmentation** and can often lead to **overfitting**. **<sup>1</sup>**
 
+5. Therefore, there is often a preference for **smaller decision trees**, in keeping with **"Occam's Razor**; that is, "**entities should not be multipled beyond necessity"**. In other words, **decision trees should add complexity only if necessary**, as the **simplest explanation is often the best**. **<sup>1</sup>**
+
+6. To **reduce complexity and prevent overfitting, pruning is often employed**, whereby **branches are removed that split on features with low importance**. **<sup>1</sup>**
+
+7. The model's fit can then be **evaluated through the process of cross-validation**. **<sup>1</sup>**
+
+8. Another way that decision trees can maintain their accuracy is by **forming an ensemble via a random forest algorithm**; this classifier **predicts more accurate results**, particularly when the individual trees are **uncorrelated with each other**. **<sup>1</sup>**
+
+### Types of Decision Trees
 
 There are **two types of models** for decision trees:
 1. **Classification Trees** - This is where the independent variables/input vectors are **discrete values** and the **leaves of the decision tree represent class labels**. An example of this is shwon in **Fig 1**.
@@ -59,17 +70,130 @@ The idea behind decision tree machine learning is that you **use a data set to t
 There are numerous algorithms for decision tree learning:
 1.**Iterative Dichotomiser 3 (ID3)**:
   * One of the earliest algorithms for decision tree learning was **ID3** developed by *Quinlan et al.*, **<sup>4</sup>** which works by **splitting the data set into two separate data sets based on a single field in the vector**.
-  * This field is selected by **calculating the entropy (a measure of the distribution) of the values in that field**.
+  * This field is selected by **calculating the entropy of the values in that field**.
   * The goal is to select a field from the vector that will **result in a decrease in entropy in subsequent splits of the data set** as the **tree is built**.
 2. **C4.5**:
-  * An extension of ID3 is **C4.5**, also developed *Quinlan et al.*. **<sup>5</sup>**
-  * C4.5 builds decision trees in the same way as ID3 (i.e. using the concept of **information entropy** and its **reduction with each data set split**).
+  * An extension/iteration of ID3 is **C4.5**, also developed *Quinlan et al.*. **<sup>5</sup>**
+  * C4.5 builds decision trees in the same way as ID3 (i.e. using the concept of **entropy and information gain** and its **reduction with each data set split**).
+3. **CART**:
+  * **CART** is an abbrevation for **"classification and regressino trees** and was introduced by Leo Breiman. **<sup>6</sup>**
+  * This algorithm typically utilizes a **Gini impurity** to **identifiy the ideal attribute to split on**.
+  * Gini impurity measures **how often a randomly chosen attribute is misclassified**. When evaluating a Gini impurity, a **lower value is more ideal**
+
+### How to Choose the Best Attribute at Each Node
+
+While there multiple ways to **select the best attribute at each node**, two methods in particular act as popular splitting criterion for decision tree models:
+1. **Entropy and Information Gain**
+2. **Gini Impurity**
+
+#### Entropy and Information Gain
+
+**Entropy** is a concept that stems form **information theory**, which measures the **impurity of the sample values**. It is defined by the following formula:
+
+<br>
+    <div align="center">
+        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Ctext%7BEntropy%7D(S)%20%3D%20-%20%5Csum_%7Bc%20%5Cin%20C%7D%20p(c)%20%5Clog_2%20p(c)", alt='entropy-formula'/>
+    </div>
+<br>
+
+where:
+* ![dataset_entropy](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DS(X)) - is the **entropy of the current data set**.
+* ![summation_of_elements_in_class_c](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D-%5Csum_%7Bc%20%5Cin%20C%7D) - is the **summation of all elements/data points in class *C*.**
+* ![data_point_class_c_proportion](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7Dp(c)) - is the **proportion of elements/data points in class *C* to the number of total elements/data points in the total data set**.
+
+Entropy values can **fall between 0 and 1**:
+* If **all elements/data points in the data set belong to one class**, then the **entropy value will equal 0 (lowest value)**.
+* If **half of the elements/data points are classified as one class and the other half are in another class**, then the **entropy value will equal 1 (highest value)**.
+
+In order to **select the best feature to split on** and **find the optimal decision tree**, the feature with the **attribute/feature with the smallest amount of entropy should be used**
+* In the example in **Fig 3**, attributes/features would be "Outlook," "Temperature," "Humidity," and "Wind."
+
+**Information gain** represents the **difference in entropy before and after a split** on a given feature/attribute. The feature/attribute with the **highest information gain will produce the best split** as it is doing the **best job at classifying the training data according to its target classification**. **<sup>1</sup>**
+
+Information gain is usually represented with the following formula:
+
+<br>
+    <div align="center">
+        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DIG(X,%20%5Calpha)%20=%20S(X)%20-%20%5Csum_{v%20%5Cin%20%5Ctext%7BValues%7D(%5Calpha)}%20%5Cfrac%7B|X_v|%7D%7B|X|%7D%20S(X_v)", alt='information-gain-formula'/>
+    </div>
+<br>
+
+where:<br><br>
+* ![dataset_entropy](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DS(X)) - is the **entropy of the full data set**<br<br><br>
+* ![data_subset](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DX_v) - is a **subset of the full data set**<br><br>
+* ![data_subset_proportion](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cfrac%7B|X_v|%7D%7B|X|%7D) - is the **proportion of the number of elements/data points in the subset to the number of elements/data points in the full dataset**<br><br>
+* ![data_subset_entropy](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DS(X_v)) - is the **entropy of the subset**<br><br>
+
+As an worked example:
+
+<br>
+    <div align="center">
+        <img src="https://github.com/c-vandenberg/machine-learning-in-drug-discovery/assets/60201356/52b7de1d-6fb0-4d8c-b8c2-a380d315595c", alt="decision-tree-example" width="750"/>
+      <p>
+        <b>Fig 3</b> Decision tree example table. <b><sup>1</sup></b>
+      </p>
+    </div>
+<br>
+
+**1) Entropy Calculation**
+
+For the data set in **Fig 3**, the **entropy is 0.985** for the "Tennis" feature/attribute.
+
+The entropy is calculated by finding the **proportion of days where "Tennis" is "Yes" (4/7)**, and the **proportion of days where "Tennis" is "No" (3/7)**. These values are then plugged into the entropy formula:
+
+<br>
+    <div align="center">
+        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%20S(Tennis)%20%3D%20-%5Cleft(%5Cfrac%7B4%7D%7B7%7D%5Cright)%20%5Clog_2%5Cleft(%5Cfrac%7B4%7D%7B7%7D%5Cright)%20-%20%5Cleft(%5Cfrac%7B3%7D%7B7%7D%5Cright)%20%5Clog_2%5Cleft(%5Cfrac%7B3%7D%7B7%7D%5Cright)%20%3D%200.985", alt='play_tennis_example_entropy_calculation'/>
+    </div>
+<br>
+
+**2) Information Gain Calculation for Each Feature/Attribute**
+
+We can then **compute the information gain** for **each of the attributes individually** in order to **decide which should be used for the first split in the decision tree**
+
+For example, the information gain for the attribute **"Wind**" would be involves calculating the **entropy for strong wind** and the **entropy for weak wind**:
+
+<br>
+    <div align="center">
+        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%20S(Strong%20Wind)%20%3D%20-%5Cleft(%5Cfrac%7B2%7D%7B7%7D%5Cright)%20%5Clog_2%5Cleft(%5Cfrac%7B2%7D%7B7%7D%5Cright)%20%3D%200.516", alt='strong_wind_example_entropy_calculation'/>
+    </div>
+<br>
+
+<br>
+    <div align="center">
+        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%20S(Weak%20Wind)%20%3D%20-%5Cleft(%5Cfrac%7B5%7D%7B7%7D%5Cright)%20%5Clog_2%5Cleft(%5Cfrac%7B5%7D%7B7%7D%5Cright)%20%3D%200.347", alt='weak_wind_example_entropy_calculation'/>
+    </div>
+<br>
+
+The **informtation gain** for the "Wind" attribute when the "Tennis" attribute is used to split the data can be calculated by:
+
+<br>
+    <div align="center">
+        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DIG(Tennis%2C%20Wind)%20%3D%20S(Tennis)%20-%20%5Cleft(%5Cfrac%7B%7CStrongWind%7C%7D%7B%7CWind%7C%7D%5Cright)%20*%20S(SrongWind)%20-%20%5Cleft(%5Cfrac%7B%7CWeakWind%7C%7D%7B%7CWind%7C%7D%5Cright)%20*%20S(WeakWind)", alt='tennis_wind_example_information_gain_calculation'/>
+    </div>
+<br>
+
+Plugging in the numbers:
+
+<br>
+    <div align="center">
+        <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7DIG(Tennis%2C%20Wind)%20%3D%200.985%20-%20%5Cleft(%5Cfrac%7B2%7D%7B7%7D%5Cright)%20*%200.516%20-%20%5Cleft(%5Cfrac%7B5%7D%7B7%7D%5Cright)%20*%200.347%20%3D%200.590", alt='tennis_wind_example_information_gain_calculation_plugged_numbers'/>
+    </div>
+<br>
+
+We would then **repeat this calculation for information gain for each attribute in Fig 3**, and **select the attribute with the highest information gain** to be the **first split point in the decision tree**.
+
+In this case, **"Outlook" produces the highest information gain**. From there, the process is **repeated for each subtree**
+
+#### Gini Impurity
+
+Gini impurity is the **probability of
 
 ## 2) Random Forest
 
 **Random Forest** is another supervised machine learning algorithm that can be used for **both classification and regression** (like decision trees).
 
-The **"forest"** references a **collection of uncorrelated decision trees**, which are then **merged together** to **reduce variance (data spread)** and **create more accurate data predictions**. In this way, random forest is an **ensemble learning method** as it uses **multiple machine learning algorithms (multiple decision trees) to obtain a better predictive performance** than could be obtained from any of the constituent learning algorithms alone. **<sup>6</sup>** **<sup>7</sup>** **<sup>8</sup>**
+The **"forest"** references a **collection of uncorrelated decision trees**, which are then **merged together** to **reduce variance (data spread)** and **create more accurate data predictions**. In this way, random forest is an **ensemble learning method** as it uses **multiple machine learning algorithms (multiple decision trees) to obtain a better predictive performance** than could be obtained from any of the constituent learning algorithms alone. **<sup>7</sup>** **<sup>8</sup>** **<sup>9</sup>**
 
 Randopm
 
@@ -79,6 +203,7 @@ Randopm
 **[3]** Black, P.E. (2005) 'greedy algorithm', *Dictionary of Algorithms and Data Structures*, (accessed 4th July 2024). Available at: https://www.nist.gov/dads/HTML/greedyalgo.html
 **[4]**Quinlan, J.R. (1986) ‘Induction of Decision Trees’, *Machine Learning*, 1(1), pp. 81–106. <br><br>
 **[5]** Salzberg, S.L. (1994) ‘C4.5: Programs for Machine Learning by J. Ross Quinlan. Morgan Kaufmann Publishers, Inc., 1993’, *Machine Learning*, 16(3), pp. 235–240. <br><br>
-**[6]** Opitz, D. and Maclin, R. (1999) ‘Popular Ensemble Methods: An Empirical Study’, *Journal of Artificial Intelligence Research*, 11, pp. 169–198. <br><br>
-**[7]** Polikar, R. (2006) ‘Ensemble based systems in decision making’, *IEEE Circuits and Systems Magazine*, 6(3), pp. 21–45. <br><br>
-**[8]** Rokach, L. (2009) ‘Ensemble-based classifiers’, *Artificial Intelligence Review*, 33(1–2), pp. 1–39. <br><br>
+**[6]** Breiman, L. (2017) 'Classification and regression trees'. Abingdon: Routledge. <br><br>
+**[7]** Opitz, D. and Maclin, R. (1999) ‘Popular Ensemble Methods: An Empirical Study’, *Journal of Artificial Intelligence Research*, 11, pp. 169–198. <br><br>
+**[8]** Polikar, R. (2006) ‘Ensemble based systems in decision making’, *IEEE Circuits and Systems Magazine*, 6(3), pp. 21–45. <br><br>
+**[9]** Rokach, L. (2009) ‘Ensemble-based classifiers’, *Artificial Intelligence Review*, 33(1–2), pp. 1–39. <br><br>
