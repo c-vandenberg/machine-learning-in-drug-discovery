@@ -3,7 +3,7 @@
 ## 2.2.1 Introduction to Supervised Learning
 
 * **Supervised learning** is defined by its use of **labelled data sets** to train **mapping functions** to **classify data** or **predict outcomes accurately**.
-* In other words, supervised learning invovles predicting **the output ![output](https://latex.codecogs.com/svg.latex?\color{white}{y})** for a **given input vector ![input_vectors](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7B%5Cvec%7Bx%7D_i%5C%7D%7D)** 
+* In other words, supervised learning involves predicting **the output ![output](https://latex.codecogs.com/svg.latex?\color{white}{y})** for a **given input vector ![input_vectors](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7B%5Cvec%7Bx%7D_i%5C%7D%7D)** 
 * As input data is fed into the model, the **model adjusts the mapping function's parameters/weights** until it has been **fitted appropriately** to the data set.
 * The idea is that once the mapping function is trained, it can then be used on **unseen data to meet some predictive performance**
 * As such, supervised learning algorithms consist of **input-output pairs** and the goal is to **learn a mapping from inputs to outputs**.
@@ -22,7 +22,7 @@
 Generally, how supervised machine learning works can be divided into **five main parts**: **<sup>2</sup>**
 1. **Data Segmentation**:
       * Before any training begins, the data set is **segmented into two subsets**; **training data** and **test data**.
-      * oth subsets contain a **test vector** (the inputs) and **one or more known desired output values**.
+      * Both subsets contain a **test vector** (the inputs) and **one or more known desired output values**.
 2. **A Decision Process**:
       * In general, ML algorithms are used to **train mapping functions** to **make a prediction or classification**.
       * These mapping functions will have **various parameters/weights**
@@ -33,13 +33,13 @@ Generally, how supervised machine learning works can be divided into **five main
       * If there are **known examples**, an error function can make a **comparison to assess the accuracy of the model**.
 4. **A Model Optimisation Process**:
       * After comparing the models prediction to the known examples, if there are any discrepancies, the **parameters/weights are adjusted** to **reduce the discrepancy between the known example and model estimate**.
-      * This **"evaluate and optimise"** process (steps 2-4) is **repeated iteratively**, updating the parameters/weights autonomously until a **threshold of accruacy has been met**.
+      * This **"evaluate and optimise"** process (steps 2-4) is **repeated iteratively**, updating the parameters/weights autonomously until a **threshold of accuracy has been met**.
 5. **Test Trained Model Against Test Data**
       * Finally, the trained model/mapping function is **tested against the test data**
       * The test data represents data that **has not been used for training** and provides a good measure for **how well the mapping function generalises to unseen data**
 
 Supervised learning can be **separated into two distinct types**
-1. **Classficiation**:
+1. **Classification**:
    * **Classification** is a supervised learning method whereby the algorithm is used to **accurately assign test data into specific categories**.
    * The algorithm is trained to **recognise specific entities within the data set** and attempts to **draw some conclusions on how those entities should be labelled or defined**
    * Common classification algorithms include:
