@@ -2,7 +2,7 @@
 
 ## 2.1.1 How does Machine Learning Work?
 
-The concept of the **algorithm** is at the core of computer programming. An algorithm is simply a **sequence of instructions** to be carried out to **transform an input to an output**. Many algorithms exist for a variety of tasks, however for some tasks, an algoirthm has not been developed, despite years of research. Some of these tasks humans can do effortlessly, such as recognising an individual from a photograph, or generating an image from a written description. **<sup>1</sup>**
+The concept of the **algorithm** is at the core of computer programming. An algorithm is simply a **sequence of instructions** to be carried out to **transform an input to an output**. Many algorithms exist for a variety of tasks, however for some tasks, an algorithm has not been developed, despite years of research. Some of these tasks humans can do effortlessly, such as recognising an individual from a photograph, or generating an image from a written description. **<sup>1</sup>**
 
 Machine learning (ML) is a branch of AI and computer science that focuses on using data to develop algorithms for these types of tasks. It is therefore a **method of modelling data**, typically with **predictive functions**.
 
@@ -17,7 +17,7 @@ Generally, how ML works can be divided into **three main parts**: **<sup>2</sup>
    * If there are **known examples**, an error function can make a **comparison to assess the accuracy of the model**.
 3. **A Model Optimisation Process**:
    * After comparing the models prediction to the known examples, if there are any discrepancies, the **parameters/weights are adjusted** to **reduce the discrepancy between the known example and model estimate**.
-   * This **"evaluate and optimise"** process is **repeated iteratively**, updating the parameters/weights autonomously until a **threshold of accruacy has been met**.
+   * This **"evaluate and optimise"** process is **repeated iteratively**, updating the parameters/weights autonomously until a **threshold of accuracy has been met**.
 
      <br>
       <div align="center">
@@ -40,7 +40,7 @@ Generally, how ML works can be divided into **three main parts**: **<sup>2</sup>
 * **Underfitting** is a scenario where the model is **unable to capture the relationship between the input and output variables accurately**, generating a **high error rate** on both the training data set, and unseen data set.
 * Algorithms used in supervised learning include:
   1. **Neural networks**
-  2. **Naïve bayes**
+  2. **Naïve Bayes**
   3. **Linear regression**
   4. **Logistic regression**
   5. **Random forest**
@@ -59,9 +59,9 @@ Generally, how ML works can be divided into **three main parts**: **<sup>2</sup>
 Generally, you **build and test a models mapping function** in **two phases** in supervised learning (**Fig 2**):
  1. **First Phase**:
     * In the first phase, you **segment the data set** into **two subsets**: **training data** and **test data**.
-    * Both subsets contain a **test vector** (the inputs) and **one or more known desired output values (if not unsupervised learning)**.
+    * Both subsets contain a **test vector** (the inputs) and **one or more known desired output values**.
     * You then **train the mapping function** with the training data set and **alter its parameters/weights** until it **meets some level of performance** (a metric for how accurately the mapping function maps the training data to the associated desired output, evaluated by an **error function/critic**).
-    * In this phase, the algorithm will conduct the **Decision Process**, **Error Function (Critic)**, and **Model Optimisation Process** iterative cycle described in **2.1.1
+    * In this phase, the algorithm will conduct the **Decision Process**, **Error Function (Critic)**, and **Model Optimisation Process** iterative cycle described in **2.1.1**
  2. **Second Phase**:
     * In the next phase, you **test the trained algorithm/mapping function against the test data**.
     * The test data represents data that **has not been used for training** and provides a good measure for **how well the mapping function generalises to unseen data**
