@@ -219,7 +219,7 @@ Ensemble learning methods are made up of a **set of classifiers** (e.g. decision
 
 The most well-known ensemble methods are **bagging** (also known as **bootstrap bagging**), and **boosting**
 1. **Bagging (Boostrap Bagging)**:
-   * Bagging, developed by *Breiman et al.*, **<sup>10</sup>** is an ensemble method that involves **training multiple models independently on random subsets of the data**, and **aggregating their predictions through voting (for classification) or averaging (for regression)**.
+   * Bagging, developed by *Breiman et al.*, **<sup>10</sup>** is an ensemble method that involves **training multiple weak learner models independently on random subsets of the data**, and **aggregating their predictions through voting (for classification) or averaging (for regression)**, to give a **strong learner**.
    * Each model is trained on a random subset of the data set and **sampled with replacement**. This means that **the individual data points can be chosen more than once**.
    * This random subset is known as a **bootstrap sample**.
    * By training models on **different bootstraps**, bagging **reduces variance of the individual models**.
@@ -237,7 +237,51 @@ The most well-known ensemble methods are **bagging** (also known as **bootstrap 
 <br>
 
 2. **Boosting**:
-* Boosting  **<sup>12</sup>** is an ensemble learning method that **combines a set of weak learners (classifers that are only slightly correlated to the true classification** to give a **strong learner (classifier that is well-correlated with the true classification** differs from bagging in the 
+* Boosting  **<sup>12</sup>** is an ensemble learning method that **combines a set of weak learners (classifers that are only slightly correlated to the true classification** to give a **strong learner (classifier that is well-correlated with the true classification**
+* Similar to bagging, a **random subset of the data is selected**, however it differs from bagging in that the subset is **trained against the models sequentially**. In this way, **each model tries to compensate for the weaknesses of its predecessor**.
+* With each iteration, the **weak rules from each individual classifier are combined** to form **one strong prediction rule**.
+* Another difference between bagging and boosting is that, instead of averaging/voting the individual model's prediction, in boosting **weights are assigned to data based on whether they are correctly classified or not**.
+
+<br>
+    <div align="center">
+        <img src="https://github.com/c-vandenberg/machine-learning-in-drug-discovery/assets/60201356/ce262adb-5df4-486f-957b-360a250ae4b1", alt="bagging-vs-boosting" width="750"/>
+      <p>
+        <b>Fig 5</b> Bagging vs boosting schematic. <b><sup>11</sup></b>
+      </p>
+    </div>
+<br>
+
+### How Random Forest Works
+
+The random forest algorithm is an **extension of the bagging method** as it utilises **both bagging** and **feature randomnesse** to create an **uncorrelated forest of decision trees**.
+  * Feature randomness, also known as **feature bagging**, generates a **random subset of features/attributes**, which **ensures low correlation among the decision trees**.
+  * This is the **key difference between decision trees and random forests**. While decision trees **consider all possible feature/attribute splits**, random forests **only consider features from a random subset of all features**. **<sup>12</sup>**
+
+Below explains in more detail how this works:
+1. Random forest algorithms havbe **three main hyperparameters** which **need to be set before training**. Once they have been set, a random forest classifier can be used to solve for **regression** or **classification** problems These include:
+    * **Node size**
+    * **Number of trees**
+    * **Number of features/attributes sampled**
+
+2. The random forest is made up of a **collection of decision trees**, and each tree in the ensemble is comprised of a **data sample drawn from a training set with replacement**, called the **bootstrap sample** (**Fig 4**).
+
+3. Of the training bootstrap sample, **one-third of it is set aside as test data**, knows as the **out-of-bag (oob) sample**.
+
+4. **Another instance of randomness is then injected** through **feature bagging**, which **adds more diversity to the data set** and **reducing the correlation among the decision trees**.
+
+5. Depending on the type of problem, the **determination of the prediction will vary**.
+   
+6. For a **regression task**, the predictions of the individual trees **will be averaged**, and for a **classification task**, a **majority vote (i.e. the most frequent categorical variable) will yield the predicted class**.
+7. Finally, the **oob sample is then used for cross-validation**, finalising that prediction.
+
+<br>
+    <div align="center">
+        <img src="https://github.com/c-vandenberg/machine-learning-in-drug-discovery/assets/60201356/c7167a58-1df0-4a68-92a4-d2efa6aaf9ba", alt="random-forest" width="750"/>
+      <p>
+        <b>Fig 5</b> Random forest algorithm schematic. <b><sup>13</sup></b>
+      </p>
+    </div>
+<br>
 
 ## References
 **[1]** What is a decision tree? (2021) *IBM*. Available at: https://www.ibm.com/topics/decision-trees (Accessed: 04 July 2024).
@@ -252,3 +296,4 @@ The most well-known ensemble methods are **bagging** (also known as **bootstrap 
 **[10]** Breiman, L. (1996) ‘Bagging predictors’, *Machine Learning*, 24(2), pp. 123–140. <br><br>
 **[11]** Awan, A.A. (2023) A guide to bagging in machine learning: Ensemble method to reduce variance and improve accuracy, *DataCamp*. Available at: https://www.datacamp.com/tutorial/what-bagging-in-machine-learning-a-guide-with-examples (Accessed: 05 July 2024). <br><br>
 **[12]** Schapire, R.E. (1990) ‘The strength of weak learnability’, *Machine Learning*, 5(2), pp. 197–227. <br><br>
+**[13]** What is Random Forest? (2021) *IBM*. Available at: https://www.ibm.com/topics/random-forest (Accessed: 05 July 2024). 
