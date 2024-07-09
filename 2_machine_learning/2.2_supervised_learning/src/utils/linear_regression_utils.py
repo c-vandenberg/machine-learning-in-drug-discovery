@@ -1,5 +1,6 @@
 import jax.numpy as jnp
 import numpy as np
+from pandas import DataFrame
 
 
 def linear_regression(feature_vector: np.array, weight_vector: np.array, bias_term: float) -> np.array:
@@ -23,7 +24,16 @@ def linear_regression(feature_vector: np.array, weight_vector: np.array, bias_te
     return jnp.dot(feature_vector, weight_vector) + bias_term
 
 
-def mean_squared_error_loss(model_prediction: np.array, labels: np.array) -> np.array:
+def mean_squared_error_loss_wrapper(weight_vector: np.array, bias_term: float, feature_values, label_values):
+    linear_regress_y = linear_regression(
+        feature_values,
+        weight_vector,
+        bias_term
+    )
+    return _mean_squared_error_loss(linear_regress_y, label_values)
+
+
+def _mean_squared_error_loss(model_prediction: np.array, labels: np.array) -> np.array:
     """
     A mean squared error (MSE) loss function. It takes the predicted output vector `y` and the input vector labels (true
     output values) and returns the average of the squared differences between them.
