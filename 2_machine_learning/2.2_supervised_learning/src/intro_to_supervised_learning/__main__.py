@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+import sys
 import os
 import pandas as pd
 import matplotlib
@@ -12,8 +14,11 @@ from matplotlib.axes import Axes
 from rdkit.Chem import Mol
 from pandas import DataFrame, Index
 from typing import List, Callable, Union, Tuple
-from utils import linear_regression_utils
 from jaxlib.xla_extension import ArrayImpl
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from utils import linear_regression_utils
 
 matplotlib.use('TkAgg')
 
@@ -22,7 +27,7 @@ def main():
     """
     1) Load AqSolDB Dataset
     """
-    sup_learn_data_dir: str = os.path.join(os.path.dirname(__file__), '../data')
+    sup_learn_data_dir: str = os.path.join(os.path.dirname(__file__), '../../data')
     aq_sol_dataset: DataFrame = pd.read_csv(os.path.join(sup_learn_data_dir, 'raw/aqsoldb-solubility-dataset.csv'))
     aq_sol_dataset.head()
 
