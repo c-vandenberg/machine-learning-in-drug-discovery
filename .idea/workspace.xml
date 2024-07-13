@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="64f65b5c-f352-47fc-af6f-23256b539061" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_molecular_representations/1.2_molecular_descriptors/notebooks/.ipynb_checkpoints/molecular_descriptors-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/1_molecular_representations/1.2_molecular_descriptors/notebooks/.ipynb_checkpoints/molecular_descriptors-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_molecular_representations/1.2_molecular_descriptors/notebooks/molecular_descriptors.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/1_molecular_representations/1.2_molecular_descriptors/notebooks/molecular_descriptors.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2_machine_learning/2.2_supervised_learning/notebooks/.ipynb_checkpoints/avalon_fp_for_predictive_modelling-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/2_machine_learning/2.2_supervised_learning/notebooks/.ipynb_checkpoints/avalon_fp_for_predictive_modelling-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2_machine_learning/2.2_supervised_learning/notebooks/avalon_fp_for_predictive_modelling.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/2_machine_learning/2.2_supervised_learning/notebooks/avalon_fp_for_predictive_modelling.ipynb" afterDir="false" />
     </list>
