@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64f65b5c-f352-47fc-af6f-23256b539061" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2_machine_learning/2.2_supervised_learning/notebooks/.virtual_documents/avalon_fp_for_predictive_modelling.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2_machine_learning/2.2_supervised_learning/reports/figures/zahrt-et-al-model-reaction.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2_machine_learning/2.2_supervised_learning/notebooks/.ipynb_checkpoints/avalon_fp_for_predictive_modelling-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/2_machine_learning/2.2_supervised_learning/notebooks/.ipynb_checkpoints/avalon_fp_for_predictive_modelling-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2_machine_learning/2.2_supervised_learning/notebooks/avalon_fp_for_predictive_modelling.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/2_machine_learning/2.2_supervised_learning/notebooks/avalon_fp_for_predictive_modelling.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,16 +27,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.Intro to Supervised Learning.executor&quot;: &quot;Run&quot;,
-    &quot;Python.__main__.executor&quot;: &quot;Run&quot;,
-    &quot;Python.avalon_fingerprints_utils.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/supervised-learning&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/chris-vdb/Computational-Chemistry/machine-learning-in-drug-discovery&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Intro to Supervised Learning.executor": "Run",
+    "Python.__main__.executor": "Run",
+    "Python.avalon_fingerprints_utils.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "feature/supervised-learning",
+    "last_opened_file_path": "/home/chris/Computational-Chemistry/machine-learning-in-drug-discovery"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -49,7 +52,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-48aec45f0201-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.17011.127" />
+        <option value="bundled-python-sdk-975db3bf15a3-31b6be0877a2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.18034.82" />
       </set>
     </attachedChunks>
   </component>
