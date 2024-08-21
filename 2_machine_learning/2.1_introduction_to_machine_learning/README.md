@@ -149,7 +149,7 @@ In summary:
 Below are some **common definitions and notation** in machine learning: **<sup>5</sup>**
 
 1. **Features**:
-     * A set of $`N`$ vectors $`\{\vec{x}_i\}`$ each having a dimension $`D`$.
+     * A set of $`N`$ vectors {$`\vec{x}_i`$} each having a dimension $`D`$.
      * These vectors can consist of real numbers, integers, or other types of values
 2. **Labels**:
      * A set of $`N`$ integers or real numbers $`\{y_i\}.y_i`$
@@ -157,7 +157,7 @@ Below are some **common definitions and notation** in machine learning: **<sup>5
 3. **Labeled Data**:
      * A set of $`N`$ tuples $`\{\left(\vec{x}_i, y_i\right)\}`$, where each tuple consists of a feature vector and its corresponding label.
 4. **Unlabeled Data**:
-     * A set of $`N`$ feature vectors $`\{\vec{x}_i\}`$ that do not have associated labels.
+     * A set of $`N`$ feature vectors {$`\vec{x}_i`$} that do not have associated labels.
 6. **Data Generation Process**:
      * The unknown function $`f(\vec{x})`$ that, for a given feature vector, returns a real-valued label (output) $`y`$.
      * This is the process we aim to model with machine learning.
@@ -166,7 +166,7 @@ Below are some **common definitions and notation** in machine learning: **<sup>5
      * The goal of machine learning is to make this function **map the input to the predicted output as accurately as possible** and make it as close to the data generation process as possible.
      * This is therefore a **mapping function**
 8. **Predictions**:
-     * The predicted output $`y`$ for a given input $`\{\vec{x}_i\}`$, produced by the model $`\hat{f}(\vec{x})`$.
+     * The predicted output $`y`$ for a given input {$`\vec{x}_i`$}, produced by the model $`\hat{f}(\vec{x})`$.
 
 ## 2.1.4 References
 **[1]** Alpaydin, E. (2020) 'Introduction to machine learning'. Cambridge, MA: The MIT Press. <br><br>
