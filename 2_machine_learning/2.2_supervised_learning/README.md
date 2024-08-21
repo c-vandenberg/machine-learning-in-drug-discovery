@@ -50,7 +50,7 @@ Supervised learning can be **separated into two distinct types**
        5. **Random Forest**
 2. **Regression**:
    * **Regression** is a supervised learning method used to **understand the relationship between dependent and independent variables**.
-   * In other words, regression uses mathematical methods to **predict a continuous outcome $y$** based on the value of **one or more predictor variables/input vectors {$`\vec{x}_i`$}**
+   * In other words, regression uses mathematical methods to **predict a continuous outcome $`y`$** based on the value of **one or more predictor variables/input vectors {$`\vec{x}_i`$}**
    * In regression, the algorithm is **trained on both input vectors and output labels**. This helps in **establishing a relationship among the variables** by **estimating how one variable affects the other**.
    * Common regression algorithms include:
        1. **Linear Regression**
