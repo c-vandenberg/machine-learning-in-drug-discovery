@@ -3,7 +3,7 @@
 ## 2.2.1 Introduction to Supervised Learning
 
 * **Supervised learning** is defined by its use of **labelled data sets** to train **mapping functions** to **classify data** or **predict outcomes accurately**.
-* In other words, supervised learning involves predicting **the output ${y}$** for a **given input vector ![input_vectors](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7B%5Cvec%7Bx%7D_i%5C%7D%7D)** 
+* In other words, supervised learning involves predicting **the output ${y}$** for a **given input vector {$`\vec{x}_i`$}** 
 * As input data is fed into the model, the **model adjusts the mapping function's parameters/weights** until it has been **fitted appropriately** to the data set.
 * The idea is that once the mapping function is trained, it can then be used on **unseen data to meet some predictive performance**
 * As such, supervised learning algorithms consist of **input-output pairs** and the goal is to **learn a mapping from inputs to outputs**.
@@ -50,7 +50,7 @@ Supervised learning can be **separated into two distinct types**
        5. **Random Forest**
 2. **Regression**:
    * **Regression** is a supervised learning method used to **understand the relationship between dependent and independent variables**.
-   * In other words, regression uses mathematical methods to **predict a continuous outcome ![output](https://latex.codecogs.com/svg.latex?\color{white}{y})** based on the value of **one or more predictor variables/input vectors ![input_vectors](https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%7B%5C%7B%5Cvec%7Bx%7D_i%5C%7D%7D)**
+   * In other words, regression uses mathematical methods to **predict a continuous outcome $y$** based on the value of **one or more predictor variables/input vectors {$`\vec{x}_i`$}**
    * In regression, the algorithm is **trained on both input vectors and output labels**. This helps in **establishing a relationship among the variables** by **estimating how one variable affects the other**.
    * Common regression algorithms include:
        1. **Linear Regression**
