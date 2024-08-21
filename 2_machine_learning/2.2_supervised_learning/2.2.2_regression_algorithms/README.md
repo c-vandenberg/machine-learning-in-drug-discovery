@@ -154,5 +154,5 @@ As stated before, by **including higher degree terms (squared, cubic, quadratic 
 2. The polynomial regression model is trained to **find the independent variable/input vector coefficients** that **minimize the difference between the predicted values and the actual values** in the training data.
 3. Once the model is trained, it can be used to **make predictions on new, unseen data**. The polynomial equation captures the **non-linear patterns** observed in the training data, allowing the model to **generalize to non-linear relationships in unseen data**.
 
- ## References
+## References
  **[1]** Vadurova, D., Gausland, Yvonne. (2018). "Analysis of consumers' ability to identify fake news". <br><br>
