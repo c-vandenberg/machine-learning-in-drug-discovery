@@ -2,7 +2,7 @@
 
 ## 1) Linear Regression
 
-**Linear regression** is one of the simplest supervised machine learning algorithms. Linear regression is used to find the **linear relationship between the dependent variable (output $`y`$)** and **one or more independent variables (input vectors $`\{\vec{x}_i\}`$**). It is **typically leveraged to make predictions about future outcomes**.
+**Linear regression** is one of the simplest supervised machine learning algorithms. Linear regression is used to find the **linear relationship between the dependent variable (output $`y`$)** and **one or more independent variables (input vectors {$`\vec{x}_i`$}**). It is **typically leveraged to make predictions about future outcomes**.
 
 Below are the different types of linear regression. As with all other types of regression, all linear regression types **seek to plot a line of best fit**, which is calculated through the method of **least squares**. What makes linear regression differ from other types of regression (e.g. **polynomial regression**) is that this line of best fit is a **straight line when plotted on a graph**
 
