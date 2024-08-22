@@ -2,4 +2,11 @@
 __pycache__/
 *.py[cod]
 
+# All files in .idea directory
 .idea/
+
+# All files Jupyter notebooks checkpoints folder
+.ipynb_checkpoints/
+
+# All files Jupyter notebooks extensions folder
+.virtual_documents/
