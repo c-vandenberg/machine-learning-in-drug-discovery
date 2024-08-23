@@ -18,6 +18,7 @@ from rdkit.Chem import DataStructs
 from rdkit.ML.Cluster import Butina
 from mordred import Calculator, descriptors
 
+logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
 
@@ -205,8 +206,14 @@ def calculate_rdkit_descriptors(smiles_dataset: Series) -> Union[List, Tuple]:
     Union[List, Tuple]
         A list of RDKit descriptors and a tuple of descriptor names.
     """
-    # Convert each SMILES string in the dataset into an RDKit Mol object
-    mols: List = [Chem.MolFromSmiles(smiles_string) for smiles_string in smiles_dataset]
+    # Convert each SMILES string in the dataset into an RDKit Mol object if SMILES string is valid
+    mols: List = []
+    for smiles_string in smiles_dataset:
+        mol = Chem.MolFromSmiles(smiles_string)
+        if mol is None:
+            logger.warning(f"Invalid SMILES string: {smiles_string}")
+        else:
+            mols.append(mol)
 
     # Descriptors.descList is a list of tuples where each tuple contains a descriptor name and its corresponding
     # function. Here we create a list of descriptor names by extracting the first element (name) from each tuple, and
@@ -219,6 +226,12 @@ def calculate_rdkit_descriptors(smiles_dataset: Series) -> Union[List, Tuple]:
     mol_descriptors: List = []
     for mol in mols:
         try:
+            Chem.SanitizeMol(mol)
+        except Exception as e:
+            logger.exception(f"Sanitization failed for molecule: {Chem.MolToSmiles(mol)} with error: {e}")
+            continue
+
+        try:
             # Some descriptors require explicit hydrogen atoms for accurate calculation
             mol: Mol = Chem.AddHs(mol)
 
@@ -227,7 +240,7 @@ def calculate_rdkit_descriptors(smiles_dataset: Series) -> Union[List, Tuple]:
             mol_rdkit_descriptors: tuple = descriptor_calc.CalcDescriptors(mol)
             mol_descriptors.append(mol_rdkit_descriptors)
         except Exception as e:
-            logger.exception(e)
+            logger.exception(f"Descriptor calculation failed for molecule: {Chem.MolToSmiles(mol)} with error: {e}")
 
     return mol_descriptors, descriptor_names
 
