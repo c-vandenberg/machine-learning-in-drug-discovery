@@ -160,9 +160,9 @@ As discussed in **1.1.7**, many of these neural networks work via **representati
 **[11]** Dalke, A., *MACCS key 44*. Available at: http://www.dalkescientific.com/writings/diary/archive/2014/10/17/maccs_key_44.html (Accessed: 14 June 2024).<br><br>
 **[12]** Durant, J.L. et al. (2002) ‘Reoptimization of MDL keys for use in Drug Discovery’, Journal of Chemical Information and Computer Sciences, 42(6), pp. 1273–1280.<br><br>
 **[13]** James, C.A., Weininger, D. ‘Daylight theory manual’, *Daylight Chemical Information Systems, Inc.*, Irvine, CA, 1995. <br><br>
-**[14}** David, L. et al. (2020) ‘Molecular representations in AI-Driven Drug Discovery: A review and practical guide’, *Journal of Cheminformatics*, 12(1).<br><br>
-**[15}** Extended connectivity fingerprint ECFP - Extended Connectivity Fingerprint ECFP | Chemaxon Docs. Available at: https://docs.chemaxon.com/display/docs/fingerprints_extended-connectivity-fingerprint-ecfp.md (Accessed: 14 June 2024).<br><br>
-**[16}** Yang, K. et al. (2019a) ‘Analyzing learned molecular representations for property prediction’, *Journal of Chemical Information and Modeling*, 59(8), pp. 3370–3388.<br><br>
+**[14]** David, L. et al. (2020) ‘Molecular representations in AI-Driven Drug Discovery: A review and practical guide’, *Journal of Cheminformatics*, 12(1).<br><br>
+**[15]** Extended connectivity fingerprint ECFP - Extended Connectivity Fingerprint ECFP | Chemaxon Docs. Available at: https://docs.chemaxon.com/display/docs/fingerprints_extended-connectivity-fingerprint-ecfp.md (Accessed: 14 June 2024).<br><br>
+**[16]** Yang, K. et al. (2019a) ‘Analyzing learned molecular representations for property prediction’, *Journal of Chemical Information and Modeling*, 59(8), pp. 3370–3388.<br><br>
 **[17]** Nguyen, D.D. and Wei, G. (2019) ‘DG‐GL: Differential geometry‐based geometric learning of molecular datasets’, *International Journal for Numerical Methods in Biomedical Engineering*, 35(3).<br><br>
 **[18]** Bramer, D. and Wei, G.-W. (2018) ‘Multiscale weighted colored graphs for protein flexibility and rigidity analysis’, *The Journal of Chemical Physics*, 148(5).<br><br>
 **[19]** Nguyen, D.D. et al. (2019) ‘MathDL: Mathematical deep learning for D3R grand challenge 4’, *Journal of Computer-Aided Molecular Design*, 34(2), pp. 131–147.<br><br>
