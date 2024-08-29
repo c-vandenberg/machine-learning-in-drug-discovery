@@ -1,6 +1,6 @@
 # 2.2 Supervised Learning
 
-## 2.2.1 Introduction to Supervised Learning
+## Introduction to Supervised Learning
 
 * **Supervised learning** is defined by its use of **labelled data sets** to train **mapping functions** to **classify data** or **predict outcomes accurately**.
 * In other words, supervised learning involves predicting **the output ${y}$** for a **given input vector {$`\vec{x}_i`$}** 
