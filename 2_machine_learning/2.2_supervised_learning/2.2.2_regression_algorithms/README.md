@@ -1,4 +1,4 @@
-# 2.2.3 Regression Algorithms in Supervised Learning
+# 2.2.2 Regression Algorithms in Supervised Learning
 
 ## 1) Linear Regression
 
