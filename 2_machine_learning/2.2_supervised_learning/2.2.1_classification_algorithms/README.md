@@ -1,4 +1,4 @@
-# 2.2.2 Classification Algorithms in Supervised Learning
+# 2.2.1 Classification Algorithms in Supervised Learning
 
 ## 1) Decision Trees
 
