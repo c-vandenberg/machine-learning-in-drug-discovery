@@ -4,7 +4,7 @@
 
 ## Contents
 [Abstract](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/blob/master/README.md#abstract)<br>
-[References](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/blob/master/README.md#contents)<br>
+[References](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/blob/master/README.md#references)<br>
 1. [Molecular Representations/Descriptors in Machine Learning-Based Drug Development](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/blob/master/1_molecular_representations/README.md#1-molecular-representationsdescriptors-in-machine-learning-based-drug-development)<br>
   1.1 [Molecular Graph Theory](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/tree/master/1_molecular_representations/1.1_molecular_graph_theory#11-molecular-graph-theory)<br>
   &nbsp;&nbsp;&nbsp;&nbsp;1.1.1 [Introduction To The Molecular Graph Representation](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/tree/master/1_molecular_representations/1.1_molecular_graph_theory#111-introduction-to-the-molecular-graph-representation)<br>
