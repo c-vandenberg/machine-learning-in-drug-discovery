@@ -1,4 +1,4 @@
-# 1 Molecular Representations/Descriptors in Machine Learning-Based Drug Development
+# 1. Molecular Representations/Descriptors in Machine Learning-Based Drug Development
 
 ## Abstract
 
