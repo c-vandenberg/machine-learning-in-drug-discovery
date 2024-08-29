@@ -10,6 +10,7 @@ This literature review serves as an introduction to the different molecular repr
 
 ## Contents
 [Abstract](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/tree/master/1_molecular_representations#abstract)<br>
+[References](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/tree/master/1_molecular_representations#references)<br>
 1.1 [Molecular Graph Theory](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/tree/master/1_molecular_representations/1.1_molecular_graph_theory#11-molecular-graph-theory)<br>
   &nbsp;&nbsp;&nbsp;&nbsp;1.1.1 [Introduction To The Molecular Graph Representation](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/tree/master/1_molecular_representations/1.1_molecular_graph_theory#111-introduction-to-the-molecular-graph-representation)<br>
   &nbsp;&nbsp;&nbsp;&nbsp;1.1.2 [Mathematical Defintion of a Graph](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/tree/master/1_molecular_representations/1.1_molecular_graph_theory#112-mathematical-defintion-of-a-graph)<br>
