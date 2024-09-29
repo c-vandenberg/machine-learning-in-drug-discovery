@@ -72,7 +72,7 @@ where:
 * $`Y_i`$ is the **dependent variable/output for the *i*-th observation**
 * $`\beta_{0}`$ is the **intercept**
 * $`\beta_{1}x_{i}^{(1)}`$ is the **coefficient and the *i*-th observation of the first independent variable**
-* $`beta_{2}x_{i}^{(2)}`$ is the **coefficient and the *i*-th observation of the second independent variable**
+* $`\beta_{2}x_{i}^{(2)}`$ is the **coefficient and the *i*-th observation of the second independent variable**
 * $`\ldots`$ represents **additional terms up to *n* independent variables**
 * $`\beta_{n}x_{i}^{(n)}`$ is the **coefficient and the *i*-th observation of the *n*-th independent variable**
 
