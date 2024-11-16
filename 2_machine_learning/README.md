@@ -3,8 +3,6 @@
 ## Abstract
 
 ## Contents
-[Abstract]()<br>
-[References]()<br>
 2.1 [Introduction to Machine Learning](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/tree/master/2_machine_learning/2.1_introduction_to_machine_learning#21-introduction-to-machine-learning)<br>
   &nbsp;&nbsp;&nbsp;&nbsp;2.1.1 [How does Machine Learning Work?](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/tree/master/2_machine_learning/2.1_introduction_to_machine_learning#211-how-does-machine-learning-work)<br>
   &nbsp;&nbsp;&nbsp;&nbsp;2.1.2 [Machine Learning Methods](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/tree/master/2_machine_learning/2.1_introduction_to_machine_learning#212-machine-learning-methods)<br>
