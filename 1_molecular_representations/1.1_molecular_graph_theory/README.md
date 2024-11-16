@@ -2,7 +2,7 @@
 
 ## 1.1.1 Introduction To The Molecular Graph Representation
 
-The vast majority of the molecular representations discussed in this literature review are built on the concept of the molecular graph representation. It is therefore important to introduce the theory behind molecular graphs and gain a solid understanding of it. This will primarily involve the abstract mathematical structure/data structure of the graph itself; however, it is important to note that notations and file formats such as **SMILES strings** and **Molfiles** are also built using molecular graphs. **<sup>1</sup>**
+Some of the most prevalent machine-readable molecular representations are built on the concept of the molecular graph representation. It is therefore important to introduce the theory behind molecular graphs and gain a solid understanding of it. This will primarily involve the abstract mathematical structure/data structure of the graph itself; however, it is important to note that notations and file formats such as **SMILES strings** and **Molfiles** are also built using molecular graphs. **<sup>1</sup>**
 
 Molecular graph representation is based on the concept of **mapping a molecule's atoms and bonds into sets of nodes and edges**. Typically, the nodes are represented using letters indicating the atom type (as per the periodic table), or simply using points where the bonds meet (for carbon atoms). **<sup>1</sup>**
 
