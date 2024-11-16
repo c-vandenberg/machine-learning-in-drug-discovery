@@ -2,15 +2,11 @@
 
 ## Abstract
 
-With the advancement of deep learning (DL) technology, the growth of drug-related data, and the proliferation of user-friendly DL frameworks in popular programming languages, **<sup>1</sup>** **<sup>2</sup>** methodologies based on machine learning (ML) algorithms are becoming more ubiquitous in all steps of the drug discovery and drug development process. **<sup>3</sup>**
+The representation of molecules has been a central focus in chemistry throughout history, evolving from traditional structural diagrams with bonds and atoms, to advanced machine-readable notations essential for cheminformatics and drug discovery. 
 
-Data quality and data representation have a significant impact on the performance of ML-based predictive models, as both heavily contribute to the quality of pre-training. Therefore, there has been a surge of interest in research on molecular representation. This includes pre-computed/fixed molecular representations such as **molecular graph representations**, **linear notations** (e.g. SMILES and molecular fingerprints), **<sup>4</sup>** **<sup>5</sup>** as well as **learned molecular representations**. **<sup>6</sup>**.
-
-This literature review serves as an introduction to the different molecular representation approaches in ML-based drug development.
+This review explores various chemical representations, from **structural encodings** such as **molecular graphs**, to **linear notations** such as **SMILES** and **molecular fingerprints**. It addresses the strengths and limitations of these various representations, and highlights the development of computer-readable representations that enable efficient digital storage, querying, and visualisation of chemical compounds. **<sup>1</sup>**
 
 ## Contents
-[Abstract](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/tree/master/1_molecular_representations#abstract)<br>
-[References](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/tree/master/1_molecular_representations#references)<br>
 1.1 [Molecular Graph Theory](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/tree/master/1_molecular_representations/1.1_molecular_graph_theory#11-molecular-graph-theory)<br>
   &nbsp;&nbsp;&nbsp;&nbsp;1.1.1 [Introduction To The Molecular Graph Representation](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/tree/master/1_molecular_representations/1.1_molecular_graph_theory#111-introduction-to-the-molecular-graph-representation)<br>
   &nbsp;&nbsp;&nbsp;&nbsp;1.1.2 [Mathematical Defintion of a Graph](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/tree/master/1_molecular_representations/1.1_molecular_graph_theory#112-mathematical-defintion-of-a-graph)<br>
@@ -33,9 +29,4 @@ Additionally, each section of the literature review will have accompanying Pytho
 
 ## References
 
-**[1]** Abadi, M. *et al.* (2015) ‘TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems’, https://www.tensorflow.org/, Software available from tensorflow.org. <br><br>
-**[2]** Paszke, A. *et al.* (2017) ‘NIPS Autodiff Workshop’. <br><br>
-**[3]** Kim, J. *et al.* (2021) ‘Comprehensive survey of recent drug discovery using Deep Learning’, *International Journal of Molecular Sciences*, 22(18), p. 9983. <br><br>
-**[4]** Rifaioglu, A.S. et al. (2020) ‘DEEPScreen: High performance drug–target interaction prediction with convolutional neural networks using 2-D structural compound representations’, *Chemical Science*, 11(9), pp. 2531–2557.<br><br>
-**[5]** David, L. et al. (2020) ‘Molecular representations in AI-Driven Drug Discovery: A review and practical guide’, *Journal of Cheminformatics*, 12(1).<br><br>
-**[6]** Yang, K. et al. (2019) ‘Analyzing learned molecular representations for property prediction’, *Journal of Chemical Information and Modeling*, 59(8), pp. 3370–3388.<br><br>
+**[1]** David, L. et al. (2020) ‘Molecular representations in AI-Driven Drug Discovery: A review and practical guide’, *Journal of Cheminformatics*, 12(1).<br><br>
