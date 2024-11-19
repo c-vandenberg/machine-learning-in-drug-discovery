@@ -4,7 +4,7 @@
 
 Advancements in machine learning technology, the exponential growth of drug-related data, and the widespread availability of user-friendly machine learning frameworks in popular programming languages **<sup>1</sup>** **<sup>2</sup>** are making machine learning methodologies increasingly prevalent throughout all stages of the drug discovery and development process. **<sup>3</sup>**
 
-Data quality and representation significantly impact the performance of machine learning-based predictive models, as both are crucial for effective pre-training. As a result, there has been a surge of research interest in molecular representation. This research encompasses pre-computed or fixed molecular representations, such as **molecular graph representations** and **linear notations** (e.g., SMILES and molecular fingerprints), **<sup>4</sup>** **<sup>5</sup>** as well as **learned molecular representations**. **<sup>6</sup>**.
+**Data quality** and **representation** significantly impact the performance of machine learning-based predictive models, as both are crucial for **effective pre-training**. As a result, there has been a surge of research interest in molecular representation. This research encompasses **pre-computed** or **fixed molecular representations**, such as **molecular graph representations** and **linear notations** (e.g., SMILES and molecular fingerprints), **<sup>4</sup>** **<sup>5</sup>** as well as **learned molecular representations**. **<sup>6</sup>**.
 
 This literature review provides an overview of the various molecular representation approaches used in machine learning-based drug development and explores their applications in conjunction with machine learning models for predicting molecular properties and reactions.
 
