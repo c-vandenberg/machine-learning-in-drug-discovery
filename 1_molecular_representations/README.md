@@ -2,9 +2,9 @@
 
 ## Abstract
 
-The representation of molecules has been a central focus in chemistry throughout history, evolving from traditional structural diagrams with bonds and atoms, to advanced machine-readable notations essential for cheminformatics and drug discovery. 
+The **representation of molecules** has been a central focus in chemistry throughout history, evolving from **traditional structural diagrams** depicting atoms and bonds, to **advanced machine-readable notations** essential for cheminformatics and drug discovery. 
 
-This review explores various chemical representations, from **structural encodings** such as **molecular graphs**, to **linear notations** such as **SMILES** and **molecular fingerprints**. It addresses the strengths and limitations of these various representations, and highlights the development of computer-readable representations that enable efficient digital storage, querying, and visualisation of chemical compounds. **<sup>1</sup>**
+This review explores various chemical representations, including **structural encodings** such as **molecular graphs**, and **linear notations** like **SMILES**, and **molecular fingerprints**. It examines the strengths and limitations of these representations, and highlights the development of **computer-readable formats** that facilitate **efficient digital storage**, **querying**, and **visualisation** of chemical compounds. **<sup>1</sup>** Additionally, the review presents case studies on widely used molecular representations and descriptors, including **MACCS-keys fingerprints**, **Avalon fingerprints**, and **Morgan fingerprints**, as well as their applications in **compound querying and clustering**, such as **Taylor-Butina clustering**.
 
 ## Contents
 1.1 [Molecular Graph Theory](https://github.com/c-vandenberg/machine-learning-in-drug-discovery/tree/master/1_molecular_representations/1.1_molecular_graph_theory#11-molecular-graph-theory)<br>
